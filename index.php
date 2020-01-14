@@ -1,11 +1,10 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-        s
-        </div>
-        <div class="col-md-4">
-        s
-        </div>
-    </div>
-</div>
+<?php
+include_once 'helper/connection.php';
+// $con = mysqli_connect("localhost","sunriseindonesia_7","13h-p.S14c","sunriseindonesia_7");
 
+$sql = "SELECT * FROM wpzu_users";
+$results = mysqli_query($con, $sql);
+
+while($row =  mysqli_fetch_assoc($results)) {
+    printf ("%s (%s)\n", $row["user_login"], $row["user_email"]);
+}

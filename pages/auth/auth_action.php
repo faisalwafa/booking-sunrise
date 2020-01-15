@@ -9,15 +9,24 @@ $t_hasher = new PasswordHash(8, TRUE);
 $response;
 
 if (isset($_POST['login'])) {
-    // $username_email = $_POST['username'];
-    // $password = $_POST['password'];
-    // $sql_find_user = "SELECT user_login, user_pass FROM wpzu_users WHERE user_login = '$username_email'";
-    // if ($results = mysqli_query($con, $sql_find_user)) {
-    //     if (mysqli_num_rows($results) == 1) {
-
-    //     }
-    // }
-    $response = send_response(SUCCESS);
+    $username_email = $_POST['username'];
+    $password = $_POST['password'];
+    $sql_find_user = "SELECT * FROM wpzu_users WHERE user_login = '$username_email' OR user_email = '$username_email'";
+    if ($results = mysqli_query($con, $sql_find_user)) {
+        if (mysqli_num_rows($results) == 0) {
+            $response = send_response(FAIL, "Tidak ditemukan user dengan username / email tersebut");
+        } else {
+            $row = mysqli_fetch_assoc($results);
+            $check = $t_hasher->CheckPassword($password, $row['user_pass']);
+            if ($check == 1) {
+                $response = send_response(SUCCESS);
+            } else {
+                $response = send_response(FAIL, "Password salah");
+            }
+        }
+    } else {
+        $response = send_response(FAIL, "Gagal mencari user dangan username / email tersebut");
+    }
 } else {
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];

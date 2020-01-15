@@ -53,7 +53,8 @@ formRegister.addEventListener("submit", function(e) {
           pillsDaftar.classList.remove("active");
           pillsMasuk.classList.add("active", "show");
         } else {
-          document.getElementById("alert-daftar").style.display = "block";
+          document.getElementById("alert-failed-daftar").style.display =
+            "block";
           document.getElementById("daftar-failed-feedback").innerHTML =
             response.message;
         }
@@ -77,11 +78,14 @@ formLogin.addEventListener("submit", function(e) {
       },
       success: function(data) {
         let response = JSON.parse(data);
+        console.log(response);
         if (response.success === "success") {
-          alert(data);
+          alert("Login Sukses");
         } else {
+          document.getElementById("alert-failed-login").style.display = "block";
+          document.getElementById("login-failed-feedback").innerHTML =
+            response.message;
         }
-        // window.location.href = 'addcust.php?new_sale=' + data
       },
       error: function(xhr, ajaxOptions, thrownerror) {}
     });
@@ -113,9 +117,22 @@ function checkRegisterLastName() {
 }
 
 function checkRegisterUsername() {
+  const registerUsernameFeedback = document.getElementById(
+    "register-username-feedback"
+  );
   if (registerUsername.value === "") {
     registerUsername.classList.remove("is-valid");
     registerUsername.classList.add("is-invalid");
+    registerUsernameFeedback.innerHTML = "Username tidak boleh kosong";
+    return false;
+  } else if (
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      registerUsername.value
+    )
+  ) {
+    registerUsername.classList.remove("is-valid");
+    registerUsername.classList.add("is-invalid");
+    registerUsernameFeedback.innerHTML = "Format username tidak boleh email";
     return false;
   } else {
     registerUsername.classList.remove("is-invalid");

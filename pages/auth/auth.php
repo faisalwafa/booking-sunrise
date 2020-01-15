@@ -11,23 +11,20 @@
         <div class="row">
             <div class="col-md-6 d-sm-none d-md-block"></div>
             <div class="col-md-6 col-sm-12 d-flex flex-column align-items-center mt-5">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills mb-3 bg-light py-2 rounded" id="pills-tab" role="tablist">
                     <li class="nav-item col-6 border-right border-orange">
-                        <a class="nav-link active" id="pills-daftar-tab" data-toggle="pill" href="#pills-daftar" role="tab" aria-controls="pills-daftar" aria-selected="true">Daftar</a>
+                        <a class="nav-link active" id="pills-daftar-tab" data-toggle="pill" href="#pills-daftar" role="tab" aria-controls="pills-daftar" aria-selected="true"><strong>Daftar</strong></a>
                     </li>
                     <li class="nav-item col-6 border-left border-orange">
-                        <a class="nav-link" id="pills-masuk-tab" data-toggle="pill" href="#pills-masuk" role="tab" aria-controls="pills-masuk" aria-selected="false">Masuk</a>
+                        <a class="nav-link" id="pills-masuk-tab" data-toggle="pill" href="#pills-masuk" role="tab" aria-controls="pills-masuk" aria-selected="false"><strong>Masuk</strong></a>
                     </li>
                 </ul>
-                <div class="card mh-100 w-75 mb-3">
+                <div class="card mh-100 w-75 mb-3 rounded">
                     <div class="card-body">
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-daftar" role="tabpanel" aria-labelledby="pills-daftar-tab">
-                                <div class="alert alert-light alert-dismissible fade show" role="alert" style="display: none" id="alert-daftar">
-                                    <strong class="text-danger">Pendaftaran Gagal!</strong> <span id="daftar-failed-feedback"></span>.
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                <div class="alert alert-light" role="alert" style="display: none" id="alert-failed-daftar">
+                                    <strong class="text-danger">Pendaftaran Gagal!</strong> <span id="daftar-failed-feedback"></span>
                                 </div>
                                 <form id="formRegister">
                                     <div class="row">
@@ -45,7 +42,7 @@
                                     <div class="form-group">
                                         <label for="register-username">Username</label>
                                         <input type="text" class="form-control" id="register-username" onfocusout="checkRegisterUsername()">
-                                        <div class="invalid-feedback">
+                                        <div class="invalid-feedback" id="register-username-feedback">
                                             Username tidak boleh kosong
                                         </div>
                                     </div>
@@ -77,6 +74,9 @@
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
+                                </div>
+                                <div class="alert alert-light" role="alert" style="display: none" id="alert-failed-login">
+                                    <strong class="text-danger">Login Gagal!</strong> <span id="login-failed-feedback"></span>
                                 </div>
                                 <form id="formLogin">
                                     <div class="form-group">

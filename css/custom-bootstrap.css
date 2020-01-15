@@ -6,7 +6,8 @@
 .nav-pills li a:hover,
 .nav-pills li a:focus {
   color: #ffa500 !important;
-  background-color: #ecf0f100 !important;
+  background-color: #ffffff00 !important;
+  border-bottom: #ffa500 solid 2px;
   transition: 0.4s;
 }
 

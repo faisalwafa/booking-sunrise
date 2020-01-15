@@ -1,0 +1,10 @@
+body {
+  color: #223d41;
+}
+
+.bg-login {
+  background-image: url("../assets/bg-login.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}

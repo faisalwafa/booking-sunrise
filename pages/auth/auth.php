@@ -1,11 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <?php include_once '../inc/header.php'; ?>
-        <title>Autentikasi | Sunrise Indonesia</title>
-    </head>
-    <body>
-        <h1>Hello</h1>
-        <?php include_once '../inc/scripts.php'; ?>
+
+<head>
+    <?php include_once '../inc/header.php'; ?>
+    <title>Autentikasi | Sunrise Indonesia</title>
+</head>
+
+<body class="bg-login min-vh-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 d-sm-none d-md-block"></div>
+            <div class="col-md-6 col-sm-12 d-flex flex-column align-items-center mt-5">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item col-6 border-right border-orange">
+                        <a class="nav-link active" id="pills-daftar-tab" data-toggle="pill" href="#pills-daftar" role="tab" aria-controls="pills-daftar" aria-selected="true">Daftar</a>
+                    </li>
+                    <li class="nav-item col-6 border-left border-orange">
+                        <a class="nav-link" id="pills-masuk-tab" data-toggle="pill" href="#pills-masuk" role="tab" aria-controls="pills-masuk" aria-selected="false">Masuk</a>
+                    </li>
+                </ul>
+                <div class="card mh-100 w-75 mb-3">
+                    <div class="card-body">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-daftar" role="tabpanel" aria-labelledby="pills-daftar-tab">
+                                <div class="alert alert-light alert-dismissible fade show" role="alert" style="display: none" id="alert-daftar">
+                                    <strong class="text-danger">Pendaftaran Gagal!</strong> <span id="daftar-failed-feedback"></span>.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form id="formRegister">
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label for="register-firstName">Nama Depan</label>
+                                            <input type="text" class="form-control" id="register-firstName" onfocusout="checkRegisterFirstName()">
+                                            <small class="invalid-feedback">Nama Depan tidak boleh kosong</small>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="register-lastName">Nama Belakang</label>
+                                            <input type="text" class="form-control" id="register-lastName" onfocusout="checkRegisterLastName()">
+                                            <small class="invalid-feedback">Nama Belakang tidak boleh kosong</small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="register-username">Username</label>
+                                        <input type="text" class="form-control" id="register-username" onfocusout="checkRegisterUsername()">
+                                        <div class="invalid-feedback">
+                                            Username tidak boleh kosong
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="register-email">Email</label>
+                                        <input type="email" class="form-control" id="register-email" onfocusout="checkRegisterEmail()">
+                                        <div class="invalid-feedback" id="register-email-feedback">
+                                            Email tidak boleh kosong
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="register-password">Password</label>
+                                        <input type="password" class="form-control" id="register-password" class="form-control" onfocusout="checkRegisterPassword()">
+                                        <small class="invalid-feedback" id="register-password-feedback">Password tidak boleh kosong</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="register-passwordConfirm">Konfirmasi Password</label>
+                                        <input type="password" class="form-control" id="register-passwordConfirm" class="form-control" onfocusout="checkRegisterPasswordConfirm()" onkeyup="checkRegisterPasswordConfirm()">
+                                        <div class="invalid-feedback">
+                                            Password tidak cocok
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-block btn-orange">Daftar</button>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="pills-masuk" role="tabpanel" aria-labelledby="pills-masuk-tab">
+                                <div class="alert alert-light alert-dismissible fade show" role="alert" style="display: none" id="alert-login">
+                                    <strong class="text-green">Pendaftaran berhasil!</strong> Silahkan login.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form id="formLogin">
+                                    <div class="form-group">
+                                        <label for="login-email">Email / Username</label>
+                                        <input type="text" class="form-control" id="login-username" onfocusout="checkLoginUsername()">
+                                        <div class="invalid-feedback">Username tidak boleh kosong</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="login-password">Password</label>
+                                        <input type="password" class="form-control" id="login-password" onfocusout="checkLoginPassword()">
+                                        <small class="invalid-feedback">Password tidak boleh kosong</small>
+                                    </div>
+                                    <button type="submit" class="btn btn-orange btn-block">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php include_once '../inc/scripts.php'; ?>
 </body>
+
 </html>

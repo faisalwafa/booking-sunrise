@@ -7,3 +7,4 @@
 <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../../css/style.css">
+<link rel="stylesheet" type="text/css" href="../../css/custom-bootstrap.css">

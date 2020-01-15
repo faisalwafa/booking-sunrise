@@ -40,10 +40,10 @@ $tour = $_GET['tour'];
                             </div>  
                             <div class="row">
                                 <div class="col-md-4">
-                                
+                                    <input class="form-control" type="date">
                                 </div>
                                 <div class="col-md-4">
-                                
+                                    <input class="form-control" type="date">
                                 </div>
                                 <div class="col-md-4">
                                     <button type="button" class="btn btn-success">Update</button>

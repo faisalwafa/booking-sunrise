@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once '../../helper/connection.php';
 
 $tour = $_GET['tour'];
@@ -6,16 +6,18 @@ $tour = $_GET['tour'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <?php include_once '../inc/header.php'; ?>
-        <title>Autentikasi | Sunrise Indonesia</title>
-    </head>
-    <body>
-        <?php 
-            $sql = "SELECT * FROM wpzu_posts WHERE ID = $tour";
-            $results = mysqli_query($con, $sql);
 
-            while($row =  mysqli_fetch_assoc($results)) { ?>
+<head>
+    <?php include_once '../inc/header.php'; ?>
+    <title>Autentikasi | Sunrise Indonesia</title>
+</head>
+
+<body>
+    <?php
+    $sql = "SELECT * FROM wpzu_posts WHERE ID = $tour";
+    $results = mysqli_query($con, $sql);
+
+    while ($row =  mysqli_fetch_assoc($results)) { ?>
         <div class="page-title">
             <div class="container">
                 <h2 class="post-title"> <?php echo $row["post_title"] ?> </h2>
@@ -25,11 +27,11 @@ $tour = $_GET['tour'];
             <div class="row">
                 <div class="col-sm-8 col-md-9">
                     <div class="content">
-                        <div> 
+                        <div>
                             <img src="https://dummyimage.com/900x500/000/fff" class="img-fluid" alt="Responsive image">
                         </div>
-                        <div class="row-content"> 
-                            <h5>Check Availability</h5> 
+                        <div class="row-content">
+                            <h5>Check Availability</h5>
                             <div class="row">
                                 <div class="col-md-4">
                                     From
@@ -37,7 +39,7 @@ $tour = $_GET['tour'];
                                 <div class="col-md-4">
                                     To
                                 </div>
-                            </div>  
+                            </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <input class="form-control" type="date">
@@ -48,13 +50,13 @@ $tour = $_GET['tour'];
                                 <div class="col-md-4">
                                     <button type="button" class="btn btn-success">Update</button>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                         <div class="row-content">
                             <p>
-                            <!-- <textarea id="editor" placeholder="" autofocus> -->  
-                            <?php echo $row["post_content"]; ?>                                        
-                            <!-- </textarea> -->
+                                <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                <?php echo $row["post_content"]; ?>
+                                <!-- </textarea> -->
                             </p>
                             <div class="accordion" id="accordionContent">
                                 <div>
@@ -66,8 +68,8 @@ $tour = $_GET['tour'];
                                     </strong>
                                     <div id="collapseOne" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#accordionContent">
                                         <p>
-                                            <!-- <textarea id="editor" placeholder="" autofocus> -->  
-                                            <?php echo $row["harga_paket"]; ?>                                        
+                                            <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                            <?php echo $row["harga_paket"]; ?>
                                             <!-- </textarea> -->
                                         </p>
                                     </div>
@@ -75,14 +77,14 @@ $tour = $_GET['tour'];
                                 <div>
                                     <strong>
                                         <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        <span><i class="soap-icon-plus mr-1"></i></span>
+                                            <span><i class="soap-icon-plus mr-1"></i></span>
                                             <span>Detail Itinerary</span>
                                         </button>
                                     </strong>
                                     <div id="collapseTwo" class="collapse ml-2" aria-labelledby="headingTwo" data-parent="#accordionContent">
                                         <p>
-                                            <!-- <textarea id="editor" placeholder="" autofocus> -->  
-                                            <?php echo $row["detail_itinerary"];?>                                        
+                                            <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                            <?php echo $row["detail_itinerary"]; ?>
                                             <!-- </textarea> -->
                                         </p>
                                     </div>
@@ -96,8 +98,8 @@ $tour = $_GET['tour'];
                                     </strong>
                                     <div id="collapseThree" class="collapse ml-2" aria-labelledby="headingThree" data-parent="#accordionContent">
                                         <p>
-                                            <!-- <textarea id="editor" placeholder="" autofocus> -->  
-                                            <?php echo $row["harga_termasuk"];?>                                        
+                                            <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                            <?php echo $row["harga_termasuk"]; ?>
                                             <!-- </textarea> -->
                                         </p>
                                     </div>
@@ -111,8 +113,8 @@ $tour = $_GET['tour'];
                                     </strong>
                                     <div id="collapseFour" class="collapse ml-2" aria-labelledby="headingFour" data-parent="#accordionContent">
                                         <p>
-                                            <!-- <textarea id="editor" placeholder="" autofocus> -->  
-                                            <?php echo $row["harga_tidak_termasuk"];?>                                        
+                                            <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                            <?php echo $row["harga_tidak_termasuk"]; ?>
                                             <!-- </textarea> -->
                                         </p>
                                     </div>
@@ -126,8 +128,8 @@ $tour = $_GET['tour'];
                                     </strong>
                                     <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
                                         <p>
-                                            <!-- <textarea id="editor" placeholder="" autofocus> -->  
-                                            <?php echo $row["force_majeur"];?>                                        
+                                            <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                            <?php echo $row["force_majeur"]; ?>
                                             <!-- </textarea> -->
                                         </p>
                                     </div>
@@ -143,7 +145,7 @@ $tour = $_GET['tour'];
                             <div class="col-md-5">
                                 <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
                             </div>
-                            <div >
+                            <div>
                                 <p>tes</p>
                             </div>
                         </div>
@@ -152,7 +154,7 @@ $tour = $_GET['tour'];
                             <div class="col-md-5">
                                 <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
                             </div>
-                            <div >
+                            <div>
                                 <p>tes</p>
                             </div>
                         </div>
@@ -161,7 +163,7 @@ $tour = $_GET['tour'];
                             <div class="col-md-5">
                                 <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
                             </div>
-                            <div >
+                            <div>
                                 <p>tes</p>
                             </div>
                         </div>
@@ -172,7 +174,7 @@ $tour = $_GET['tour'];
                             <div class="col-md-5">
                                 <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
                             </div>
-                            <div >
+                            <div>
                                 <p>tes</p>
                             </div>
                         </div>
@@ -181,7 +183,7 @@ $tour = $_GET['tour'];
                             <div class="col-md-5">
                                 <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
                             </div>
-                            <div >
+                            <div>
                                 <p>tes</p>
                             </div>
                         </div>
@@ -190,7 +192,7 @@ $tour = $_GET['tour'];
                             <div class="col-md-5">
                                 <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
                             </div>
-                            <div >
+                            <div>
                                 <p>tes</p>
                             </div>
                         </div>
@@ -204,8 +206,9 @@ $tour = $_GET['tour'];
                 </div>
             </div>
         </div>
-        <?php }?>
-        <?php include_once '../inc/scripts.php'; ?>
-    </body>
-</html>
+    <?php } ?>
+    <?php include_once '../inc/footer.php'; ?>
+    <?php include_once '../inc/scripts.php'; ?>
+</body>
 
+</html>

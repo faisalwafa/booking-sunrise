@@ -5,10 +5,10 @@
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../../css/style.css">
 <link rel="stylesheet" type="text/css" href="../../css/footer.css">
+<link rel="stylesheet" type="text/css" href="../../css/navbar.css">
 <link rel="stylesheet" type="text/css" href="../../css/animate.css">
 <link rel="stylesheet" type="text/css" href="../../css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="../../css/trumbowyg.min.css">
 <link rel="stylesheet" href="../../css/trumbowyg.colors.min.css">
 <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
-<link rel="stylesheet" type="text/css" href="../../css/style.css">
 <link rel="stylesheet" type="text/css" href="../../css/custom-bootstrap.css">

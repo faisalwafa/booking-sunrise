@@ -14,6 +14,8 @@ $tour = $_GET['tour'];
 
 <body>
     <?php
+    include_once '../inc/navbar.php';
+
     $sql = "SELECT * FROM wpzu_posts WHERE ID = $tour";
     $results = mysqli_query($con, $sql);
 

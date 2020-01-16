@@ -1,0 +1,11 @@
+.navbar-img {
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+}
+
+.navbar-custom {
+  background-color: #000;
+  color: #fff;
+  text-transform: uppercase;
+}

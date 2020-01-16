@@ -11,16 +11,20 @@
         <div class="row">
             <div class="col-md-6 d-sm-none d-md-block"></div>
             <div class="col-md-6 col-sm-12 d-flex flex-column align-items-center mt-5">
-                <ul class="nav nav-pills mb-3 bg-light py-2 rounded" id="pills-tab" role="tablist">
-                    <li class="nav-item col-6 border-right border-orange">
-                        <a class="nav-link active" id="pills-daftar-tab" data-toggle="pill" href="#pills-daftar" role="tab" aria-controls="pills-daftar" aria-selected="true"><strong>Daftar</strong></a>
-                    </li>
-                    <li class="nav-item col-6 border-left border-orange">
-                        <a class="nav-link" id="pills-masuk-tab" data-toggle="pill" href="#pills-masuk" role="tab" aria-controls="pills-masuk" aria-selected="false"><strong>Masuk</strong></a>
-                    </li>
-                </ul>
                 <div class="card mh-100 w-75 mb-3 rounded">
                     <div class="card-body">
+                        <ul class="nav nav-pills mb-3 py-2 rounded text-center" id="pills-tab" role="tablist">
+                            <li class="nav-item col-6 border-right border-orange">
+                                <a class="nav-link active" id="pills-daftar-tab" data-toggle="pill" href="#pills-daftar" role="tab" aria-controls="pills-daftar" aria-selected="true">
+                                    <h6>Daftar</h6>
+                                </a>
+                            </li>
+                            <li class="nav-item col-6 border-left border-orange">
+                                <a class="nav-link" id="pills-masuk-tab" data-toggle="pill" href="#pills-masuk" role="tab" aria-controls="pills-masuk" aria-selected="false">
+                                    <h6>Masuk</h6>
+                                </a>
+                            </li>
+                        </ul>
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-daftar" role="tabpanel" aria-labelledby="pills-daftar-tab">
                                 <div class="alert alert-light" role="alert" style="display: none" id="alert-failed-daftar">

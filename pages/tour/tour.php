@@ -9,7 +9,7 @@ $tour = $_GET['tour'];
 
 <head>
     <?php include_once '../inc/header.php'; ?>
-    <title>Autentikasi | Sunrise Indonesia</title>
+    <title>Tours | Sunrise Indonesia</title>
 </head>
 
 <body>

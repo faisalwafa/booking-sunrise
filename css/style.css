@@ -73,7 +73,8 @@ body {
 }
 
 p {
-  color: #838383 !important;
+  color: #838383;
+  font-size: 1.0833em;
   line-height: 1.6666;
 }
 

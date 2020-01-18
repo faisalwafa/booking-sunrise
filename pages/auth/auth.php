@@ -93,7 +93,8 @@
                                         <input type="password" class="form-control" id="login-password" onfocusout="checkLoginPassword()">
                                         <small class="invalid-feedback">Password tidak boleh kosong</small>
                                     </div>
-                                    <button type="submit" class="btn btn-orange btn-block">Login</button>
+                                    <a class="text-dark" href="forgot_password.php">Lupa password?</a>
+                                    <button type="submit" class="btn btn-orange btn-block mt-2">Login</button>
                                 </form>
                             </div>
                         </div>
@@ -103,6 +104,8 @@
         </div>
     </div>
     <?php include_once '../inc/scripts.php'; ?>
+    <script src="/js/auth.js"></script>
+    <!-- <script src="/booking-sunrise/js/auth.js"></script> -->
 </body>
 
 </html>

@@ -28,7 +28,7 @@ if ($email != false) {
     if (mysqli_num_rows($results) === 0) {
         header("Location: forgot_password.php?pesan=Email tidak dapat ditemukan");
     } else {
-        $yourEmail = "booking@sunrise-indonesia.com";
+        $yourEmail = "no-reply@sunrise-indonesia.com";
         $subject = "Lupa Password";
         $message = "Klik link ini untuk mengubah password anda: http://booking.sunrise-indonesia.com/pages/auth/forgot_password.php?u=$email";
         $success = sendMail($email, $yourEmail, $subject, $message);

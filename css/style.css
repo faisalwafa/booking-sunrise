@@ -73,8 +73,12 @@ body {
 }
 
 p {
+<<<<<<< HEAD
   color: #838383;
   font-size: 1.0833em;
+=======
+  /* color: #838383; */
+>>>>>>> 4d16611d7ae68b441799b02221ae2b1ffcd41a44
   line-height: 1.6666;
 }
 

@@ -1,3 +1,9 @@
+<?php
+include_once '../../helper/connection.php';
+
+$tour = $_GET['tour'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +14,11 @@
     <div class="container">
         <h4>Tour Detail</h4>
         <form method="post" action="add-tour_action.php">
+            <input type="hidden" name="tour_id" value="<?=$tour?>">
             <div class="form-group row">
                 <h5 class="col-sm-2 mt-3">Deskripsi</h5>
                 <div class="col-sm-10"> 
-                <textarea name="deskripsi" class="editor" placeholder="" autofocus></textarea>
+                <textarea name="deskripsi" class="editor" placeholder="" autofocus ></textarea>
                 </div>
             </div>
             <div class="form-group row">

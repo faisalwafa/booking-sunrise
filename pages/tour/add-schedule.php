@@ -11,7 +11,9 @@
             <div class="form-group row">
                 <h5 class="col-sm-2 mt-3">Tour</h5>
                 <div class="col-sm-10"> 
-                <select></select>
+                <select class="form-control">
+                    <option></option>
+                </select>
                 </div>
             </div>
             <div class="form-group row">
@@ -29,7 +31,9 @@
             <div class="form-group row">
                 <h5 class="col-sm-2 mt-3">Is Daily?</h5>
                 <div class="col-sm-10"> 
-                
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">  
+                    </div>  
                 </div>
             </div>
             <div class="form-group row">
@@ -53,7 +57,9 @@
             <div class="form-group row">
                 <h5 class="col-sm-2 mt-3">Charge Per Person?</h5>
                 <div class="col-sm-10"> 
-                
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"> 
+                    </div>
                 </div>
             </div>
             <div class="form-group row">

@@ -48,8 +48,8 @@ if (!isset($_GET['u'])) {
                         # code...
                     ?>
                         <div class="text-center">
-                            <!-- <img src="/booking-sunrise/assets/verified.png" alt="verified-icon" height="60"> -->
-                            <img src="/assets/verified.png" alt="verified-icon" height="60">
+                            <img src="/booking-sunrise/assets/verified.png" alt="verified-icon" height="60">
+                            <!-- <img src="/assets/verified.png" alt="verified-icon" height="60"> -->
                             <h6 class="mt-3"><span class="text-greem">Email Berhasil terkirim.</span> Silahkan cek inbox email anda (atau di dalam folder spam jika tidak ada di dalam inbox)</h6>
                         </div>
                     <?php
@@ -84,8 +84,8 @@ if (!isset($_GET['u'])) {
         </div>
     </div>
     <?php include_once '../inc/scripts.php'; ?>
-    <script src="/js/forgotPassword.js"></script>
-    <!-- <script src="/booking-sunrise/js/forgotPassword.js"></script> -->
+    <!-- <script src="/js/forgotPassword.js"></script> -->
+    <script src="/booking-sunrise/js/forgotPassword.js"></script>
 </body>
 
 </html>

@@ -23,8 +23,8 @@ formForgotPassword.addEventListener("submit", function(e) {
       success: function(data) {
         const response = JSON.parse(data);
         if (response.success) {
-          // window.location.href = "/booking-sunrise/pages/auth/auth.php";
-          window.location.href = "/pages/auth/auth.php";
+          window.location.href = "/booking-sunrise/pages/auth/auth.php";
+          // window.location.href = "/pages/auth/auth.php";
         } else {
           alert(response.message);
         }

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include_once '../../helper/connection.php';
 
 $tour = $_GET['tour'];

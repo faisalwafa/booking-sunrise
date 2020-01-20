@@ -80,7 +80,10 @@ formLogin.addEventListener("submit", function(e) {
         let response = JSON.parse(data);
         console.log(response);
         if (response.success === "success") {
-          alert("Login Sukses");
+          window.location.href =
+            "/booking-sunrise/pages/tour/tour.php?tour=38211";
+          // window.location.href =
+          //   "/pages/tour/tour.php?tour=38211";
         } else {
           document.getElementById("alert-failed-login").style.display = "block";
           document.getElementById("login-failed-feedback").innerHTML =

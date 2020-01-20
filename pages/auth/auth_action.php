@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include_once '../../helper/connection.php';
 include_once '../../helper/PasswordHash.php';
 include_once '../../helper/response.php';
@@ -11,7 +13,7 @@ $response;
 if (isset($_POST['login'])) {
     $username_email = $_POST['username'];
     $password = $_POST['password'];
-    $sql_find_user = "SELECT * FROM wpzu_users WHERE user_login = '$username_email' OR user_email = '$username_email'";
+    $sql_find_user = "SELECT user.*, meta.meta_value AS user_level FROM wpzu_users user INNER JOIN wpzu_usermeta AS meta ON user.ID = meta.user_id WHERE (user.user_login = '$username_email' OR user.user_email = '$username_email') AND meta.meta_key = 'wpzu_user_level'";
     if ($results = mysqli_query($con, $sql_find_user)) {
         if (mysqli_num_rows($results) == 0) {
             $response = send_response(FAIL, "Tidak ditemukan user dengan username / email tersebut");
@@ -19,7 +21,10 @@ if (isset($_POST['login'])) {
             $row = mysqli_fetch_assoc($results);
             $check = $t_hasher->CheckPassword($password, $row['user_pass']);
             if ($check == 1) {
-                $response = send_response(SUCCESS);
+                $_SESSION["user_id"] = $row['ID'];
+                $_SESSION['display_name'] = $row['display_name'];
+                $_SESSION['user_level'] = $row['user_level'];
+                $response = send_response(SUCCESS, json_encode($row));
             } else {
                 $response = send_response(FAIL, "Password salah");
             }

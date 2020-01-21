@@ -19,6 +19,16 @@ const tabPillsMasuk = document.getElementById("pills-masuk-tab");
 const pillsDaftar = document.getElementById("pills-daftar");
 const pillsMasuk = document.getElementById("pills-masuk");
 
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return "";
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 formRegister.addEventListener("submit", function(e) {
   e.preventDefault();
   if (
@@ -80,10 +90,13 @@ formLogin.addEventListener("submit", function(e) {
         let response = JSON.parse(data);
         console.log(response);
         if (response.success === "success") {
-          window.location.href =
-            "/booking-sunrise/pages/tour/tour.php?tour=38211";
-          // window.location.href =
-          //   "/pages/tour/tour.php?tour=38211";
+          const tour = getParameterByName("tour");
+          if (tour) {
+            window.location.href =
+              "/booking-sunrise/pages/tour/tour.php?tour=" + tour;
+          } else {
+            window.location.href = "http://sunrise-indonesia.com";
+          }
         } else {
           document.getElementById("alert-failed-login").style.display = "block";
           document.getElementById("login-failed-feedback").innerHTML =

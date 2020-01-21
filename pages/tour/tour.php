@@ -220,42 +220,46 @@ $tour = $_GET['tour'];
                                 </div>
                             </div>
                         </div>
-                        <div class="content mt-4 p-2">
-                            <h6 class="p-1">Kenapa Booking Melalui Kami?</h6>
-                            <div class="row px-2">
-                                <div class="col-md-5">
-                                    <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
+                        <<<<<<< HEAD </div> </div> <div class="col-sm-4 col-md-3">
+                            <?php include_once "../inc/sidebar.php" ?>
+                            =======
+                            <div class="content mt-4 p-2">
+                                <h6 class="p-1">Kenapa Booking Melalui Kami?</h6>
+                                <div class="row px-2">
+                                    <div class="col-md-5">
+                                        <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                    <div>
+                                        <p>tes</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p>tes</p>
+                                <hr>
+                                <div class="row px-2">
+                                    <div class="col-md-5">
+                                        <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                    <div>
+                                        <p>tes</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row px-2">
+                                    <div class="col-md-5">
+                                        <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                    <div>
+                                        <p>tes</p>
+                                    </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row px-2">
-                                <div class="col-md-5">
-                                    <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
-                                </div>
-                                <div>
-                                    <p>tes</p>
-                                </div>
+                            <div class=" content mt-4 p-2">
+                                <h6 class="p-1">Butuh Bantuan Kami ?</h6>
+                                <p>Teman Setia Perjalanan Wisata Anda, dengan senang hati kami melayani anda dengan support customer service 24/7</p>
+                                <h4 class="contact p-2"> +6287 777 890 888</h4>
+                                <a class="email" href="mailto:info@sunrise-indonesia.com">info@sunrise-indonesia.com</a>
                             </div>
-                            <hr>
-                            <div class="row px-2">
-                                <div class="col-md-5">
-                                    <img src="https://dummyimage.com/600x400/000/fff&text=dummy_image" class="img-fluid" alt="Responsive image">
-                                </div>
-                                <div>
-                                    <p>tes</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" content mt-4 p-2">
-                            <h6 class="p-1">Butuh Bantuan Kami ?</h6>
-                            <p>Teman Setia Perjalanan Wisata Anda, dengan senang hati kami melayani anda dengan support customer service 24/7</p>
-                            <h4 class="contact p-2"> +6287 777 890 888</h4>
-                            <a class="email" href="mailto:info@sunrise-indonesia.com">info@sunrise-indonesia.com</a>
-                        </div>
                     </div>
+                    >>>>>>> 659d5e34781654c8c39314bd6027ef69146719c3
                 </div>
             </div>
         </section>

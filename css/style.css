@@ -26,6 +26,21 @@
     /* font-size: 120%; */
 }
 
+[class^="soap-icon"].circle,
+[class*=" soap-icon"].circle,
+.glyphicon.circle {
+  border: 1px solid;
+  width: 1.8em;
+  height: 1.8em;
+  line-height: 1.7333em;
+  -webkit-border-radius: 50% 50% 50% 50%;
+  -moz-border-radius: 50% 50% 50% 50%;
+  -ms-border-radius: 50% 50% 50% 50%;
+  border-radius: 50% 50% 50% 50%;
+  display: inline-block;
+  text-align: center;
+}
+
 .row-content {
     margin: 1em;
 }
@@ -82,12 +97,18 @@ section#content:after {
 }
 
 p {
+<<<<<<< HEAD
+  /* color: #838383; */
+  font-size: 1.0833em;
+  line-height: 1.6666;
+=======
     /* color: #838383; */
     line-height: 1.6666;
     color: #838383;
     font-size: 1.0833em;
     /* color: #838383; */
     line-height: 1.6666;
+>>>>>>> 659d5e34781654c8c39314bd6027ef69146719c3
 }
 
 .contact {
@@ -110,8 +131,29 @@ button span {
 }
 
 .bg-login {
-    background-image: url("../assets/bg-login.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
+  background-image: url("../assets/bg-login.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.soap-icon-hotel-1:before {
+  content: "\e82d";
+}
+
+.sidebar-icon {
+  font-size: 1.1rem;
+  color: #ff6000;
+}
+
+.sidebar-li-title {
+  font-size: 0.9rem;
+}
+
+.soap-icon-savings:before {
+  content: "\e80c";
+}
+
+.soap-icon-support:before {
+  content: "\e810";
 }

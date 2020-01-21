@@ -1,23 +1,23 @@
-let formRegister = document.getElementById("formRegister");
-let formLogin = document.getElementById("formLogin");
+const formRegister = document.getElementById("formRegister");
+const formLogin = document.getElementById("formLogin");
 
-let registerFirstName = document.getElementById("register-firstName");
-let registerLastName = document.getElementById("register-lastName");
-let registerUsername = document.getElementById("register-username");
-let registerEmail = document.getElementById("register-email");
-let registerPassword = document.getElementById("register-password");
-let registerPasswordConfirm = document.getElementById(
+const registerFirstName = document.getElementById("register-firstName");
+const registerLastName = document.getElementById("register-lastName");
+const registerUsername = document.getElementById("register-username");
+const registerEmail = document.getElementById("register-email");
+const registerPassword = document.getElementById("register-password");
+const registerPasswordConfirm = document.getElementById(
   "register-passwordConfirm"
 );
 
-let loginUsername = document.getElementById("login-username");
-let loginPassword = document.getElementById("login-password");
+const loginUsername = document.getElementById("login-username");
+const loginPassword = document.getElementById("login-password");
 
-let tabPillsDaftar = document.getElementById("pills-daftar-tab");
-let tabPillsMasuk = document.getElementById("pills-masuk-tab");
+const tabPillsDaftar = document.getElementById("pills-daftar-tab");
+const tabPillsMasuk = document.getElementById("pills-masuk-tab");
 
-let pillsDaftar = document.getElementById("pills-daftar");
-let pillsMasuk = document.getElementById("pills-masuk");
+const pillsDaftar = document.getElementById("pills-daftar");
+const pillsMasuk = document.getElementById("pills-masuk");
 
 formRegister.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -80,7 +80,10 @@ formLogin.addEventListener("submit", function(e) {
         let response = JSON.parse(data);
         console.log(response);
         if (response.success === "success") {
-          alert("Login Sukses");
+          window.location.href =
+            "/booking-sunrise/pages/tour/tour.php?tour=38211";
+          // window.location.href =
+          //   "/pages/tour/tour.php?tour=38211";
         } else {
           document.getElementById("alert-failed-login").style.display = "block";
           document.getElementById("login-failed-feedback").innerHTML =
@@ -167,18 +170,18 @@ function checkRegisterEmail() {
 }
 
 function checkRegisterPassword() {
-  const registerEmailFeedback = document.getElementById(
+  const registerPasswordFeedback = document.getElementById(
     "register-password-feedback"
   );
   if (registerPassword.value === "") {
     registerPassword.classList.remove("is-valid");
     registerPassword.classList.add("is-invalid");
-    registerEmailFeedback.innerHTML = "Password tidak boleh kosong";
+    registerPasswordFeedback.innerHTML = "Password tidak boleh kosong";
     return false;
   } else if (registerPassword.value.length < 6) {
     registerPassword.classList.remove("is-valid");
     registerPassword.classList.add("is-invalid");
-    registerEmailFeedback.innerHTML = "Password harus minimal 6 karakter";
+    registerPasswordFeedback.innerHTML = "Password harus minimal 6 karakter";
     return false;
   } else {
     registerPassword.classList.remove("is-invalid");

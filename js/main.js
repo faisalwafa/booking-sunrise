@@ -1,5 +1,5 @@
 $.trumbowyg.svgPath = "../../assets/icons.svg";
-$("#editor").trumbowyg({
+$(".editor").trumbowyg({
   btns: [
     ["viewHTML"],
     ["undo", "redo"], // Only supported in Blink browsers

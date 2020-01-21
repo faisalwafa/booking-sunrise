@@ -6,4 +6,3 @@
 <script src="../../js/trumbowyg.emoji.min.js"></script>
 <script src="../../js/trumbowyg.fontsize.min.js"></script>
 <script src="../../js/main.js"></script>
-<script src="../../js/auth.js"></script>

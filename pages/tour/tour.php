@@ -72,113 +72,122 @@ $tour = $_GET['tour'];
                                 </a>
                             </div>
                             <div class="row-content">
-                                <div class="row-content">
-                                    <h5>Check Availability</h5>
+                                <h5>Check Availability</h5>
+                                <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-xs-6">
                                             From
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-xs-6">
                                             To
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <input class="form-control" type="date">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input class="form-control" type="date">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <button type="button" class="btn btn-success">Update</button>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        From
+                                    </div>
+                                    <div class="col-md-4">
+                                        To
                                     </div>
                                 </div>
-                                <div class="row-content">
-                                    <p>
-                                        <!-- <textarea id="editor" placeholder="" autofocus> -->
-                                        <?php echo $row["post_content"]; ?>
-                                        <!-- </textarea> -->
-                                    </p>
-                                    <div class="accordion" id="accordionContent">
-                                        <div>
-                                            <strong>
-                                                <button class="btn collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    <span><i class="soap-icon-plus mr-1"></i></span>
-                                                    <span>Harga Paket</span>
-                                                </button>
-                                            </strong>
-                                            <div id="collapseOne" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#accordionContent">
-                                                <p>
-                                                    <!-- <textarea id="editor" placeholder="" autofocus> -->
-                                                    <?php echo $row["harga_paket"]; ?>
-                                                    <!-- </textarea> -->
-                                                </p>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input class="form-control" type="date">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input class="form-control" type="date">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-success">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-content">
+                                <p>
+                                    <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                    <?php echo $row["post_content"]; ?>
+                                    <!-- </textarea> -->
+                                </p>
+                                <div class="accordion" id="accordionContent">
+                                    <div>
+                                        <strong>
+                                            <button class="btn collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <span><i class="soap-icon-plus mr-1"></i></span>
+                                                <span>Harga Paket</span>
+                                            </button>
+                                        </strong>
+                                        <div id="collapseOne" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#accordionContent">
+                                            <p>
+                                                <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                                <?php echo $row["harga_paket"]; ?>
+                                                <!-- </textarea> -->
+                                            </p>
                                         </div>
-                                        <div>
-                                            <strong>
-                                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                    <span><i class="soap-icon-plus mr-1"></i></span>
-                                                    <span>Detail Itinerary</span>
-                                                </button>
-                                            </strong>
-                                            <div id="collapseTwo" class="collapse ml-2" aria-labelledby="headingTwo" data-parent="#accordionContent">
-                                                <p>
-                                                    <!-- <textarea id="editor" placeholder="" autofocus> -->
-                                                    <?php echo $row["detail_itinerary"]; ?>
-                                                    <!-- </textarea> -->
-                                                </p>
-                                            </div>
+                                    </div>
+                                    <div>
+                                        <strong>
+                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                <span><i class="soap-icon-plus mr-1"></i></span>
+                                                <span>Detail Itinerary</span>
+                                            </button>
+                                        </strong>
+                                        <div id="collapseTwo" class="collapse ml-2" aria-labelledby="headingTwo" data-parent="#accordionContent">
+                                            <p>
+                                                <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                                <?php echo $row["detail_itinerary"]; ?>
+                                                <!-- </textarea> -->
+                                            </p>
                                         </div>
-                                        <div>
-                                            <strong>
-                                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    <span><i class="soap-icon-plus mr-1"></i></span>
-                                                    <span>Harga Termasuk</span>
-                                                </button>
-                                            </strong>
-                                            <div id="collapseThree" class="collapse ml-2" aria-labelledby="headingThree" data-parent="#accordionContent">
-                                                <p>
-                                                    <!-- <textarea id="editor" placeholder="" autofocus> -->
-                                                    <?php echo $row["harga_termasuk"]; ?>
-                                                    <!-- </textarea> -->
-                                                </p>
-                                            </div>
+                                    </div>
+                                    <div>
+                                        <strong>
+                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                <span><i class="soap-icon-plus mr-1"></i></span>
+                                                <span>Harga Termasuk</span>
+                                            </button>
+                                        </strong>
+                                        <div id="collapseThree" class="collapse ml-2" aria-labelledby="headingThree" data-parent="#accordionContent">
+                                            <p>
+                                                <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                                <?php echo $row["harga_termasuk"]; ?>
+                                                <!-- </textarea> -->
+                                            </p>
                                         </div>
-                                        <div>
-                                            <strong>
-                                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                                    <span><i class="soap-icon-plus mr-1"></i></span>
-                                                    <span>Harga Tidak Termasuk</span>
-                                                </button>
-                                            </strong>
-                                            <div id="collapseFour" class="collapse ml-2" aria-labelledby="headingFour" data-parent="#accordionContent">
-                                                <p>
-                                                    <!-- <textarea id="editor" placeholder="" autofocus> -->
-                                                    <?php echo $row["harga_tidak_termasuk"]; ?>
-                                                    <!-- </textarea> -->
-                                                </p>
-                                            </div>
+                                    </div>
+                                    <div>
+                                        <strong>
+                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                <span><i class="soap-icon-plus mr-1"></i></span>
+                                                <span>Harga Tidak Termasuk</span>
+                                            </button>
+                                        </strong>
+                                        <div id="collapseFour" class="collapse ml-2" aria-labelledby="headingFour" data-parent="#accordionContent">
+                                            <p>
+                                                <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                                <?php echo $row["harga_tidak_termasuk"]; ?>
+                                                <!-- </textarea> -->
+                                            </p>
                                         </div>
-                                        <div>
-                                            <strong>
-                                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                                    <span><i class="soap-icon-plus mr-1"></i></span>
-                                                    <span>Force Majeur</span>
-                                                </button>
-                                            </strong>
-                                            <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
-                                                <p>
-                                                    <!-- <textarea id="editor" placeholder="" autofocus> -->
-                                                    <?php echo $row["force_majeur"]; ?>
-                                                    <!-- </textarea> -->
-                                                </p>
-                                            </div>
+                                    </div>
+                                    <div>
+                                        <strong>
+                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                <span><i class="soap-icon-plus mr-1"></i></span>
+                                                <span>Force Majeur</span>
+                                            </button>
+                                        </strong>
+                                        <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
+                                            <p>
+                                                <!-- <textarea id="editor" placeholder="" autofocus> -->
+                                                <?php echo $row["force_majeur"]; ?>
+                                                <!-- </textarea> -->
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-sm-4 col-md-3">

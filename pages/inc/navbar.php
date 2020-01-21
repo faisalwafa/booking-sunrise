@@ -27,7 +27,7 @@ $is_logged_in = isset($_SESSION['user_id']);
                         </li>
                     <?php } else { ?>
                         <li class="nav-item active">
-                            <a class="nav-link text-white mr-3" href="/booking-sunrise/pages/auth/auth.php">Login</a>
+                            <a class="nav-link text-white mr-3" href="/booking-sunrise/pages/auth/auth.php?tour=<?= $_GET['tour'] ?>">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="/booking-sunrise/pages/auth/auth.php">Register</a>

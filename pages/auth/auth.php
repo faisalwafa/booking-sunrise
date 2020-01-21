@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$tour_id = isset($_GET['tour']) ? $_GET['tour'] : '';
+
 if (isset($_SESSION['user_id'])) {
     header("Location: ../tour/tour.php?tour=38211");
 }

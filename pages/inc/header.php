@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="../../css/navbar.css">
 <link rel="stylesheet" type="text/css" href="../../css/animate.css">
 <link rel="stylesheet" type="text/css" href="../../css/responsive.css">
+<link rel="stylesheet" type="text/css" href="../../css/profile.css">
 <link rel="stylesheet" type="text/css" href="../../css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="../../css/custom-bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../../css/trumbowyg.min.css">

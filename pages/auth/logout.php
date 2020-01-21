@@ -2,5 +2,5 @@
 
 session_start();
 if (session_destroy()) {
-    header("Location: auth.php");
+    header("Location: https://sunrise-indonesia.com");
 }

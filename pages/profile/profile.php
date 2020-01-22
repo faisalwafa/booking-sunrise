@@ -3,6 +3,7 @@
 
 <head>
     <?php include_once '../inc/header.php'; ?>
+    <link rel="stylesheet" type="text/css" href="../../css/profile.css">
     <title>Tours | Sunrise Indonesia</title>
 </head>
 

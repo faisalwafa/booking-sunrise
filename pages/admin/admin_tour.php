@@ -1,3 +1,8 @@
+<?php
+include_once '../../helper/connection.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,13 +12,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <title>Admin | Sunrise Indonesia</title>
     <link rel="stylesheet" type="text/css" href="../../css/admin.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="wrapper bg-white">
+    <div class="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar-admin" class="tes">
             <div class="sidebar-admin-header">
@@ -28,8 +34,8 @@
                         Dashboard
                     </a>
                 </li>
-                <li class="my-2">
-                    <a href="admin_tour.php">
+                <li class="my-2 active">
+                    <a href="#">
                         <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
                         Tour
                     </a>
@@ -66,18 +72,58 @@
                 </div>
             </nav>
 
-            <div class="container mt-4 py-5 w-75 rounded">
-                <img src="../../assets/logo-pwa.png" alt="logo" width="200" class="mb-5 mx-auto d-block">
-                <h2 class="text-center">Selamat datang Admin Sunrise Indonesia</h2>
-                <!-- <div class="">
-                </div> -->
+            <div class="container mt-4 py-3 w-95 rounded bg-white">
+                <h4 class="mt-2 mb-4">List Tour</h4>
+                <table id="table-tour" class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID</th>
+                            <th>Nama Tour</th>
+                            <th>Tanggal Publish</th>
+                            <th>Schedule</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sql_tour_list = "SELECT * FROM `wpzu_posts` WHERE `post_status` = 'publish' AND `post_type` = 'tour' ORDER BY `post_date` DESC";
+                        $results_tour_list = mysqli_query($con, $sql_tour_list);
+                        $index_tour_list = 1;
+                        while ($row_tour_list = mysqli_fetch_assoc($results_tour_list)) {
+                        ?>
+
+                            <tr>
+                                <td><?= $index_tour_list ?></td>
+                                <td><?= $row_tour_list['ID'] ?></td>
+                                <td><?= $row_tour_list['post_title'] ?></td>
+                                <td><?php
+                                    $datetime = strtotime($row_tour_list['post_date']);
+                                    $date = date('m/d/y', $datetime);
+                                    echo $date
+                                    ?></td>
+                                <td>
+                                    <a href="admin_tour_detail?tour=<?= $row_tour_list['ID']; ?>" style="font-size: 0.9rem">
+                                        <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
+                                        Lihat Schedule
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php
+                            $index_tour_list++;
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
     <?php include_once '../inc/scripts.php'; ?>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('#table-tour').DataTable();
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar-admin').toggleClass('active');
             });

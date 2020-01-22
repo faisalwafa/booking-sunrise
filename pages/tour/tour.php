@@ -24,7 +24,16 @@ $tour = $_GET['tour'];
     while ($row =  mysqli_fetch_assoc($results)) { ?>
         <div class="page-title">
             <div class="container">
-                <h2 class="post-title"> <?php echo $row["post_title"] ?> </h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="post-title"> <?php echo $row["post_title"] ?> </h2>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="add-schedule.php?tour=<?= $tour ?>">
+                            <button class="btn btn-primary">Add Schedule</button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container">
@@ -35,7 +44,6 @@ $tour = $_GET['tour'];
                             <div class="carousel-inner">
                                 <?php
                                 $sql2 = "SELECT meta_value AS image_id FROM wpzu_postmeta WHERE post_id = $tour AND meta_key = 'trav_gallery_imgs'";
-
                                 if ($results2 = mysqli_query($con, $sql2)) {
                                     $sql3 = "SELECT guid FROM wpzu_posts WHERE ";
                                     while ($row2 = mysqli_fetch_assoc($results2)) {
@@ -80,18 +88,111 @@ $tour = $_GET['tour'];
                                     To
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <input class="form-control" type="date">
+                            <form method="post" action="">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input class="form-control" type="date" name="dateFrom">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input class="form-control" type="date" name="dateTo">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-success" id="check">Check</button>
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <input class="form-control" type="date">
-                                </div>
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-success">Update</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
+                        <?php
+
+                        // $dateFrom = $_POST['dateFrom'];
+                        // $dateTo = $_POST['dateTo'];
+
+                        $sql5 = "SELECT duration , max_people , price , child_price FROM wpzu_trav_tour_schedule WHERE tour_id = $tour ";
+
+                        if ($results5 = mysqli_query($con, $sql5)) {
+
+                            while ($row5 = mysqli_fetch_assoc($results5)) { ?>
+                                <div class="row-content row  grey-background ">
+                                    <div class=" content-left col-sm-4 ">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="label-detail">LOCATION</p>
+                                                <p class="label-detail">DURATION</p>
+                                                <p class="label-detail">AVAILABLE SEATS</p>
+                                                <p class="label-detail">PRICE PER ADULT</p>
+                                                <?php
+                                                if ($row5['child_price'] != 0) {
+                                                    echo "<p>PRICE PER KIDS</p>";
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <?php
+                                                $sql4 = "SELECT pm.meta_value, t.name FROM wpzu_postmeta pm INNER JOIN wpzu_terms t ON pm.meta_value = t.term_id WHERE pm.post_id = $tour AND pm.meta_key = 'trav_tour_city'";
+
+                                                if ($results4 = mysqli_query($con, $sql4)) {
+                                                    $row4 = mysqli_fetch_assoc($results4);
+                                                    $name = $row4['name'];
+                                                    echo "<p>$name</p>";
+                                                }
+
+                                                $duration = $row5['duration'];
+                                                $available = $row5['max_people'];
+                                                $price = $row5['price'];
+                                                $child_price = $row5['child_price'];
+
+                                                echo "<p>$duration</p>";
+                                                echo "<p>$available</p>";
+                                                echo "<p>$price</p>";
+                                                if ($row5['child_price'] != 0.00) {
+                                                    echo "<p>$child_price</p>";
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-7 content-right">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Harga Member</label>
+                                                <h5>Rp. </h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Harga Normal</label>
+                                                <h5>Rp. </h5>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <form>
+                                                <div class="form-row">
+                                                    <div class="col-md-5 form-group">
+                                                        <label>Available On</label>
+                                                        <input class="form-control" type="date">
+                                                    </div>
+                                                    <div class="col-md-2 form-group">
+                                                        <label>Adults</label>
+                                                        <input type="number" class="form-control" min="1" max="100" />
+                                                    </div>
+                                                    <div class="col-md-2 form-group">
+                                                        <?php
+                                                        if ($row5['child_price'] != 0.00) { ?>
+                                                            <label>Kids</label>
+                                                            <input type="number" class="form-control" min="1" max="100" />
+                                                        <?php }
+                                                        ?>
+                                                    </div>
+                                                    <div class="col-md-3 form-group">
+                                                        <label>Total</label>
+                                                        <h5>Rp.</h5>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php }
+                        } ?>
                         <div class="row-content">
                             <p>
                                 <!-- <textarea id="editor" placeholder="" autofocus> -->

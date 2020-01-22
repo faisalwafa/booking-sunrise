@@ -14,12 +14,12 @@
 [class*=" soap-icon"] {
   vertical-align: baseline;
 }
+
 [class^="soap-icon"]:before,
 [class*=" soap-icon"]:before {
   font-family: "soap-icons";
   font-style: normal;
   font-weight: normal;
-  speak: none;
   display: inline-block;
   text-decoration: inherit;
   text-align: center;
@@ -28,6 +28,21 @@
   /* line-height: 1em; */
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
+}
+
+[class^="soap-icon"].circle,
+[class*=" soap-icon"].circle,
+.glyphicon.circle {
+  border: 1px solid;
+  width: 1.8em;
+  height: 1.8em;
+  line-height: 1.7333em;
+  -webkit-border-radius: 50% 50% 50% 50%;
+  -moz-border-radius: 50% 50% 50% 50%;
+  -ms-border-radius: 50% 50% 50% 50%;
+  border-radius: 50% 50% 50% 50%;
+  display: inline-block;
+  text-align: center;
 }
 
 .row-content {
@@ -40,14 +55,27 @@ body {
   color: #223d41;
 }
 
+section#content {
+  min-height: 400px;
+  text-align: left;
+  background: #f5f5f5;
+}
+
+section#content:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
 .container {
+  margin-right: auto;
+  margin-left: auto;
   width: 1170px;
   padding-left: 0;
   padding-right: 0;
 }
 
 .page-title {
-  margin-bottom: 10px;
   padding: 5px;
   background-color: #2d3e52;
 }
@@ -79,6 +107,13 @@ p {
   line-height: 1.6666;
 }
 
+.update-search {
+  border: 15px solid #f5f5f5;
+  background: #fff;
+  padding: 20px 20px 12px;
+  margin-bottom: 20px;
+}
+
 .contact {
   color: #12a0c3;
 }
@@ -92,6 +127,7 @@ button span {
   display: inline-block;
   vertical-align: middle;
 }
+
 .soap-icon-plus:before {
   content: "\e88d";
   font-size: xx-large;
@@ -126,4 +162,47 @@ button span {
   margin-top: 1em;
   margin-bottom: 1em;
   margin-right: 1em;
+}
+
+.soap-icon-hotel-1:before {
+  content: "\e82d";
+}
+
+.sidebar-icon {
+  font-size: 1.1rem;
+  color: #ff6000;
+}
+
+.sidebar-li-title {
+  font-size: 0.9rem;
+}
+
+.soap-icon-savings:before {
+  content: "\e80c";
+}
+
+.soap-icon-support:before {
+  content: "\e810";
+}
+
+.visible-lg {
+  display: block !important;
+}
+
+.img-hover-zoom {
+  height: 64px; /* Modify this according to your need */
+  width: 64px; /* Modify this according to your need */
+  overflow: hidden; /* Removing this will break the effects */
+}
+
+.img-hover-zoom--blur img {
+  transition: transform 1s, filter 2s ease-in-out;
+  filter: blur(2px);
+  transform: scale(1.2);
+}
+
+/* The Transformation */
+.img-hover-zoom--blur:hover img {
+  filter: blur(0);
+  transform: scale(1);
 }

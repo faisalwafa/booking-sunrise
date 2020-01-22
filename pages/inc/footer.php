@@ -1,5 +1,5 @@
-<footer id="footer">
-    <div class="footer-wrapper">
+<footer class="pt-4" id="footer">
+    <div class="footer-wrapper content">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-3">

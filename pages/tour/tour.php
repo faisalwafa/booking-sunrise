@@ -29,9 +29,6 @@ $tour = $_GET['tour'];
                         <h2 class="post-title"> <?php echo $row["post_title"] ?> </h2>
                     </div>
                     <div class="col-md-6">
-                        <a href="add-schedule.php?tour=<?= $tour ?>">
-                            <button class="btn btn-primary">Add Schedule</button>
-                        </a>
                     </div>
                 </div>
             </div>

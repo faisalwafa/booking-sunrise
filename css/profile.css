@@ -1,3 +1,35 @@
+.profile p {
+    font-size: 16px;
+}
+
+.profile h6 {
+    font-weight: 900;
+}
+
+.account h2 {
+    font-weight: 900;
+    margin: 0px 0px 0px;
+}
+
+.account p {
+    font-size: 14px;
+}
+
+.iconEdit a {
+    color: #000;
+}
+
+.iconEdit a h2:hover {
+    color: #ffa500;
+    transition: 0.6s;
+    font-style: none;
+}
+
+.security-content .separator hr {
+    background-color: #ffa500;
+    border-top: 3px solid rgba(0, 0, 0, .1);
+}
+
 .wrapper {
     width: 100%;
 }
@@ -28,7 +60,7 @@
 }
 
 #sidebar h4 {
-    padding: 10px 20px 0px;
+    padding: 13px 20px 0px;
     color: #ffa500;
 }
 

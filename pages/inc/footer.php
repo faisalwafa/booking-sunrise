@@ -116,4 +116,22 @@
         </div>
     </div>
 
+
 </footer>
+<div class="bottom gray-area">
+    <div class="container">
+        <div class="bottomLogo float-left">
+            <a href="https://sunrise-indonesia.com/">
+                <img src="../../assets/5d98680b-logo2.jpg">
+            </a>
+        </div>
+        <div class="float-right">
+            <a class="toTop" href="#">
+                <i class="soap-icon-longarrow-up circle"></i>
+            </a>
+        </div>
+        <div class="copyright float-right">
+            <p>© 2020 Copyright Sunrise Indonesia . All Rights Reserved</p>
+        </div>
+    </div>
+</div>

@@ -73,68 +73,6 @@ include_once '../../helper/connection.php';
 
             <div class="container py-3 mt-1">
                 <div class="row mb-3">
-                    <div class="col-md-4 mb-3">
-                        <div class="card border-0">
-                            <div class="card-body">
-                                <h6 class="mb-3 font-weight-bold">Total User</h6>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <i class="far fa-user text-green" style="font-size: 1.8rem"></i>
-                                    <?php
-                                    $sql_user_count = "SELECT COUNT(*) AS jumlah_user FROM wpzu_users";
-                                    $results_user_count = mysqli_query($con, $sql_user_count);
-                                    $row_user_count = mysqli_fetch_assoc($results_user_count);
-                                    echo "<h5>" . $row_user_count['jumlah_user'] . "</h5>";
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card border-0">
-                            <div class="card-body">
-                                <h6 class="mb-3 font-weight-bold">Total Tour</h6>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <i class="fas fa-map-marker-alt text-info" style="font-size: 1.8rem"></i>
-                                    <?php
-                                    $sql_tour_count = "SELECT COUNT(*) AS jumlah_tour FROM wpzu_posts WHERE post_type = 'tour' AND post_status = 'publish'";
-                                    $results_tour_count = mysqli_query($con, $sql_tour_count);
-                                    $row_tour_count = mysqli_fetch_assoc($results_tour_count);
-                                    echo "<h5>" . $row_tour_count['jumlah_tour'] . "</h5>";
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card border-0">
-                            <div class="card-body">
-                                <h6 class="mb-3 font-weight-bold">Total Schedule</h6>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <i class="far fa-clock text-orange" style="font-size: 1.8rem"></i>
-                                    <?php
-                                    $sql_schedule_count = "SELECT COUNT(*) AS jumlah_schedule FROM wpzu_trav_tour_schedule";
-                                    $results_schedule_count = mysqli_query($con, $sql_schedule_count);
-                                    $row_schedule_count = mysqli_fetch_assoc($results_schedule_count);
-                                    echo "<h5>" . $row_schedule_count['jumlah_schedule'] . "</h5>";
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8 col-sm-12">
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <div class="rounded bg-white p-3">
-                                    <h6 class="mt-2 mb-3 font-weight-bold">Statistik Booking Tour</h6>
-                                    <canvas id="myChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-12">
                         <div class="card border-0">
                             <div class="card-body">
@@ -189,6 +127,70 @@ include_once '../../helper/connection.php';
                                             </div>
                                         </div>
                                     <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-8 col-sm-12">
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="rounded bg-white p-3">
+                                    <h6 class="mt-2 mb-3 font-weight-bold">Statistik Booking Tour</h6>
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="row mb-3">
+                            <div class="col-md-12 mb-3">
+                                <div class="card border-0">
+                                    <div class="card-body">
+                                        <h6 class="mb-3 font-weight-bold">Total User</h6>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <i class="far fa-user text-green" style="font-size: 1.8rem"></i>
+                                            <?php
+                                            $sql_user_count = "SELECT COUNT(*) AS jumlah_user FROM wpzu_users";
+                                            $results_user_count = mysqli_query($con, $sql_user_count);
+                                            $row_user_count = mysqli_fetch_assoc($results_user_count);
+                                            echo "<h5>" . $row_user_count['jumlah_user'] . "</h5>";
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="card border-0">
+                                    <div class="card-body">
+                                        <h6 class="mb-3 font-weight-bold">Total Tour</h6>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <i class="fas fa-map-marker-alt text-info" style="font-size: 1.8rem"></i>
+                                            <?php
+                                            $sql_tour_count = "SELECT COUNT(*) AS jumlah_tour FROM wpzu_posts WHERE post_type = 'tour' AND post_status = 'publish'";
+                                            $results_tour_count = mysqli_query($con, $sql_tour_count);
+                                            $row_tour_count = mysqli_fetch_assoc($results_tour_count);
+                                            echo "<h5>" . $row_tour_count['jumlah_tour'] . "</h5>";
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card border-0">
+                                    <div class="card-body">
+                                        <h6 class="mb-3 font-weight-bold">Total Schedule</h6>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <i class="far fa-clock text-orange" style="font-size: 1.8rem"></i>
+                                            <?php
+                                            $sql_schedule_count = "SELECT COUNT(*) AS jumlah_schedule FROM wpzu_trav_tour_schedule";
+                                            $results_schedule_count = mysqli_query($con, $sql_schedule_count);
+                                            $row_schedule_count = mysqli_fetch_assoc($results_schedule_count);
+                                            echo "<h5>" . $row_schedule_count['jumlah_schedule'] . "</h5>";
+                                            ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

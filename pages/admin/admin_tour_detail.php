@@ -1,6 +1,8 @@
 <?php
 include_once '../../helper/connection.php';
 
+$tour = $_GET['tour'];
+
 ?>
 
 <!DOCTYPE html>
@@ -73,43 +75,69 @@ include_once '../../helper/connection.php';
             </nav>
 
             <div class="container mt-4 py-3 w-95 rounded bg-white">
-                <h4 class="mt-2 mb-4">List Tour</h4>
+                <h4 class="mt-2 mb-4">List Schedule</h4>
+                <a href="../tour/add-schedule.php?tour=<?= $tour ?>">
+                    <button class="btn btn-primary">Add Schedule</button>
+                </a>
                 <table id="table-tour" class="table">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>ID</th>
-                            <th>Nama Tour</th>
-                            <th>Tanggal Publish</th>
-                            <th>Schedule</th>
+                            <th>Tour Date</th>
+                            <th>Max People</th>
+                            <th>Price adult</th>
+                            <th>Price child</th>
+                            <th>Member Price</th>
+                            <th>Duration</th>
+                            <th>Schedule Type</th>
+                            <!-- <th>Date end</th> -->
+                            <th>Other</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $sql_tour_list = "SELECT * FROM `wpzu_posts` WHERE `post_status` = 'publish' AND `post_type` = 'tour' ORDER BY `post_date` DESC";
-                        $results_tour_list = mysqli_query($con, $sql_tour_list);
-                        $index_tour_list = 1;
-                        while ($row_tour_list = mysqli_fetch_assoc($results_tour_list)) {
+                        $sql_schedule_list = "SELECT * FROM `wpzu_trav_tour_schedule` WHERE `tour_id` = $tour ORDER BY `id` DESC";
+                        $results_schedule_list = mysqli_query($con, $sql_schedule_list);
+                        $index_schedule_list = 1;
+                        while ($row_schedule_list = mysqli_fetch_assoc($results_schedule_list)) {
                         ?>
 
                             <tr>
-                                <td><?= $index_tour_list ?></td>
-                                <td><?= $row_tour_list['ID'] ?></td>
-                                <td><?= $row_tour_list['post_title'] ?></td>
+                                <td><?= $index_schedule_list ?></td>
+                                <td><?= $row_schedule_list['id'] ?></td>
                                 <td><?php
-                                    $datetime = strtotime($row_tour_list['post_date']);
-                                    $date = date('m/d/y', $datetime);
-                                    echo $date
+                                    $datetimeTour = strtotime($row_schedule_list['tour_date']);
+                                    $dateTour = date('m/d/y', $datetimeTour);
+                                    echo $dateTour;
                                     ?></td>
+                                <td><?= $row_schedule_list['max_people'] ?></td>
+                                <td><?= $row_schedule_list['price'] ?></td>
+                                <td><?= $row_schedule_list['child_price'] ?></td>
+                                <td><?= $row_schedule_list['member_price'] ?></td>
+                                <td><?= $row_schedule_list['duration'] ?></td>
+                                <td><?=
+                                        $st_id = $row_schedule_list['st_id'];
+                                    if ($st_id == 0) {
+                                        echo "Weekday";
+                                    } else {
+                                        echo "Weekend";
+                                    }
+                                    ?></td>
+                                <!-- <td><?=
+                                                $datetimeEnd = strtotime($row_schedule_list['date_to']);
+                                            $dateEnd = date('m/d/y', $datetimeEnd);
+                                            echo $dateEnd;
+                                            ?></td> -->
                                 <td>
-                                    <a href="admin_tour_detail.php?tour=<?= $row_tour_list['ID']; ?>" style="font-size: 0.9rem">
+                                    <a href="edit_schedule.php?schedule=<?= $row_schedule_list['tour_id']; ?>" style="font-size: 0.9rem">
                                         <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
-                                        Lihat Schedule
+                                        Edit Schedule
                                     </a>
                                 </td>
                             </tr>
                         <?php
-                            $index_tour_list++;
+                            $index_schedule_list++;
                         }
                         ?>
                     </tbody>

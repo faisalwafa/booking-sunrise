@@ -9,3 +9,4 @@
 <script src="../../js/trumbowyg.fontsize.min.js"></script>
 <script src="../../js/main.js"></script>
 <script src="../../js/profile.js"></script>
+<script src="../../js/booking.js"></script>

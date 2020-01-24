@@ -22,7 +22,7 @@
 .iconEdit a h2:hover {
     color: #ffa500;
     transition: 0.6s;
-    font-style: none;
+    text-decoration: none;
 }
 
 .security-content .separator hr {

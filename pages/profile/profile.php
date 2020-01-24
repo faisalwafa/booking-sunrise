@@ -1,16 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 
 session_start();
 
 include_once '../../helper/connection.php';
 
+if (!isset($_SESSION["user_id"])) {
+    header("Location: ../auth/auth.php");
+}
+
 $user = $_SESSION["user_id"];
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <?php include_once '../inc/header.php'; ?>
@@ -21,7 +24,17 @@ $user = $_SESSION["user_id"];
 <body>
     <?php
     include_once '../inc/navbar.php'; ?>
-
+    <div class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="post-title"> Akun Saya </h2>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container pt-4 w-100 overflow-hidden">
         <div class="content d-flex align-items-stretch">
             <nav id="sidebar">
@@ -31,17 +44,14 @@ $user = $_SESSION["user_id"];
                 </div>
 
                 <ul class="list-unstyled components mb-5">
-                    <li>
-                        <h4>Akun Saya</h4>
-                    </li>
                     <li class="active">
-                        <a href="#"><span class="fas fa-user-alt mr-3"></span> Profile</a>
+                        <a href="#" class="font-weight-bold"><i class="fas fa-user-alt mr-3 py-2 profile-icon"></i> Profile</a>
                     </li>
                     <li>
-                        <a href="#"><span class="fas fa-clipboard-check mr-3"></span> Riwayat Booking</a>
+                        <a href="#" class="font-weight-bold"><i class="fas fa-clipboard-check mr-3 py-2 profile-icon"></i> Riwayat Booking</a>
                     </li>
                     <li>
-                        <a href="#"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+                        <a href="#" class="font-weight-bold"><i class="fa fa-sign-out mr-3 py-2 profile-icon"></i> Sign Out</a>
                     </li>
                 </ul>
 
@@ -77,6 +87,15 @@ $user = $_SESSION["user_id"];
                         </div>
                     </div>
                     <p class="mt-2 mb-4">Info dasar, seperti nama dan email, yang <?php echo $first_name ?> gunakan di Sunriser.</p>
+                    <?php if (isset($_GET['success-profile']) && $_GET['success-profile'] == 'false') {
+                    ?>
+                        <div class="alert alert-light alert-dismissible fade show" role="alert" id="alert-failed-daftar">
+                            <strong class="text-danger">Update Profil Gagal!</strong> <span id="profil-update-failed-feedback"><?= $_GET['message'] ?></span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php } ?>
                     <hr class="mb-4">
                     <div class="profile" id="profile" style="display: block">
                         <div class="row">
@@ -180,6 +199,15 @@ $user = $_SESSION["user_id"];
                             </div>
                         </div>
                         <p class="mt-2 mb-4">Sebaiknya gunakan kata sandi yang kuat yang tidak <?php echo $first_name ?> gunakan di tempat lain.</p>
+                        <?php if (isset($_GET['success-password']) && $_GET['success-password'] == 'false') {
+                        ?>
+                            <div class="alert alert-light alert-dismissible fade show" role="alert" id="alert-failed-daftar">
+                                <strong class="text-danger">Update Password Gagal!</strong> <span id="profil-update-failed-feedback"><?= $_GET['message'] ?></span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php } ?>
                         <hr class="mb-4">
                         <form class="securityForm" id="passwordForm" style="display: none">
                             <div class="form-row">
@@ -236,6 +264,7 @@ $user = $_SESSION["user_id"];
     </div>
     <?php include_once '../inc/footer.php'; ?>
     <?php include_once '../inc/scripts.php'; ?>
+    <script src="../../js/profile.js"></script>
 </body>
 
 </html>

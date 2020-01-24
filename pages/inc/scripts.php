@@ -7,6 +7,10 @@
 <script src="../../js/trumbowyg.colors.min.js"></script>
 <script src="../../js/trumbowyg.emoji.min.js"></script>
 <script src="../../js/trumbowyg.fontsize.min.js"></script>
+<<<<<<< HEAD
 <script src="../../js/main.js"></script>
 <script src="../../js/profile.js"></script>
 <script src="../../js/booking.js"></script>
+=======
+<script src="../../js/main.js"></script>
+>>>>>>> e11afeb3f4198e5fc3b61c786129bd625e5b7494

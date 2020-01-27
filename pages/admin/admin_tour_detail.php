@@ -3,6 +3,10 @@ include_once '../../helper/connection.php';
 
 $tour = $_GET['tour'];
 
+$sql = "SELECT * FROM wpzu_posts WHERE ID = $tour";
+$results = mysqli_query($con, $sql);
+$row = mysqli_fetch_assoc($results);
+
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +21,9 @@ $tour = $_GET['tour'];
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <title>Admin | Sunrise Indonesia</title>
     <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/trumbowyg.min.css">
+    <link rel="stylesheet" href="../../css/trumbowyg.colors.min.css">
+    <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -75,10 +82,132 @@ $tour = $_GET['tour'];
             </nav>
 
             <div class="container mt-4 py-3 w-95 rounded bg-white">
-                <h4 class="mt-2 mb-4">List Schedule</h4>
-                <a href="../tour/add-schedule.php?tour=<?= $tour ?>">
-                    <button class="btn btn-primary">Add Schedule</button>
-                </a>
+                <div class="mt-2 mb-4 d-flex justify-content-between">
+                    <h4><?= $row['post_title'] ?></h4>
+                    <button type="button" class="btn btn-primary" onclick="formEditDetail()">Edit Detail</button>
+                </div>
+                <div id="editDetailForm" style="display: none">
+                    <form method="post" action="../tour/update-tour_action.php">
+                        <input type="hidden" name="tour_id" value="<?= $tour ?>">
+                        <h5 class="mt-3">Deskripsi</h5>
+                        <textarea name="deskripsi" class="editor" placeholder="" autofocus><?= $row['post_content'] ?></textarea>
+                        <h5 class="mt-3">Harga Paket</h5>
+                        <textarea name="harga" class="editor" placeholder="" autofocus><?= $row['harga_paket'] ?></textarea>
+                        <h5 class="mt-3">Detail Itinerary</h5>
+                        <textarea name="itinerary" class="editor" placeholder="" autofocus><?= $row['detail_itinerary'] ?></textarea>
+                        <h5 class="mt-3">Harga Termasuk</h5>
+                        <textarea name="hargaTermasuk" class="editor" placeholder="" autofocus><?= $row['harga_termasuk'] ?></textarea>
+                        <h5 class="mt-3">Harga Tidak Termasuk</h5>
+                        <textarea name="hargaTidakTermasuk" class="editor" placeholder="" autofocus><?= $row['harga_tidak_termasuk'] ?></textarea>
+                        <h5 class="mt-3">Force Majeur</h5>
+                        <textarea name="forceMajeur" class="editor" placeholder="" autofocus><?= $row['force_majeur'] ?></textarea>
+                        <button type="submit" class="btn btn-primary" id="saveChanges" onclick="saveChanges()">Simpan Perubahan</button>
+                    </form>
+                </div>
+                <div id="detailTour">
+                    <p><?= $row['post_content'] ?></p>
+                    <p><?= $row['harga_paket'] ?></p>
+                    <p><?= $row['detail_itinerary'] ?></p>
+                    <p><?= $row['harga_termasuk'] ?></p>
+                    <p><?= $row['harga_tidak_termasuk'] ?></p>
+                    <p><?= $row['force_majeur'] ?></p>
+                </div>
+                <div class="mt-2 mb-4 d-flex justify-content-between">
+                    <h4 class=" ">List Schedule </h4>
+                    <!-- <a class="  " href="../tour/add-schedule.php?tour=<?= $tour ?>"> -->
+                    <button type="button" class="btn btn-primary" onclick="formAddSchedule()">Add Schedule</button>
+                    <!-- </a> -->
+                </div>
+                <div class="mt-2 mb-4" id="formAddSchedule" style="display: none">
+                    <h6>Add New Tour Schedule</h6>
+                    <form method="post" action="../tour/add-schedule_action.php">
+                        <input type="hidden" name="tour_id" value="<?= $tour ?>">
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Tour</h6>
+                            <div class="col-sm-9">
+                                <input disabled class="form-control" value="<?= $row['post_title'] ?>" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Schedule Type</h6>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="scheduleType">
+                                    <option value="0"></option>
+                                    <option value="0">Weekday</option>
+                                    <option value="1">Weekend</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Max People</h6>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" name="maxPeople" min="1" value="1" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Duration</h6>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="duration" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Is Daily?</h6>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="isDaily" onchange="myFunction()" id="check">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Tour Date</h6>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" name="tourDate" />
+                            </div>
+                        </div>
+                        <div id="endDate" style="display: none">
+                            <div class="form-group row">
+                                <h6 class="col-sm-3 mt-3">End Date</h6>
+                                <div class="col-sm-9">
+                                    <input id="inputEndDate" type="date" class="form-control" name="endDate" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" form-group row">
+                            <h6 class="col-sm-3 mt-3">Charge Per Person?</h6>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="perPerson" onchange="myFunction2()" id="check2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Price</h6>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="price" />
+                            </div>
+                        </div>
+                        <div id="childPrice" style="display: none">
+                            <div class="form-group row">
+                                <h6 class="col-sm-3 mt-3">Price Per Child</h6>
+                                <div class="col-sm-9">
+                                    <input id="inputChildPrice" type="text" class="form-control" name="childPrice" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Member Price</h6>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="memberPrice" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3 "></div>
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-primary" id="saveSchedule" onclick="saveSchedule()">Save Schedule</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <table id="table-tour" class="table">
                     <thead>
                         <tr>
@@ -108,7 +237,7 @@ $tour = $_GET['tour'];
                                 <td><?= $row_schedule_list['id'] ?></td>
                                 <td><?php
                                     $datetimeTour = strtotime($row_schedule_list['tour_date']);
-                                    $dateTour = date('m/d/y', $datetimeTour);
+                                    $dateTour = date('d-m-y', $datetimeTour);
                                     echo $dateTour;
                                     ?></td>
                                 <td><?= $row_schedule_list['max_people'] ?></td>
@@ -116,20 +245,23 @@ $tour = $_GET['tour'];
                                 <td><?= $row_schedule_list['child_price'] ?></td>
                                 <td><?= $row_schedule_list['member_price'] ?></td>
                                 <td><?= $row_schedule_list['duration'] ?></td>
-                                <td><?=
-                                        $st_id = $row_schedule_list['st_id'];
+                                <td>
+                                    <div style="display:none"> <?= $st_id = $row_schedule_list['st_id'] ?></div>
+                                    <?php
                                     if ($st_id == 0) {
                                         echo "Weekday";
                                     } else {
                                         echo "Weekend";
                                     }
-                                    ?></td>
+                                    ?>
+                                </td>
                                 <!-- <td><?=
                                                 $datetimeEnd = strtotime($row_schedule_list['date_to']);
                                             $dateEnd = date('m/d/y', $datetimeEnd);
                                             echo $dateEnd;
                                             ?></td> -->
                                 <td>
+
                                     <a href="edit_schedule.php?schedule=<?= $row_schedule_list['tour_id']; ?>" style="font-size: 0.9rem">
                                         <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
                                         Edit Schedule

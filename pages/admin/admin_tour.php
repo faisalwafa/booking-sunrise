@@ -1,5 +1,14 @@
 <?php
+
+session_start();
+
 include_once '../../helper/connection.php';
+
+if (!isset($_SESSION["user_id"]) || (isset($_SESSION["user_id"]) && $_SESSION["user_level"] != 10)) {
+    header("Location: ../auth/auth.php");
+}
+
+$user = $_SESSION["user_id"];
 
 ?>
 
@@ -29,19 +38,19 @@ include_once '../../helper/connection.php';
 
             <ul class="list-unstyled components">
                 <li class="mb-2">
-                    <a href="#">
+                    <a href="admin_dashboard.php">
                         <i class="fas fa-home text-primary"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="my-2 active">
-                    <a href="#">
+                    <a href="admin_tour.php">
                         <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
                         Tour
                     </a>
                 </li>
                 <li class="my-2">
-                    <a href="#">
+                    <a href="admin_booking.php">
                         <i class="fas fa-book text-orange"></i>
                         Booking
                     </a>
@@ -74,46 +83,48 @@ include_once '../../helper/connection.php';
 
             <div class="container mt-4 py-3 w-95 rounded bg-white">
                 <h4 class="mt-2 mb-4">List Tour</h4>
-                <table id="table-tour" class="table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>ID</th>
-                            <th>Nama Tour</th>
-                            <th>Tanggal Publish</th>
-                            <th>Schedule</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $sql_tour_list = "SELECT * FROM `wpzu_posts` WHERE `post_status` = 'publish' AND `post_type` = 'tour' ORDER BY `post_date` DESC";
-                        $results_tour_list = mysqli_query($con, $sql_tour_list);
-                        $index_tour_list = 1;
-                        while ($row_tour_list = mysqli_fetch_assoc($results_tour_list)) {
-                        ?>
-
+                <div class="table-responsive">
+                    <table id="table-tour" class="table">
+                        <thead>
                             <tr>
-                                <td><?= $index_tour_list ?></td>
-                                <td><?= $row_tour_list['ID'] ?></td>
-                                <td><?= $row_tour_list['post_title'] ?></td>
-                                <td><?php
-                                    $datetime = strtotime($row_tour_list['post_date']);
-                                    $date = date('m/d/y', $datetime);
-                                    echo $date
-                                    ?></td>
-                                <td>
-                                    <a href="admin_tour_detail.php?tour=<?= $row_tour_list['ID']; ?>" style="font-size: 0.9rem">
-                                        <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
-                                        Lihat Schedule
-                                    </a>
-                                </td>
+                                <th>No</th>
+                                <th>ID</th>
+                                <th>Nama Tour</th>
+                                <th>Tanggal Publish</th>
+                                <th>Schedule</th>
                             </tr>
-                        <?php
-                            $index_tour_list++;
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $sql_tour_list = "SELECT * FROM `wpzu_posts` WHERE `post_status` = 'publish' AND `post_type` = 'tour' ORDER BY `post_date` DESC";
+                            $results_tour_list = mysqli_query($con, $sql_tour_list);
+                            $index_tour_list = 1;
+                            while ($row_tour_list = mysqli_fetch_assoc($results_tour_list)) {
+                            ?>
+
+                                <tr>
+                                    <td><?= $index_tour_list ?></td>
+                                    <td><?= $row_tour_list['ID'] ?></td>
+                                    <td><?= $row_tour_list['post_title'] ?></td>
+                                    <td><?php
+                                        $datetime = strtotime($row_tour_list['post_date']);
+                                        $date = date('m/d/y', $datetime);
+                                        echo $date
+                                        ?></td>
+                                    <td>
+                                        <a href="admin_tour_detail.php?tour=<?= $row_tour_list['ID']; ?>" style="font-size: 0.9rem">
+                                            <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
+                                            Lihat Schedule
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php
+                                $index_tour_list++;
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

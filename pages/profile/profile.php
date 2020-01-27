@@ -45,13 +45,13 @@ $user = $_SESSION["user_id"];
 
                 <ul class="list-unstyled components mb-5">
                     <li class="active">
-                        <a href="#" class="font-weight-bold"><i class="fas fa-user-alt mr-3 py-2 profile-icon"></i> Profile</a>
+                        <a href="profile.php" class="font-weight-bold"><i class="fas fa-user-alt mr-3 py-2 profile-icon"></i> Profile</a>
                     </li>
                     <li>
-                        <a href="#" class="font-weight-bold"><i class="fas fa-clipboard-check mr-3 py-2 profile-icon"></i> Riwayat Booking</a>
+                        <a href="profile_booking.php" class="font-weight-bold"><i class="fas fa-clipboard-check mr-3 py-2 profile-icon"></i> Riwayat Booking</a>
                     </li>
                     <li>
-                        <a href="#" class="font-weight-bold"><i class="fa fa-sign-out mr-3 py-2 profile-icon"></i> Sign Out</a>
+                        <a href="../auth/logout.php" class="font-weight-bold"><i class="fa fa-sign-out mr-3 py-2 profile-icon"></i> Sign Out</a>
                     </li>
                 </ul>
 

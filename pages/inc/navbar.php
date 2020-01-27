@@ -6,7 +6,7 @@ $is_logged_in = isset($_SESSION['user_id']);
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
             <a class="navbar-brand" href="https://sunrise-indonesia.com/">
-                <img src="/booking-sunrise/assets/logo.jpg" alt="logo" class="navbar-img">
+                <img src="../../assets/logo.jpg" alt="logo" class="navbar-img">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSunrise" aria-controls="navbarSunrise" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,8 +31,16 @@ $is_logged_in = isset($_SESSION['user_id']);
                     <?php
                     if ($is_logged_in) {
                     ?>
-                        <li class="nav-item active">
-                            <a class="nav-link text-white mr-3" href="/booking-sunrise/pages/auth/logout.php">Logout</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="user-info" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?= $_SESSION['display_name'] ?>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="user-info">
+                                <a class="dropdown-item navbar-dropdown-item" href="../profile/profile.php">Profil</a>
+                                <a class="dropdown-item navbar-dropdown-item" href="../profile/profile_booking.php">Booking</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item navbar-dropdown-item" href="../auth/logout.php">Logout</a>
+                            </div>
                         </li>
                     <?php } else { ?>
                         <li class="nav-item active">

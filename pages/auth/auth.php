@@ -4,7 +4,7 @@ session_start();
 $tour_id = isset($_GET['tour']) ? $_GET['tour'] : '';
 
 if (isset($_SESSION['user_id'])) {
-    header("Location: ../tour/tour.php?tour=38211");
+    header("Location: https://sunrise-indonesia.com");
 }
 
 ?>
@@ -114,8 +114,7 @@ if (isset($_SESSION['user_id'])) {
         </div>
     </div>
     <?php include_once '../inc/scripts.php'; ?>
-    <!-- <script src="/js/auth.js"></script> -->
-    <script src="/booking-sunrise/js/auth.js"></script>
+    <script src="../../js/auth.js"></script>
 </body>
 
 </html>

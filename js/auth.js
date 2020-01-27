@@ -88,14 +88,17 @@ formLogin.addEventListener("submit", function(e) {
       },
       success: function(data) {
         let response = JSON.parse(data);
-        console.log(response);
         if (response.success === "success") {
-          const tour = getParameterByName("tour");
-          if (tour) {
-            window.location.href =
-              "/booking-sunrise/pages/tour/tour.php?tour=" + tour;
+          let responseData = JSON.parse(response.message);
+          if (responseData.user_level == 0) {
+            const tour = getParameterByName("tour");
+            if (tour) {
+              window.location.href = "../tour/tour.php?tour=" + tour;
+            } else {
+              window.location.href = "http://sunrise-indonesia.com";
+            }
           } else {
-            window.location.href = "http://sunrise-indonesia.com";
+            window.location.href = "../admin/admin.php";
           }
         } else {
           document.getElementById("alert-failed-login").style.display = "block";

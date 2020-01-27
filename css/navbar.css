@@ -1,28 +1,37 @@
 .navbar-img {
-    max-width: 280px;
-    width: 100%;
-    height: auto;
+  max-width: 280px;
+  width: 100%;
+  height: auto;
 }
 
 .navbar-custom {
-    background-color: #000;
-    text-transform: uppercase;
+  background-color: #000;
+  text-transform: uppercase;
+}
+
+.navbar-dropdown-item {
+  text-transform: none;
+}
+
+.navbar-dropdown-item:hover,
+.navbar-dropdown-item:focus {
+  background-color: transparent;
 }
 
 .main-header {
-    color: white !important;
+  color: white !important;
 }
 
 .item-list .nav-item a:hover {
-    color: #ffa500 !important;
+  color: #ffa500 !important;
 }
 
 .item-list .nav-item a {
-    color: inherit;
-    letter-spacing: .04em;
+  color: inherit;
+  letter-spacing: 0.04em;
 }
 
 .navbar-toggler {
-    background-color: orange!important;
-    background: url(../assets/mobile-menu.png) center center no-repeat #ff6000;
+  background-color: orange !important;
+  background: url(../assets/mobile-menu.png) center center no-repeat #ff6000;
 }

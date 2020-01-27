@@ -7,7 +7,9 @@ session_start();
 
 include_once '../../helper/connection.php';
 
-// $history_booking = $_GET['history-booking'];
+if (!isset($_SESSION["user_id"])) {
+    header("Location: ../auth/auth.php");
+} // $history_booking = $_GET['history-booking'];
 
 ?>
 
@@ -22,6 +24,17 @@ include_once '../../helper/connection.php';
     <?php
     include_once '../inc/navbar.php'; ?>
 
+    <div class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 style="margin-top: 10px;" class="post-title"> Booking Saya </h2>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container pt-4 w-100 overflow-hidden">
         <div class="content d-flex align-items-stretch">
             <nav id="sidebar">
@@ -32,35 +45,23 @@ include_once '../../helper/connection.php';
 
                 <ul class="list-unstyled components mb-5">
                     <li>
-                        <h4>Akun Saya</h4>
+                        <a href="profile.php" class="font-weight-bold"><i class="fas fa-user-alt mr-3 py-2 profile-icon"></i> Profile</a>
                     </li>
                     <li class="active">
-                        <a href="#"><span class="fas fa-user-alt mr-3"></span> Profile</a>
+                        <a href="profile_booking.php" class="font-weight-bold"><i class="fas fa-clipboard-check mr-3 py-2 profile-icon"></i> Riwayat Booking</a>
                     </li>
                     <li>
-                        <a href="#"><span class="fas fa-clipboard-check mr-3"></span> Riwayat Booking</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+                        <a href="../auth/logout.php" class="font-weight-bold"><i class="fa fa-sign-out mr-3 py-2 profile-icon"></i> Sign Out</a>
                     </li>
                 </ul>
 
             </nav>
 
             <div id="content" class="p-4 p-md-5 pt-5 w-100 account overflow-hidden">
-                <div class="row">
-                    <div class="col-md-6 d-flex justify-content-between">
-                        <h2 class="">Riwayat Booking</h2>
-                        <div class="iconEdit">
-                            <a href="#">
-                                <h2><i class="fas fa-history"></i> Lihat Riwayat</h2>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="">Riwayat Booking</h2>
                 <p class="mt-2 mb-4"></p>
                 <hr class="mb-4">
-                <div class="history-booking table-responsive">
+                <div class="w-100 table-responsive">
                     <table data-page-length='6' id="table-history-booking" class="table">
                         <thead>
                             <tr>
@@ -69,7 +70,6 @@ include_once '../../helper/connection.php';
                                 <th>Tour Name</th>
                                 <th>Tour Date</th>
                                 <th>Adult</th>
-                                <th>Kids</th>
                                 <th>Price</th>
                                 <th>Created Date</th>
                             </tr>
@@ -90,7 +90,6 @@ include_once '../../helper/connection.php';
                                         $convert_tourDate = date('m/d/Y', $doConvert_tourDate);
                                         echo $convert_tourDate ?></td>
                                     <td><?= $row_booking_list['adults'] ?></td>
-                                    <td><?= $row_booking_list['kids'] ?></td>
                                     <td>IDR <?= number_format($convert_price, 0, ".", ".") ?></td>
                                     <td><?php $doConvert_createdDate = strtotime($row_booking_list['created']);
                                         echo date('m/d/Y', $doConvert_createdDate);

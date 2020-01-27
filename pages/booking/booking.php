@@ -4,9 +4,9 @@ session_start();
 
 include_once '../../helper/connection.php';
 
-if (!isset($_SESSION["user_id"])) {
-    header("Location: ../auth/auth.php");
-}
+// if (!isset($_SESSION["user_id"])) {
+//     header("Location: ../auth/auth.php");
+// }
 
 $user = $_SESSION["user_id"];
 

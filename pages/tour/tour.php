@@ -116,7 +116,7 @@ $tour = $_GET['tour'];
                                     <div class="row-content row  grey-background ">
                                         <div class=" content-left col-sm-4 ">
                                             <div class="row">
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 mt-3">
                                                     <p class="label-detail">LOCATION</p>
                                                     <p class="label-detail">DURATION</p>
                                                     <p class="label-detail">AVAILABLE SEATS</p>
@@ -127,7 +127,7 @@ $tour = $_GET['tour'];
                                                     }
                                                     ?>
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 mt-3">
                                                     <?php
                                                     $sql4 = "SELECT pm.meta_value, t.name FROM wpzu_postmeta pm INNER JOIN wpzu_terms t ON pm.meta_value = t.term_id WHERE pm.post_id = $tour AND pm.meta_key = 'trav_tour_city'";
 
@@ -156,7 +156,7 @@ $tour = $_GET['tour'];
                                         </div>
                                         <div class="col-sm-7 content-right">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mt-3">
                                                     <label>Harga Member</label>
                                                     <?php
                                                     if ($member_price != 0) { ?>
@@ -167,7 +167,7 @@ $tour = $_GET['tour'];
                                                     <?php }
                                                     ?>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mt-3">
                                                     <label>Harga Normal</label>
                                                     <h5>Rp. <span <?php if (!$is_logged_in) {
                                                                         $id_nonmember = "id ='price$i'";
@@ -176,7 +176,7 @@ $tour = $_GET['tour'];
                                                 </div>
                                             </div>
                                             <div>
-                                                <form method="get" action="">
+                                                <form method="get" action="../booking/booking.php">
                                                     <input type="hidden" name="post_title" value="<?= $row["post_title"] ?>" />
                                                     <input type="hidden" name="location" value="<?= $name ?>" />
                                                     <input type="hidden" name="duration" value="<?= $duration ?>" />

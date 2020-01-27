@@ -177,9 +177,19 @@ $tour = $_GET['tour'];
                                             </div>
                                             <div>
                                                 <form method="get" action="../booking/booking.php">
+                                                    <input type="hidden" name="tour" value="<?= $tour ?>" />
                                                     <input type="hidden" name="post_title" value="<?= $row["post_title"] ?>" />
                                                     <input type="hidden" name="location" value="<?= $name ?>" />
                                                     <input type="hidden" name="duration" value="<?= $duration ?>" />
+                                                    <?php
+                                                    if ($is_logged_in) { ?>
+                                                        <input type="hidden" name="price" value="<?= $member_price ?>" />
+                                                    <?php
+                                                    } else { ?>
+                                                        <input type="hidden" name="price" value="<?= $price ?>" />
+                                                    <?php }
+                                                    ?>
+
                                                     <div class="form-row">
                                                         <div class="col-md-5 form-group">
                                                             <label>Available On</label>

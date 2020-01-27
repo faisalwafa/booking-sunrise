@@ -10,6 +10,15 @@ include_once '../../helper/connection.php';
 
 $user = $_SESSION["user_id"];
 
+$tour_id = $_GET['tour'];
+$post_title = $_GET['post_title'];
+$location = $_GET['location'];
+$duration = $_GET['duration'];
+$tour_date = $_GET['dateTour'];
+$price = $_GET['price'];
+$total_adults = $_GET['totalAdults'];
+$total_price = $_GET['totalPrice'];
+
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +44,7 @@ $user = $_SESSION["user_id"];
                         <div class="booking-section">
                             <div class="person-information">
                                 <h2 class="mb-4">Your Personal Information</h2>
-                                <form class="booking-form">
+                                <form class="booking-form" id="bookingForm">
                                     <div class="form-group row">
                                         <div class="col-sm-6 col-md-5 mb-3">
                                             <label>First Name</label>
@@ -53,13 +62,13 @@ $user = $_SESSION["user_id"];
                                         <div class="col-sm-6 col-md-5 mb-3">
                                             <label>Email Address</label>
                                             <input type="email" class="form-control" id="booking-email" onfocusout="checkBookingEmail()">
-                                            <small class="invalid-feedback">Email tidak boleh kosong</small>
+                                            <small class="invalid-feedback" id="booking-email-feedback">Email tidak boleh kosong</small>
                                         </div>
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-6 col-md-5">
                                             <label>Verify E-mail Address</label>
                                             <input type="email" class="form-control" id="booking-verifyEmail" onfocusout="checkBookingConfirmEmail()">
-                                            <small class="invalid-feedback">Email tidak cocok</small>
+                                            <small class="invalid-feedback" id="booking-confirmEmail-feedback">Email tidak cocok</small>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -559,14 +568,10 @@ $user = $_SESSION["user_id"];
                                     <hr>
                                     <div class="form-group row">
                                         <div class="ml-3 col-sm-12 col-md-4">
-                                            <div class="g-recaptcha" data-sitekey="6LcU9NEUAAAAAGeXmHn9x9Vs-KA5a_DYM0Ts6hLD"></div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-3">
-                                            <label>Security Code</label>
-                                            <input type="text" class="form-control" id="">
+                                            <div class="g-recaptcha" data-sitekey="6LcMA9MUAAAAAG_pihWoBXmp9S5vlGxdVgvywsQ3"></div>
                                         </div>
                                     </div>
-                                    <hr style="margin-top: 45px">
+                                    <hr style="margin-top: 20px">
                                     <div class="form-group">
                                         <div class="checkbox">
                                             <label>
@@ -595,8 +600,8 @@ $user = $_SESSION["user_id"];
                                     <img src="https://dummyimage.com/75x75/000/fff" alt="thumbnail-image" width="75" height="75">
                                 </div>
                                 <div class="ml-2">
-                                    <a class="text-decoration-none" href="https://sunrise-indonesia.com/tour/open-trip-bromo-midnight-tour/">
-                                        Open Trip Bromo Midnight Tour
+                                    <a class="text-decoration-none" href="http://localhost:8080/booking-sunrise/pages/tour/tour.php?tour=<?php echo $tour_id ?>">
+                                        <?php echo $post_title ?>
                                     </a>
                                     <span>
                                         <span>
@@ -606,12 +611,24 @@ $user = $_SESSION["user_id"];
                                 </div>
                             </div>
                             <hr>
+                            <small><?php echo $tour_date ?></small>
+                            <hr>
+                            <small><?php echo $duration ?></small>
+                            <hr>
+                            <small><?php echo $location ?></small>
+                            <hr>
+                            <small><?php echo $price ?></small>
+                            <hr>
+                            <small><?php echo $total_adults ?></small>
+                            <hr>
+                            <small><?php echo $total_price ?></small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <?php include_once '../inc/footer.php'; ?>
     <?php include_once '../inc/scripts.php'; ?>
 </body>

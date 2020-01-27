@@ -288,3 +288,7 @@ button span {
     margin-bottom: 5px;
     letter-spacing: .04em;
 }
+
+.booking-form small {
+    font-size: 97%;
+}

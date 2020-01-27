@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+include_once '../../helper/connection.php';
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: ../auth/auth.php");
+}
+
+$user = $_SESSION["user_id"];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,12 +52,14 @@
                                     <div class="form-group row">
                                         <div class="col-sm-6 col-md-5 mb-3">
                                             <label>Email Address</label>
-                                            <input type="email" class="form-control" id="booking-email">
+                                            <input type="email" class="form-control" id="booking-email" onfocusout="checkBookingEmail()">
+                                            <small class="invalid-feedback">Email tidak boleh kosong</small>
                                         </div>
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-6 col-md-5">
                                             <label>Verify E-mail Address</label>
-                                            <input type="email" class="form-control" id="booking-verifyEmail">
+                                            <input type="email" class="form-control" id="booking-verifyEmail" onfocusout="checkBookingConfirmEmail()">
+                                            <small class="invalid-feedback">Email tidak cocok</small>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -274,8 +290,8 @@
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-6 col-md-5">
                                             <label>Phone Number</label>
-                                            <input type="text" class="form-control" id="booking-phoneNumber">
-
+                                            <input type="text" class="form-control" id="booking-phoneNumber" onfocusout="checkBookingPhoneNumber()">
+                                            <small class="invalid-feedback">No. Telefon tidak boleh kosong</small>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -292,7 +308,8 @@
                                     <div class="form-group row">
                                         <div class="col-sm-6 col-md-5 mb-3">
                                             <label>Zip Code</label>
-                                            <input type="text" class="form-control" id="booking-zipCode">
+                                            <input type="text" class="form-control" id="booking-zipCode" onfocusout="checkBookingZipCode()">
+                                            <small class="invalid-feedback">Postal code tidak boleh kosong</small>
                                         </div>
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-6 col-md-5">

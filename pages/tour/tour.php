@@ -26,7 +26,7 @@ $tour = $_GET['tour'];
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2 class="post-title"> <?php echo $row["post_title"] ?> </h2>
+                        <h2 style="margin-top: 10px;" class="post-title"> <?php echo $row["post_title"] ?> </h2>
                     </div>
                     <div class="col-md-6">
                     </div>

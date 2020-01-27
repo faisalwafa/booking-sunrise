@@ -28,7 +28,7 @@ $user = $_SESSION["user_id"];
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2 class="post-title"> Akun Saya </h2>
+                    <h2 style="margin-top: 10px;" class="post-title"> Akun Saya </h2>
                 </div>
                 <div class="col-md-6">
                 </div>
@@ -235,7 +235,7 @@ $user = $_SESSION["user_id"];
                                                 <h6>Konfirmasi Password Baru</h6>
                                             </div>
                                             <div class="col-md-7 mb-4">
-                                                <input type="password" class="form-control" id="profile-confirmPassword" onfocusout="checkUpdateNewPasswordConfirm()">
+                                                <input type="password" class="form-control" id="profile-confirmPassword" onfocusout="checkUpdateNewPasswordConfirm()" onkeyup="checkUpdateNewPasswordConfirm()">
                                                 <div class="invalid-feedback">
                                                     Password baru tidak cocok
                                                 </div>

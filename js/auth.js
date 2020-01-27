@@ -32,11 +32,11 @@ function getParameterByName(name, url) {
 formRegister.addEventListener("submit", function(e) {
   e.preventDefault();
   if (
-    checkRegisterFirstName() ||
-    checkRegisterLastName() ||
-    checkRegisterEmail() ||
-    checkRegisterUsername() ||
-    checkRegisterPassword() ||
+    checkRegisterFirstName() &&
+    checkRegisterLastName() &&
+    checkRegisterEmail() &&
+    checkRegisterUsername() &&
+    checkRegisterPassword() &&
     checkRegisterPasswordConfirm()
   ) {
     $.ajax({
@@ -77,7 +77,7 @@ formRegister.addEventListener("submit", function(e) {
 
 formLogin.addEventListener("submit", function(e) {
   e.preventDefault();
-  if (checkLoginUsername() || checkLoginPassword()) {
+  if (checkLoginUsername() && checkLoginPassword()) {
     $.ajax({
       type: "POST",
       url: "auth_action.php",

@@ -28,7 +28,7 @@ $tour = $_GET['tour'];
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2 class="post-title"> <?php echo $row["post_title"] ?> </h2>
+                        <h2 style="margin-top: 10px;" class="post-title"> <?php echo $row["post_title"] ?> </h2>
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -38,7 +38,7 @@ $tour = $_GET['tour'];
         <section id="content">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-8 col-md-9">
+                    <div id="main" class="col-sm-8 col-md-9">
                         <div class="content">
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">

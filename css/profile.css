@@ -1,3 +1,38 @@
+.profile p {
+    font-size: 16px;
+}
+
+.profile h6 {
+    font-weight: 900;
+}
+
+.account h2 {
+    font-weight: 900;
+    margin: 0px 0px 0px;
+}
+
+.account p {
+    font-size: 14px;
+}
+
+.iconEdit a {
+    color: #000;
+}
+
+.iconEdit a:hover {
+    text-decoration: none;
+}
+
+.iconEdit a h2:hover {
+    color: #ffa500;
+    transition: 0.3s;
+}
+
+.security-content .separator hr {
+    background-color: #ffa500;
+    border-top: 3px solid rgba(0, 0, 0, 0.1);
+}
+
 .wrapper {
     width: 100%;
 }
@@ -10,7 +45,8 @@
 #sidebar {
     min-width: 285px;
     max-width: 300px;
-    background-color: #000;
+    /* background-color: #000; */
+    background-color: #2d3e52;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
@@ -28,8 +64,9 @@
 }
 
 #sidebar h4 {
-    padding: 10px 20px 0px;
-    color: #ffa500;
+    padding: 13px 20px 0px;
+    color: #fff;
+    /* color: #ffa500; */
 }
 
 #sidebar.active .custom-menu {
@@ -37,12 +74,12 @@
 }
 
 #sidebar .custom-menu .btn.btn-primary:after {
-    content: "\f053";
+    content: "\f054";
     right: 2px;
 }
 
 #sidebar.active .btn.btn-primary:before {
-    content: "\f054";
+    content: "\f053";
     font-family: "FontAwesome";
     left: 2px !important;
 }
@@ -83,7 +120,8 @@
 #sidebar ul li a {
     padding: 15px 30px;
     display: block;
-    color: #ffa500 !important;
+    color: #ffffff !important;
+    text-decoration: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -91,19 +129,18 @@
     position: relative;
 }
 
+#sidebar ul li.active {
+    background: #415872;
+}
+
 #sidebar ul li a:hover {
     color: #fff;
-    background: #2f89fc;
+    background: #415872;
 }
 
-#sidebar ul li.active>a {
+#sidebar ul li a {
     background: transparent;
     color: #fff;
-}
-
-#sidebar ul li.active>a:hover {
-    background: #2f89fc;
-    border-bottom: 1px solid #2f89fc;
 }
 
 @media (max-width: 991.98px) {
@@ -162,4 +199,9 @@
     #sidebarCollapse span {
         display: none;
     }
+}
+
+.profile-icon {
+    color: #ffa500;
+    font-size: 1.2em !important;
 }

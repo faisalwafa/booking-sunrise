@@ -19,6 +19,7 @@
 
 .item-list .nav-item a {
     color: inherit;
+    letter-spacing: .04em;
 }
 
 .navbar-toggler {

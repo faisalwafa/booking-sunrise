@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$is_logged_in = (isset($_SESSION['user_id'])) ? true : false;
+
 include_once '../../helper/connection.php';
 
 $tour = $_GET['tour'];
@@ -106,15 +108,15 @@ $tour = $_GET['tour'];
                             <?php
                             // $dateFrom = $_POST['dateFrom'];
                             // $dateTo = $_POST['dateTo'];
-                            $sql5 = "SELECT duration , max_people , price , child_price FROM wpzu_trav_tour_schedule WHERE tour_id = $tour ";
+                            $sql5 = "SELECT * FROM wpzu_trav_tour_schedule WHERE tour_id = $tour ";
 
                             if ($results5 = mysqli_query($con, $sql5)) {
-
+                                $i = 1;
                                 while ($row5 = mysqli_fetch_assoc($results5)) { ?>
                                     <div class="row-content row  grey-background ">
                                         <div class=" content-left col-sm-4 ">
                                             <div class="row">
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 mt-3">
                                                     <p class="label-detail">LOCATION</p>
                                                     <p class="label-detail">DURATION</p>
                                                     <p class="label-detail">AVAILABLE SEATS</p>
@@ -125,7 +127,7 @@ $tour = $_GET['tour'];
                                                     }
                                                     ?>
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6 mt-3">
                                                     <?php
                                                     $sql4 = "SELECT pm.meta_value, t.name FROM wpzu_postmeta pm INNER JOIN wpzu_terms t ON pm.meta_value = t.term_id WHERE pm.post_id = $tour AND pm.meta_key = 'trav_tour_city'";
 
@@ -138,6 +140,7 @@ $tour = $_GET['tour'];
                                                     $duration = $row5['duration'];
                                                     $available = $row5['max_people'];
                                                     $price = $row5['price'];
+                                                    $member_price = $row5['member_price'];
                                                     $child_price = $row5['child_price'];
 
                                                     echo "<p>$duration</p>";
@@ -153,44 +156,81 @@ $tour = $_GET['tour'];
                                         </div>
                                         <div class="col-sm-7 content-right">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mt-3">
                                                     <label>Harga Member</label>
-                                                    <h5>Rp. </h5>
+                                                    <?php
+                                                    if ($member_price != 0) { ?>
+                                                        <h5>Rp.<span <?php if ($is_logged_in) {
+                                                                            $id_member = "id ='price$i'";
+                                                                            echo $id_member;
+                                                                        } ?>> <?php echo $member_price ?> </span></h5>
+                                                    <?php }
+                                                    ?>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mt-3">
                                                     <label>Harga Normal</label>
-                                                    <h5>Rp. </h5>
+                                                    <h5>Rp. <span <?php if (!$is_logged_in) {
+                                                                        $id_nonmember = "id ='price$i'";
+                                                                        echo $id_nonmember;
+                                                                    } ?>> <?php echo $price ?> </span></h5>
                                                 </div>
                                             </div>
                                             <div>
-                                                <form>
+                                                <form method="get" action="../booking/booking.php">
+                                                    <input type="hidden" name="tour" value="<?= $tour ?>" />
+                                                    <input type="hidden" name="post_title" value="<?= $row["post_title"] ?>" />
+                                                    <input type="hidden" name="location" value="<?= $name ?>" />
+                                                    <input type="hidden" name="duration" value="<?= $duration ?>" />
+                                                    <?php
+                                                    if ($is_logged_in) { ?>
+                                                        <input type="hidden" name="price" value="<?= $member_price ?>" />
+                                                    <?php
+                                                    } else { ?>
+                                                        <input type="hidden" name="price" value="<?= $price ?>" />
+                                                    <?php }
+                                                    ?>
+
                                                     <div class="form-row">
                                                         <div class="col-md-5 form-group">
                                                             <label>Available On</label>
-                                                            <input class="form-control" type="date">
+                                                            <input class="form-control" type="date" name="dateTour">
                                                         </div>
                                                         <div class="col-md-2 form-group">
                                                             <label>Adults</label>
-                                                            <input type="number" class="form-control" min="1" max="100" />
+                                                            <input type="number" class="form-control" min="1" max="100" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" />
                                                         </div>
-                                                        <div class="col-md-2 form-group">
-                                                            <?php
-                                                            if ($row5['child_price'] != 0.00) { ?>
-                                                                <label>Kids</label>
-                                                                <input type="number" class="form-control" min="1" max="100" />
-                                                            <?php }
-                                                            ?>
+                                                        <div class="col-md-1 form-group">
+
                                                         </div>
-                                                        <div class="col-md-3 form-group">
+                                                        <div class="col-md-4 form-group">
                                                             <label>Total</label>
-                                                            <h5>Rp.</h5>
+                                                            <div>
+                                                                <h5 class="d-inline">Rp. </h5>
+                                                                <h5 class="d-inline" id="totalPrice<?= $i ?>"></h5>
+                                                                <input id="totalPrices<?= $i ?>" name="totalPrice" type="hidden" />
+                                                            </div>
+                                                            <button type="submit" class="btn btn-green btn-block">Book Now</button>
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-                            <?php }
+                                    <script>
+                                        function totalPrice<?= $i ?>() {
+                                            var price<?= $i ?> = document.getElementById("price<?= $i ?>");
+                                            var totalAdults<?= $i ?> = document.getElementById("totalAdults<?= $i ?>");
+                                            var totalPrice<?= $i ?> = document.getElementById("totalPrice<?= $i ?>");
+                                            var totalPrices<?= $i ?> = document.getElementById("totalPrices<?= $i ?>");
+
+                                            var total<?= $i ?> = Number(price<?= $i ?>.innerHTML) * Number(totalAdults<?= $i ?>.value);
+                                            totalPrice<?= $i ?>.innerHTML = total<?= $i ?>;
+                                            totalPrices<?= $i ?>.value = total<?= $i ?>;
+                                        }
+                                    </script>
+                            <?php
+                                    $i++;
+                                }
                             } ?>
                             <div class="row-content">
                                 <p>

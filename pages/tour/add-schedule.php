@@ -22,14 +22,14 @@ $row = mysqli_fetch_assoc($results);
         <form method="post" action="add-schedule_action.php">
             <input type="hidden" name="tour_id" value="<?= $tour ?>">
             <div class="form-group row">
-                <h5 class="col-sm-2 mt-3">Tour</h5>
-                <div class="col-sm-10">
+                <h5 class="col-sm-3 mt-3">Tour</h5>
+                <div class="col-sm-9">
                     <input disabled class="form-control" value="<?= $row['post_title'] ?>" />
                 </div>
             </div>
             <div class="form-group row">
-                <h5 class="col-sm-2 mt-3">Schedule Type</h5>
-                <div class="col-sm-10">
+                <h5 class="col-sm-3 mt-3">Schedule Type</h5>
+                <div class="col-sm-9">
                     <select class="form-control" name="scheduleType">
                         <option value="0"></option>
                         <option value="0">Weekday</option>
@@ -38,86 +38,70 @@ $row = mysqli_fetch_assoc($results);
                 </div>
             </div>
             <div class="form-group row">
-                <h5 class="col-sm-2 mt-3">Max People</h5>
-                <div class="col-sm-10">
+                <h5 class="col-sm-3 mt-3">Max People</h5>
+                <div class="col-sm-9">
                     <input type="number" class="form-control" name="maxPeople" min="1" value="1" />
                 </div>
             </div>
             <div class="form-group row">
-                <h5 class="col-sm-2 mt-3">Duration</h5>
-                <div class="col-sm-10">
+                <h5 class="col-sm-3 mt-3">Duration</h5>
+                <div class="col-sm-9">
                     <input type="text" class="form-control" name="duration" />
                 </div>
             </div>
             <div class="form-group row">
-                <h5 class="col-sm-2 mt-3">Is Daily?</h5>
-                <div class="col-sm-10">
+                <h5 class="col-sm-3 mt-3">Is Daily?</h5>
+                <div class="col-sm-9">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="isDaily" onchange="myFunction()" id="check">
                     </div>
                 </div>
             </div>
-            <div id="dateForm" style="display: none">
-                <div class="form-group row">
-                    <h5 class="col-sm-2 mt-3">Start Date</h5>
-                    <div class="col-sm-10">
-                        <input type="date" class="form-control" name="tourDate" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <h5 class="col-sm-2 mt-3">End Date</h5>
-                    <div class="col-sm-10">
-                        <input type="date" class="form-control" name="endDate" />
-                    </div>
-                </div>
-            </div>
-            <div id="tourForm">
-                <div class="form-group row">
-                    <h5 class="col-sm-2 mt-3">Tour Date</h5>
-                    <div class="col-sm-10">
-                        <input type="date" class="form-control" name="tourDate" />
-                    </div>
-                </div>
-            </div>
             <div class="form-group row">
-                <h5 class="col-sm-2 mt-3">Charge Per Person?</h5>
-                <div class="col-sm-10">
+                <h5 class="col-sm-3 mt-3">Tour Date</h5>
+                <div class="col-sm-9">
+                    <input type="date" class="form-control" name="tourDate" />
+                </div>
+            </div>
+            <div id="endDate" style="display: none">
+                <div class="form-group row">
+                    <h5 class="col-sm-3 mt-3">End Date</h5>
+                    <div class="col-sm-9">
+                        <input id="inputEndDate" type="date" class="form-control" name="endDate" />
+                    </div>
+                </div>
+            </div>
+            <div class=" form-group row">
+                <h5 class="col-sm-3 mt-3">Charge Per Person?</h5>
+                <div class="col-sm-9">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="perPerson" onchange="myFunction2()" id="check2">
                     </div>
                 </div>
             </div>
-            <div id="pricePerForm" style="display: none">
-                <div class="form-group row">
-                    <h5 class="col-sm-2 mt-3">Price Per Adult</h5>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="price" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <h5 class="col-sm-2 mt-3">Price Per Child</h5>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="childPrice" />
-                    </div>
+            <div class="form-group row">
+                <h5 class="col-sm-3 mt-3">Price</h5>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="price" />
                 </div>
             </div>
-            <div id="priceForm">
+            <div id="childPrice" style="display: none">
                 <div class="form-group row">
-                    <h5 class="col-sm-2 mt-3">Price</h5>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="price" />
+                    <h5 class="col-sm-3 mt-3">Price Per Child</h5>
+                    <div class="col-sm-9">
+                        <input id="inputChildPrice" type="text" class="form-control" name="childPrice" />
                     </div>
                 </div>
             </div>
             <div class="form-group row">
-                <h5 class="col-sm-2 mt-3">Member Price</h5>
-                <div class="col-sm-10">
+                <h5 class="col-sm-3 mt-3">Member Price</h5>
+                <div class="col-sm-9">
                     <input type="text" class="form-control" name="memberPrice" />
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-2 "></div>
-                <div class="col-sm-10">
+                <div class="col-sm-3 "></div>
+                <div class="col-sm-9">
                     <button type="submit" class="btn btn-primary">Save Schedule</button>
                 </div>
             </div>

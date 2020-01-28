@@ -9,6 +9,7 @@ $is_logged_in = isset($_SESSION['user_id']);
 $user = $_SESSION["user_id"];
 
 $tour_id = $_GET['tour'];
+$st_id = $_GET['st_id'];
 $post_title = $_GET['post_title'];
 $location = $_GET['location'];
 $duration = $_GET['duration'];

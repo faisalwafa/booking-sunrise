@@ -46,19 +46,19 @@ $row = mysqli_fetch_assoc($results);
 
             <ul class="list-unstyled components">
                 <li class="mb-2">
-                    <a href="#">
+                    <a href="admin_dashboard.php">
                         <i class="fas fa-home text-primary"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="my-2 active">
-                    <a href="#">
+                    <a href="admin_tour.php">
                         <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
                         Tour
                     </a>
                 </li>
                 <li class="my-2">
-                    <a href="#">
+                    <a href="admin_booking.php">
                         <i class="fas fa-book text-orange"></i>
                         Booking
                     </a>
@@ -91,39 +91,135 @@ $row = mysqli_fetch_assoc($results);
 
             <div class="container mt-4 py-3 w-95 rounded bg-white">
                 <div class="mt-2 mb-4 d-flex justify-content-between">
-                    <h4><?= $row['post_title'] ?></h4>
-                    <button type="button" class="btn btn-primary" onclick="formEditDetail()">Edit Detail</button>
+                    <h5><?= $row['post_title'] ?></h5>
+                    <button type="button" class="btn btn-outline-info" onclick="formEditDetail()">Edit Detail</button>
                 </div>
                 <div id="editDetailForm" style="display: none">
                     <form method="post" action="../tour/update-tour_action.php">
                         <input type="hidden" name="tour_id" value="<?= $tour ?>">
-                        <h5 class="mt-3">Deskripsi</h5>
-                        <textarea name="deskripsi" class="editor" placeholder="" autofocus><?= $row['post_content'] ?></textarea>
-                        <h5 class="mt-3">Harga Paket</h5>
-                        <textarea name="harga" class="editor" placeholder="" autofocus><?= $row['harga_paket'] ?></textarea>
-                        <h5 class="mt-3">Detail Itinerary</h5>
-                        <textarea name="itinerary" class="editor" placeholder="" autofocus><?= $row['detail_itinerary'] ?></textarea>
-                        <h5 class="mt-3">Harga Termasuk</h5>
-                        <textarea name="hargaTermasuk" class="editor" placeholder="" autofocus><?= $row['harga_termasuk'] ?></textarea>
-                        <h5 class="mt-3">Harga Tidak Termasuk</h5>
-                        <textarea name="hargaTidakTermasuk" class="editor" placeholder="" autofocus><?= $row['harga_tidak_termasuk'] ?></textarea>
-                        <h5 class="mt-3">Force Majeur</h5>
-                        <textarea name="forceMajeur" class="editor" placeholder="" autofocus><?= $row['force_majeur'] ?></textarea>
+                        <div class="row-content">
+                            <h5 class="mt-3">Deskripsi</h5>
+                            <textarea name="deskripsi" class="editor" placeholder="" autofocus><?= $row['post_content'] ?></textarea>
+                            <div class="accordion" id="accordionContent">
+                                <div>
+                                    <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                        <span>Harga Paket</span>
+                                    </button>
+                                    <div id="collapseOne" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#accordionContent">
+                                        <textarea name="harga" class="editor" placeholder="" autofocus><?= $row['harga_paket'] ?></textarea>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                        <span>Detail Itinerary</span>
+                                    </button>
+                                    <div id="collapseTwo" class="collapse ml-2" aria-labelledby="headingTwo" data-parent="#accordionContent">
+                                        <textarea name="itinerary" class="editor" placeholder="" autofocus><?= $row['detail_itinerary'] ?></textarea>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                        <span>Harga Termasuk</span>
+                                    </button>
+                                    <div id="collapseThree" class="collapse ml-2" aria-labelledby="headingThree" data-parent="#accordionContent">
+                                        <textarea name="hargaTermasuk" class="editor" placeholder="" autofocus><?= $row['harga_termasuk'] ?></textarea>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                        <span>Harga Tidak Termasuk</span>
+                                    </button>
+                                    <div id="collapseFour" class="collapse ml-2" aria-labelledby="headingFour" data-parent="#accordionContent">
+                                        <textarea name="hargaTidakTermasuk" class="editor" placeholder="" autofocus><?= $row['harga_tidak_termasuk'] ?></textarea>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                        <span>Force Majeur</span>
+                                    </button>
+                                    <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
+                                        <textarea name="forceMajeur" class="editor" placeholder="" autofocus><?= $row['force_majeur'] ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary" id="saveChanges" onclick="saveChanges()">Simpan Perubahan</button>
                     </form>
                 </div>
                 <div id="detailTour">
-                    <p><?= $row['post_content'] ?></p>
-                    <p><?= $row['harga_paket'] ?></p>
-                    <p><?= $row['detail_itinerary'] ?></p>
-                    <p><?= $row['harga_termasuk'] ?></p>
-                    <p><?= $row['harga_tidak_termasuk'] ?></p>
-                    <p><?= $row['force_majeur'] ?></p>
+                    <div class="row-content">
+                        <p>
+                            <?php echo $row["post_content"]; ?>
+                        </p>
+                        <div class="accordion" id="accordionContent">
+                            <div>
+                                <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                    <span>Harga Paket</span>
+                                </button>
+                                <div id="collapseOne" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#accordionContent">
+                                    <p>
+                                        <?php echo $row["harga_paket"]; ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                    <span>Detail Itinerary</span>
+                                </button>
+                                <div id="collapseTwo" class="collapse ml-2" aria-labelledby="headingTwo" data-parent="#accordionContent">
+                                    <p>
+                                        <?php echo $row["detail_itinerary"]; ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                    <span>Harga Termasuk</span>
+                                </button>
+                                <div id="collapseThree" class="collapse ml-2" aria-labelledby="headingThree" data-parent="#accordionContent">
+                                    <p>
+                                        <?php echo $row["harga_termasuk"]; ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                    <span>Harga Tidak Termasuk</span>
+                                </button>
+                                <div id="collapseFour" class="collapse ml-2" aria-labelledby="headingFour" data-parent="#accordionContent">
+                                    <p>
+                                        <?php echo $row["harga_tidak_termasuk"]; ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                    <span>Force Majeur</span>
+                                </button>
+                                <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
+                                    <p>
+                                        <?php echo $row["force_majeur"]; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <hr>
                 <div class="mt-2 mb-4 d-flex justify-content-between">
-                    <h4 class=" ">List Schedule </h4>
+                    <h5 class=" ">List Schedule </h5>
                     <!-- <a class="  " href="../tour/add-schedule.php?tour=<?= $tour ?>"> -->
-                    <button type="button" class="btn btn-primary" onclick="formAddSchedule()">Add Schedule</button>
+                    <button type="button" class="btn btn-outline-success" onclick="formAddSchedule()">Add Schedule</button>
                     <!-- </a> -->
                 </div>
                 <div class="mt-2 mb-4" id="formAddSchedule" style="display: none">
@@ -270,9 +366,9 @@ $row = mysqli_fetch_assoc($results);
                                             ?></td> -->
                                 <td>
 
-                                    <a href="edit_schedule.php?schedule=<?= $row_schedule_list['tour_id']; ?>" style="font-size: 0.9rem">
+                                    <a href="../tour/delete_schedule_action.php?schedule=<?= $row_schedule_list['id']; ?>&tour=<?= $tour ?>" style="font-size: 0.9rem">
                                         <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
-                                        Edit Schedule
+                                        Delete Schedule
                                     </a>
                                 </td>
                             </tr>

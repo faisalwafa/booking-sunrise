@@ -46,19 +46,20 @@ $row = mysqli_fetch_assoc($results);
 
             <ul class="list-unstyled components">
                 <li class="mb-2">
-                    <a href="#">
+                    <a href="admin_dashboard.php">
                         <i class="fas fa-home text-primary"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="my-2 active">
-                    <a href="#">
-                        <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
-                        Tour
-                    </a>
+                    <a href="-2 active">
+                        <a href="admin_tour.php">
+                            <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
+                            Tour
+                        </a>
                 </li>
                 <li class="my-2">
-                    <a href="#">
+                    <a href="admin_booking.php">
                         <i class="fas fa-book text-orange"></i>
                         Booking
                     </a>
@@ -270,9 +271,9 @@ $row = mysqli_fetch_assoc($results);
                                             ?></td> -->
                                 <td>
 
-                                    <a href="edit_schedule.php?schedule=<?= $row_schedule_list['tour_id']; ?>" style="font-size: 0.9rem">
+                                    <a href="../tour/delete_schedule_action.php?schedule=<?= $row_schedule_list['id']; ?>&tour=<?= $tour ?>" style="font-size: 0.9rem">
                                         <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
-                                        Edit Schedule
+                                        Delete Schedule
                                     </a>
                                 </td>
                             </tr>

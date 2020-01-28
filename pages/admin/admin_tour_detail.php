@@ -320,7 +320,6 @@ $row = mysqli_fetch_assoc($results);
                             <th>Tour Date</th>
                             <th>Max People</th>
                             <th>Price adult</th>
-                            <th>Price child</th>
                             <th>Member Price</th>
                             <th>Duration</th>
                             <th>Schedule Type</th>
@@ -346,7 +345,6 @@ $row = mysqli_fetch_assoc($results);
                                     ?></td>
                                 <td><?= $row_schedule_list['max_people'] ?></td>
                                 <td><?= $row_schedule_list['price'] ?></td>
-                                <td><?= $row_schedule_list['child_price'] ?></td>
                                 <td><?= $row_schedule_list['member_price'] ?></td>
                                 <td><?= $row_schedule_list['duration'] ?></td>
                                 <td>

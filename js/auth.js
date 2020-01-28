@@ -95,7 +95,7 @@ formLogin.addEventListener("submit", function(e) {
             if (tour) {
               window.location.href = "../tour/tour.php?tour=" + tour;
             } else {
-              window.location.href = "http://sunrise-indonesia.com";
+              window.location.href = "../profile/profile_booking.php";
             }
           } else {
             window.location.href = "../admin/admin.php";

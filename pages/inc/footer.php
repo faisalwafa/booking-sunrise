@@ -87,16 +87,16 @@
                                 <a href="https://sunrise-indonesia.com/booking-terms-condition/">Syarat & Ketentuan</a>
                             </li>
                             <li>
-                                <a href="https://sunrise-indonesia.com/booking-terms-condition/">Tentang Kami</a>
+                                <a href="https://sunrise-indonesia.com/tentang-kami/">Tentang Kami</a>
                             </li>
                             <li>
-                                <a href="https://sunrise-indonesia.com/booking-terms-condition/">Jadi Partner Kami</a>
+                                <a href="https://sunrise-indonesia.com/jadi-partner-kami/">Jadi Partner Kami</a>
                             </li>
                             <li>
-                                <a href="https://sunrise-indonesia.com/booking-terms-condition/">FAQ</a>
+                                <a href="https://sunrise-indonesia.com/faq/">FAQ </a>
                             </li>
                             <li>
-                                <a href="https://sunrise-indonesia.com/booking-terms-condition/">Hubungi Kami</a>
+                                <a href="https://sunrise-indonesia.com/hubungi-kami/">Hubungi Kami</a>
                             </li>
                         </ul>
                     </div>

@@ -43,13 +43,13 @@ $user = $_SESSION["user_id"];
                         Dashboard
                     </a>
                 </li>
-                <li class="my-2 active">
+                <li class="my-2">
                     <a href="admin_tour.php">
                         <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
                         Tour
                     </a>
                 </li>
-                <li class="my-2">
+                <li class="my-2 active  ">
                     <a href="admin_booking.php">
                         <i class="fas fa-book text-orange"></i>
                         Booking
@@ -82,46 +82,45 @@ $user = $_SESSION["user_id"];
             </nav>
 
             <div class="container mt-4 py-3 w-95 rounded bg-white">
-                <h4 class="mt-2 mb-4">List Tour</h4>
+                <h4 class="mt-2 mb-4">List Booking</h4>
                 <div class="table-responsive">
-                    <table id="table-tour" class="table">
+                    <table id="table-booking" class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>ID</th>
-                                <th>Nama Tour</th>
-                                <th>Tanggal Publish</th>
-                                <th>Schedule</th>
+                                <th>Customer Name</th>
+                                <th>Tour Name</th>
+                                <th>Tour Date</th>
+                                <th>Adult</th>
+                                <th>Price</th>
+                                <th>Created Date</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sql_tour_list = "SELECT * FROM `wpzu_posts` WHERE `post_status` = 'publish' AND `post_type` = 'tour' ORDER BY `post_date` DESC";
-                            $results_tour_list = mysqli_query($con, $sql_tour_list);
-                            $index_tour_list = 1;
-                            while ($row_tour_list = mysqli_fetch_assoc($results_tour_list)) {
+                            $sql_history_booking = "SELECT * FROM wpzu_trav_tour_bookings AS w INNER JOIN wpzu_posts AS p ON w.tour_id = p.ID";
+                            $result_history_booking = mysqli_query($con, $sql_history_booking);
+                            $index_history_list = 1;
+                            while ($row_booking_list = mysqli_fetch_assoc($result_history_booking)) {
+                                $convert_price = $row_booking_list['total_price'];
                             ?>
-
                                 <tr>
-                                    <td><?= $index_tour_list ?></td>
-                                    <td><?= $row_tour_list['ID'] ?></td>
-                                    <td><?= $row_tour_list['post_title'] ?></td>
-                                    <td><?php
-                                        $datetime = strtotime($row_tour_list['post_date']);
-                                        $date = date('m/d/y', $datetime);
-                                        echo $date
+                                    <td><?= $index_history_list ?></td>
+                                    <td><?= $row_booking_list['first_name'] ?><br> <?= $row_booking_list['last_name'] ?></td>
+                                    <td><?= $row_booking_list['post_title'] ?></td>
+                                    <td><?php $doConvert_tourDate = strtotime($row_booking_list['tour_date']);
+                                        $convert_tourDate = date('m/d/Y', $doConvert_tourDate);
+                                        echo $convert_tourDate ?></td>
+                                    <td><?= $row_booking_list['adults'] ?></td>
+                                    <td>IDR <?= number_format($convert_price, 0, ".", ".") ?></td>
+                                    <td><?php $doConvert_createdDate = strtotime($row_booking_list['created']);
+                                        echo date('m/d/Y', $doConvert_createdDate);
+                                        echo date(' h:i:s A', $doConvert_createdDate);
                                         ?></td>
-                                    <td>
-                                        <a href="admin_tour_detail.php?tour=<?= $row_tour_list['ID']; ?>" style="font-size: 0.9rem">
-                                            <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
-                                            Lihat Schedule
-                                        </a>
-                                    </td>
                                 </tr>
                             <?php
-                                $index_tour_list++;
-                            }
-                            ?>
+                                $index_history_list++;
+                            } ?>
                         </tbody>
                     </table>
                 </div>
@@ -134,7 +133,7 @@ $user = $_SESSION["user_id"];
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#table-tour').DataTable();
+            $('#table-booking').DataTable();
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar-admin').toggleClass('active');
             });

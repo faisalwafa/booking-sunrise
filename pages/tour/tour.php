@@ -58,7 +58,7 @@ $tour = $_GET['tour'];
                                                 <div class="carousel-item <?php if ($i == 0) {
                                                                                 echo "active";
                                                                             } ?>">
-                                                    <img src="/sunrise_indonesia/<?= $img_src ?>" class="d-block w-100" alt="...">
+                                                    <img src="http://sunrise-indonesia.com/<?= $img_src ?>" class="d-block w-100" alt="...">
                                                 </div>
 
                                     <?php

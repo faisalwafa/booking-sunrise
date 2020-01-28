@@ -1,5 +1,13 @@
 <?php
+session_start();
+
 include_once '../../helper/connection.php';
+
+if (!isset($_SESSION["user_id"]) || (isset($_SESSION["user_id"]) && $_SESSION["user_level"] != 10)) {
+    header("Location: ../auth/auth.php");
+}
+
+$user = $_SESSION["user_id"];
 
 $tour = $_GET['tour'];
 
@@ -74,7 +82,7 @@ $row = mysqli_fetch_assoc($results);
                                 Admin
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <a class="dropdown-item" href="../auth/logout.php">Logout</a>
                             </div>
                         </li>
                     </ul>

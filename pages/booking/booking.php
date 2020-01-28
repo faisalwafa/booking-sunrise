@@ -600,7 +600,7 @@ $total_price = $_GET['totalPrice'];
                                     <img src="https://dummyimage.com/75x75/000/fff" alt="thumbnail-image" width="75" height="75">
                                 </div>
                                 <div class="ml-2">
-                                    <a class="text-decoration-none" href="http://localhost:8080/booking-sunrise/pages/tour/tour.php?tour=<?php echo $tour_id ?>">
+                                    <a class="text-decoration-none" href="../tour/tour.php?tour=<?php echo $tour_id ?>">
                                         <?php echo $post_title ?>
                                     </a>
                                     <span>

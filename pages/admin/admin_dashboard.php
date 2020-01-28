@@ -1,5 +1,15 @@
 <?php
+
+session_start();
+
 include_once '../../helper/connection.php';
+
+if (!isset($_SESSION["user_id"]) || (isset($_SESSION["user_id"]) && $_SESSION["user_level"] != 10)) {
+    header("Location: ../auth/auth.php");
+}
+
+$user = $_SESSION["user_id"];
+
 ?>
 
 <!DOCTYPE html>
@@ -28,19 +38,19 @@ include_once '../../helper/connection.php';
 
             <ul class="list-unstyled components">
                 <li class="mb-2 active">
-                    <a href="#">
+                    <a href="admin_dashboard.php">
                         <i class="fas fa-home text-primary"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="my-2">
-                    <a href="#">
+                    <a href="admin_tour.php">
                         <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
                         Tour
                     </a>
                 </li>
                 <li class="my-2">
-                    <a href="#">
+                    <a href="admin_booking.php">
                         <i class="fas fa-book text-orange"></i>
                         Booking
                     </a>
@@ -64,7 +74,7 @@ include_once '../../helper/connection.php';
                                 Admin
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <a class="dropdown-item" href="../auth/logout.php">Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -110,10 +120,10 @@ include_once '../../helper/connection.php';
                                             <div class="card border-0 border-info mb-3">
                                                 <div class="card body">
                                                     <div class="text-center mb-3">
-                                                        <img src="/sunrise/<?= $thumbnail_src ?>" alt="thumbnail-image" class="card-img-top">
+                                                        <img src="https://sunrise-indonesia.com/<?= $thumbnail_src ?>" alt="thumbnail-image" class="card-img-top">
                                                     </div>
                                                     <div class="text-center pb-3">
-                                                        <a class="text-dark text-decoration-none" href="/booking-sunrise/pages/tour/tour.php?tour=<?= $post_id; ?>">
+                                                        <a class="text-dark text-decoration-none" href="../tour/tour.php?tour=<?= $post_id; ?>">
                                                             <p class="sidebar-li-title px-2 text-dark" style="font-size: 1em"><?= $row_most_popular_tour['post_title'] ?></p>
                                                         </a>
                                                         <span>

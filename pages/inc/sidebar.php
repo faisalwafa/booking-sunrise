@@ -31,10 +31,10 @@ $sql_last_minute_deals = "SELECT ID, post_title FROM `wpzu_posts` WHERE `post_st
     ?>
         <div class="px-2 d-flex align-items-start">
             <div class="mr-2">
-                <img src="/sunrise/<?= $thumbnail_src ?>" alt="thumbnail-image" width="64" height="64">
+                <img src="http://sunrise-indonesia.com/<?= $thumbnail_src ?>" alt="thumbnail-image" width="64" height="64">
             </div>
             <div>
-                <a class="text-dark text-decoration-none" href="/booking-sunrise/pages/tour/tour.php?tour=<?= $post_id; ?>">
+                <a class="text-dark text-decoration-none" href="../tour/tour.php?tour=<?= $post_id; ?>">
                     <h6 class="sidebar-li-title"><?= $row_last_minute_deals['post_title'] ?></h6>
                 </a>
                 <span>

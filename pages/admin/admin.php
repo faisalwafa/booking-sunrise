@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+
+include_once '../../helper/connection.php';
+
+if (!isset($_SESSION["user_id"]) || (isset($_SESSION["user_id"]) && $_SESSION["user_level"] != 10)) {
+    header("Location: ../auth/auth.php");
+}
+
+$user = $_SESSION["user_id"];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +36,7 @@
 
             <ul class="list-unstyled components">
                 <li class="mb-2">
-                    <a href="#">
+                    <a href="admin_dashboard.php">
                         <i class="fas fa-home text-primary"></i>
                         Dashboard
                     </a>
@@ -35,7 +48,7 @@
                     </a>
                 </li>
                 <li class="my-2">
-                    <a href="#">
+                    <a href="admin_booking.php">
                         <i class="fas fa-book text-orange"></i>
                         Booking
                     </a>
@@ -59,7 +72,7 @@
                                 Admin
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <a class="dropdown-item" href="../auth/logout.php">Logout</a>
                             </div>
                         </li>
                     </ul>

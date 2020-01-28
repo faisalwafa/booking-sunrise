@@ -1,5 +1,4 @@
 <?php
-// Checks if form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     function post_captcha($user_response)
     {
@@ -28,7 +27,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $res = post_captcha($_POST['g-recaptcha-response']);
 
     if (!$res['success']) {
-        // What happens when the CAPTCHA wasn't checked
+        $first_name = $_POST['firstName'];
+        $last_name = $_POST['lastName'];
+        $email = $_POST['email'];
+        $confirmEmail = $_POST['confirmEmail'];
+        $countryCode = $_POST['countryCode'];
+        $phoneNumber = $_POST['phoneNumber'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $zipCode = $_POST['zipCode'];
+        $specialReq = $_POST['specialReq'];
+
+        $sql_add_booking = "INSERT INTO wpzu_trav_tour_bookings ( )";
+
         echo '<p>Please go back and make sure you check the security CAPTCHA box.</p><br>';
     } else {
         // If CAPTCHA is successfully completed...

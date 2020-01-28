@@ -4,9 +4,7 @@ session_start();
 
 include_once '../../helper/connection.php';
 
-// if (!isset($_SESSION["user_id"])) {
-//     header("Location: ../auth/auth.php");
-// }
+$is_logged_in = isset($_SESSION['user_id']);
 
 $user = $_SESSION["user_id"];
 
@@ -48,33 +46,45 @@ $total_price = $_GET['totalPrice'];
                                     <div class="form-group row">
                                         <div class="col-sm-6 col-md-5 mb-3">
                                             <label>First Name</label>
-                                            <input type="text" class="form-control" id="booking-firstName" onfocusout="checkBookingFirstName()">
+                                            <input type="text" name="firstName" class="form-control" id="booking-firstName" value="<?php if ($is_logged_in) {
+                                                                                                                                        echo $_SESSION['first_name'];
+                                                                                                                                    } else {
+                                                                                                                                        echo "";
+                                                                                                                                    }  ?>" onfocusout="checkBookingFirstName()">
                                             <small class="invalid-feedback">Nama Depan tidak boleh kosong</small>
                                         </div>
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-6 col-md-5">
                                             <label>Last Name</label>
-                                            <input type="text" class="form-control" id="booking-lastName" onfocusout="checkBookingLastName()">
+                                            <input type="text" name="lastName" class="form-control" id="booking-lastName" value="<?php if ($is_logged_in) {
+                                                                                                                                        echo $_SESSION['last_name'];
+                                                                                                                                    } else {
+                                                                                                                                        echo "";
+                                                                                                                                    } ?> " onfocusout="checkBookingLastName()">
                                             <small class="invalid-feedback">Nama Belakang tidak boleh kosong</small>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 col-md-5 mb-3">
                                             <label>Email Address</label>
-                                            <input type="email" class="form-control" id="booking-email" onfocusout="checkBookingEmail()">
+                                            <input type="email" name="email" class="form-control" id="booking-email" value="<?php if ($is_logged_in) {
+                                                                                                                                echo $_SESSION['user_email'];
+                                                                                                                            } else {
+                                                                                                                                echo "";
+                                                                                                                            } ?>" onfocusout="checkBookingEmail()">
                                             <small class="invalid-feedback" id="booking-email-feedback">Email tidak boleh kosong</small>
                                         </div>
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-6 col-md-5">
                                             <label>Verify E-mail Address</label>
-                                            <input type="email" class="form-control" id="booking-verifyEmail" onfocusout="checkBookingConfirmEmail()">
+                                            <input type="email" name="confirmEmail" class="form-control" id="booking-verifyEmail" onfocusout="checkBookingConfirmEmail()">
                                             <small class="invalid-feedback" id="booking-confirmEmail-feedback">Email tidak cocok</small>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 col-md-5 mb-3">
                                             <label>Country Code</label>
-                                            <select class="form-control" id="booking-countryCode">
+                                            <select class="form-control" name="countryCode" id="booking-countryCode">
                                                 <option data-countryCode="ID" value="62" selected>Indonesia (+62)</option>
                                                 <option data-countryCode="US" value="1">UK (+44)</option>
                                                 <option data-countryCode="US" value="1">USA (+1)</option>
@@ -299,31 +309,31 @@ $total_price = $_GET['totalPrice'];
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-6 col-md-5">
                                             <label>Phone Number</label>
-                                            <input type="text" class="form-control" id="booking-phoneNumber" onfocusout="checkBookingPhoneNumber()">
+                                            <input type="text" name="phoneNumber" class="form-control" id="booking-phoneNumber" onfocusout="checkBookingPhoneNumber()">
                                             <small class="invalid-feedback">No. Telefon tidak boleh kosong</small>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 col-md-5 mb-3">
                                             <label>Address</label>
-                                            <input type="text" class="form-control" id="">
+                                            <input type="text" name="address" class="form-control" id="">
                                         </div>
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-6 col-md-5">
                                             <label>City</label>
-                                            <input type="text" class="form-control" id="">
+                                            <input type="text" name="city" class="form-control" id="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 col-md-5 mb-3">
                                             <label>Zip Code</label>
-                                            <input type="text" class="form-control" id="booking-zipCode" onfocusout="checkBookingZipCode()">
+                                            <input type="text" name="zipCode" class="form-control" id="booking-zipCode" onfocusout="checkBookingZipCode()">
                                             <small class="invalid-feedback">Postal code tidak boleh kosong</small>
                                         </div>
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-6 col-md-5">
                                             <label>Country</label>
-                                            <select class="form-control" id="booking-country">
+                                            <select class="form-control" name="country" id="booking-country">
                                                 <option value="Indonesia">Indonesia</option>
                                                 <option value="United States">United States</option>
                                                 <option value="United Kingdom">United Kingdom</option>
@@ -562,7 +572,7 @@ $total_price = $_GET['totalPrice'];
                                     <div class="form-group row">
                                         <div class="col-sm-12 col-md-11 mb-3">
                                             <label>Special requirements</label>
-                                            <textarea class="form-control" rows="4"></textarea>
+                                            <textarea class="form-control" name="specialReq" rows="4"></textarea>
                                         </div>
                                     </div>
                                     <hr>

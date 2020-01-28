@@ -21,10 +21,26 @@ if (isset($_POST['login'])) {
             $row = mysqli_fetch_assoc($results);
             $check = $t_hasher->CheckPassword($password, $row['user_pass']);
             if ($check == 1) {
-                $_SESSION["user_id"] = $row['ID'];
-                $_SESSION['display_name'] = $row['display_name'];
-                $_SESSION['user_level'] = $row['user_level'];
-                $response = send_response(SUCCESS, json_encode($row));
+                $id_user = $row['ID'];
+                $sql_find_data = "SELECT meta_value FROM wpzu_usermeta WHERE (meta_key = 'first_name' OR meta_key = 'last_name') AND user_id = $id_user ORDER BY meta_key";
+                if ($results_find_data = (mysqli_query($con, $sql_find_data))) {
+                    $i = 0;
+                    while ($row_find_data = mysqli_fetch_assoc($results_find_data)) {
+                        if ($i == 0) {
+                            $_SESSION['first_name'] = $row_find_data['meta_value'];
+                        } else {
+                            $_SESSION['last_name'] = $row_find_data['meta_value'];
+                        }
+                        $i++;
+                    }
+                    $_SESSION["user_id"] = $row['ID'];
+                    $_SESSION["user_email"] = $row['user_email'];
+                    $_SESSION['display_name'] = $row['display_name'];
+                    $_SESSION['user_level'] = $row['user_level'];
+                    $response = send_response(SUCCESS, json_encode($row));
+                } else {
+                    $response = send_response(FAIL, "Gagal Mengeset Session");
+                }
             } else {
                 $response = send_response(FAIL, "Password salah");
             }

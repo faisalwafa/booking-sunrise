@@ -13,6 +13,9 @@ $forceMajeur = $_POST["forceMajeur"];
 
 $query = "UPDATE wpzu_posts SET post_content = '$deskripsi' , harga_paket = '$harga' , detail_itinerary = '$itinerary' , harga_termasuk = '$hargaTermasuk' , harga_tidak_termasuk = '$hargaTidakTermasuk' , force_majeur = '$forceMajeur'  WHERE ID = '$tour' ";
 
+// echo $query;
+// return;
+
 if (mysqli_query($con, $query)) {
     header("Location:../admin/admin_tour_detail.php?tour=$tour");
 } else {

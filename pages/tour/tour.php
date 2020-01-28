@@ -136,7 +136,7 @@ $tour = $_GET['tour'];
                                                         $name = $row4['name'];
                                                         echo "<p>$name</p>";
                                                     }
-
+                                                    $stID = $row5['st_id'];
                                                     $duration = $row5['duration'];
                                                     $available = $row5['max_people'];
                                                     $price = $row5['price'];
@@ -178,6 +178,7 @@ $tour = $_GET['tour'];
                                             <div>
                                                 <form method="get" action="../booking/booking.php">
                                                     <input type="hidden" name="tour" value="<?= $tour ?>" />
+                                                    <input type="hidden" name="st_id" value="<?= $stID ?>" />
                                                     <input type="hidden" name="post_title" value="<?= $row["post_title"] ?>" />
                                                     <input type="hidden" name="location" value="<?= $name ?>" />
                                                     <input type="hidden" name="duration" value="<?= $duration ?>" />
@@ -239,7 +240,7 @@ $tour = $_GET['tour'];
                                 <div class="accordion" id="accordionContent">
                                     <div>
                                         <strong>
-                                            <button class="btn collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <button class="text-left btn btn-block collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                                 <span><i class="soap-icon-plus mr-1"></i></span>
                                                 <span>Harga Paket</span>
                                             </button>
@@ -252,7 +253,7 @@ $tour = $_GET['tour'];
                                     </div>
                                     <div>
                                         <strong>
-                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                                 <span><i class="soap-icon-plus mr-1"></i></span>
                                                 <span>Detail Itinerary</span>
                                             </button>
@@ -265,7 +266,7 @@ $tour = $_GET['tour'];
                                     </div>
                                     <div>
                                         <strong>
-                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                                 <span><i class="soap-icon-plus mr-1"></i></span>
                                                 <span>Harga Termasuk</span>
                                             </button>
@@ -278,7 +279,7 @@ $tour = $_GET['tour'];
                                     </div>
                                     <div>
                                         <strong>
-                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                                 <span><i class="soap-icon-plus mr-1"></i></span>
                                                 <span>Harga Tidak Termasuk</span>
                                             </button>
@@ -291,7 +292,7 @@ $tour = $_GET['tour'];
                                     </div>
                                     <div>
                                         <strong>
-                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                                 <span><i class="soap-icon-plus mr-1"></i></span>
                                                 <span>Force Majeur</span>
                                             </button>

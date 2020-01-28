@@ -11,6 +11,26 @@
   font-style: normal;
 }
 
+[class^="soap-icon"],
+[class*=" soap-icon"] {
+  vertical-align: baseline;
+}
+
+[class^="soap-icon"]:before,
+[class*=" soap-icon"]:before {
+  font-family: "soap-icons";
+  font-style: normal;
+  font-weight: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  /* line-height: 1em; */
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+}
+
 body {
   /* font-family: "Poppins", sans-serif; */
   font-family: "Lato", sans-serif !important;
@@ -202,7 +222,7 @@ p {
   font-size: 1.1em;
   font-weight: 300;
   line-height: 1.7em;
-  color: #999;
+  color: #000;
 }
 
 a,
@@ -237,4 +257,9 @@ ul ul a {
 .navbar-admin {
   background-color: #fff;
   border-bottom: #f4f4f4 solid 1px;
+}
+
+.soap-icon-plus:before {
+  content: "\e88d";
+  font-size: xx-large;
 }

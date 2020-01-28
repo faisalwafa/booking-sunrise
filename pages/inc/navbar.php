@@ -36,9 +36,14 @@ $is_logged_in = isset($_SESSION['user_id']);
                                 <?= $_SESSION['display_name'] ?>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="user-info">
-                                <a class="dropdown-item navbar-dropdown-item" href="../profile/profile.php">Profil</a>
-                                <a class="dropdown-item navbar-dropdown-item" href="../profile/profile_booking.php">Booking</a>
-                                <div class="dropdown-divider"></div>
+                                <?php if ($_SESSION['user_level'] == 10) {
+                                ?>
+                                    <a class="dropdown-item navbar-dropdown-item" href="../admin/admin.php">Panel Admin</a>
+                                <?php } else { ?>
+                                    <a class="dropdown-item navbar-dropdown-item" href="../profile/profile.php">Profil</a>
+                                    <a class="dropdown-item navbar-dropdown-item" href="../profile/profile_booking.php">Booking</a>
+                                    <div class="dropdown-divider"></div>
+                                <?php } ?>
                                 <a class="dropdown-item navbar-dropdown-item" href="../auth/logout.php">Logout</a>
                             </div>
                         </li>

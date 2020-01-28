@@ -24,7 +24,8 @@ $endDate = date('Y-m-d', strtotime($rawEndDate));
 // echo $endDate;
 // return;
 
-$query = "INSERT INTO wpzu_trav_tour_schedule ( tour_id , st_id , tour_date , duration , max_people , price , child_price , member_price , is_daily , per_person_yn , date_to ) VALUES ( $tour , $stId , '$tourDate', '$duration' , $maxPeople, $price, $childPrice , $memberPrice , $isDaily , $perPerson , '$endDate')";
+$query = "INSERT INTO wpzu_trav_tour_schedule ( tour_id , st_id , tour_date , duration , max_people , price , child_price , member_price , is_daily , per_person_yn , date_to ) 
+VALUES ( $tour , $stId , '$tourDate', '$duration' , $maxPeople, $price, $childPrice , $memberPrice , $isDaily , $perPerson , '$endDate')";
 
 if (mysqli_query($con, $query)) {
     header("Location:../admin/admin_tour_detail.php?tour=$tour");

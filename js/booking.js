@@ -4,7 +4,22 @@ const bookingEmail = document.getElementById("booking-email");
 const bookingVerifyEmail = document.getElementById("booking-verifyEmail");
 const bookingPhoneNumber = document.getElementById("booking-phoneNumber");
 const bookingZipCode = document.getElementById("booking-zipCode");
+const bookingAddress = document.getElementById("booking-address");
+const bookingCity = document.getElementById("booking-city");
+const bookingSpecialReq = document.getElementById("booking-specialReq");
 const formBooking = document.getElementById("bookingForm");
+
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return "";
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 
 formBooking.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -14,23 +29,39 @@ formBooking.addEventListener("submit", function(e) {
         checkBookingEmail() &&
         checkBookingConfirmEmail() &&
         checkBookingPhoneNumber() &&
+        checkBookingAddress() &&
+        checkBookingCity() &&
         checkBookingZipCode()
     ) {
         $.ajax({
             type: "POST",
             url: "booking_action.php",
             data: {
-                first_name: bookingFirstName.value,
-                last_name: bookingLastName.value,
+                firstName: bookingFirstName.value,
+                lastName: bookingLastName.value,
                 email: bookingEmail.value,
-                verifyEmail: bookingVerifyEmail.value,
-                number: bookingPhoneNumber.value,
-                postalCode: bookingZipCode.value
+                confirmEmail: bookingVerifyEmail.value,
+                countryCode: bookingPhoneNumber.value,
+                phoneNumber: bookingZipCode.value,
+                address: bookingAddress.value,
+                city: bookingCity.value,
+                zipCode: bookingZipCode.value,
+                specialReq: bookingSpecialReq.value,
+                tour: getParameterByName("tour"),
+                stId: getParameterByName("st_id"),
+                tourDate: getParameterByName("dateTour"),
+                totalAdults: getParameterByName("totalAdults"),
+                totalPrice: getParameterByName("totalPrice"),
+                postTitle: getParameterByName("post_title"),
+                location: getParameterByName("location"),
+                duration: getParameterByName("duration"),
+                price: getParameterByName("price"),
+                gRecaptchaResponse: grecaptcha.getResponse()
             },
             success: function(data) {
                 let response = JSON.parse(data);
                 if (response.success === "success") {
-                    window.location.href = "booking.php";
+                    window.location.href = "../booking_confirm/booking_confirm.php";
                 } else {
                     window.location.href =
                         "booking.php?success-booking=false&message=" + response.message;
@@ -128,6 +159,30 @@ function checkBookingZipCode() {
     } else {
         bookingZipCode.classList.remove("is-invalid");
         bookingZipCode.classList.add("is-valid");
+        return true;
+    }
+}
+
+function checkBookingAddress() {
+    if (bookingAddress.value === "") {
+        bookingAddress.classList.remove("is-valid");
+        bookingAddress.classList.add("is-invalid");
+        return false;
+    } else {
+        bookingAddress.classList.remove("is-invalid");
+        bookingAddress.classList.add("is-valid");
+        return true;
+    }
+}
+
+function checkBookingCity() {
+    if (bookingCity.value === "") {
+        bookingCity.classList.remove("is-valid");
+        bookingCity.classList.add("is-invalid");
+        return false;
+    } else {
+        bookingCity.classList.remove("is-invalid");
+        bookingCity.classList.add("is-valid");
         return true;
     }
 }

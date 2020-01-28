@@ -11,6 +11,8 @@ if (!isset($_SESSION["user_id"])) {
     header("Location: ../auth/auth.php");
 } // $history_booking = $_GET['history-booking'];
 
+$user_id = $_SESSION["user_id"];
+
 ?>
 
 
@@ -76,7 +78,7 @@ if (!isset($_SESSION["user_id"])) {
                         </thead>
                         <tbody>
                             <?php
-                            $sql_history_booking = "SELECT * FROM wpzu_trav_tour_bookings AS w INNER JOIN wpzu_posts AS p ON w.tour_id = p.ID";
+                            $sql_history_booking = "SELECT * FROM wpzu_trav_tour_bookings AS w INNER JOIN wpzu_posts AS p ON w.tour_id = p.ID WHERE user_id = $user_id";
                             $result_history_booking = mysqli_query($con, $sql_history_booking);
                             $index_history_list = 1;
                             while ($row_booking_list = mysqli_fetch_assoc($result_history_booking)) {

@@ -239,7 +239,7 @@ $tour = $_GET['tour'];
                                 <div class="accordion" id="accordionContent">
                                     <div>
                                         <strong>
-                                            <button class="btn collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <button class="text-left btn btn-block collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                                 <span><i class="soap-icon-plus mr-1"></i></span>
                                                 <span>Harga Paket</span>
                                             </button>
@@ -252,7 +252,7 @@ $tour = $_GET['tour'];
                                     </div>
                                     <div>
                                         <strong>
-                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                                 <span><i class="soap-icon-plus mr-1"></i></span>
                                                 <span>Detail Itinerary</span>
                                             </button>
@@ -265,7 +265,7 @@ $tour = $_GET['tour'];
                                     </div>
                                     <div>
                                         <strong>
-                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                                 <span><i class="soap-icon-plus mr-1"></i></span>
                                                 <span>Harga Termasuk</span>
                                             </button>
@@ -278,7 +278,7 @@ $tour = $_GET['tour'];
                                     </div>
                                     <div>
                                         <strong>
-                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                                 <span><i class="soap-icon-plus mr-1"></i></span>
                                                 <span>Harga Tidak Termasuk</span>
                                             </button>
@@ -291,7 +291,7 @@ $tour = $_GET['tour'];
                                     </div>
                                     <div>
                                         <strong>
-                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                                 <span><i class="soap-icon-plus mr-1"></i></span>
                                                 <span>Force Majeur</span>
                                             </button>

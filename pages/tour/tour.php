@@ -214,7 +214,7 @@ $tour = $_GET['tour'];
                                                         </div>
                                                         <div class="col-md-2 form-group">
                                                             <label>Adults</label>
-                                                            <input type="number" class="form-control" min="1" max="100" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="0" />
+                                                            <input type="number" class="form-control" min="1" max="100" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="1" />
                                                         </div>
                                                         <div class="col-md-1 form-group">
 

@@ -34,8 +34,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $res = post_captcha($_POST['gRecaptchaResponse']);
 
     if (!$res['success']) {
-        echo '<p>Please go back and make sure you check the security CAPTCHA box.</p><br>';
+        $redirect = array('tour' => $tour_id, 'st_id' => $st_id, 'post_title' => $post_title, 'location' => $location, 'duration' => $duration, 'price' => $price, 'dateTour' => $tour_date, 'totalAdults' => $total_adults, 'totalPrice' => $total_price, 'message' => 'Gagal membuat booking baru');
+        $response = send_response(FAIL, json_encode($redirect));
     } else {
+        function randomNumber()
+        {
+            $result = '';
+
+            for ($i = 0; $i < rand(4, 6); $i++) {
+                $result .= mt_rand(0, 9);
+            }
+
+            return $result;
+        }
+
+        $bookingCode = randomNumber();
+
+        while (mysqli_num_rows(mysqli_query($con, "SELECT booking_no FROM wpzu_trav_tour_bookings WHERE booking_no = $bookingCode")) != 0) {
+            $bookingCode = randomNumber();
+        }
+
         $first_name = $_POST['firstName'];
         $last_name = $_POST['lastName'];
         $email = $_POST['email'];
@@ -59,20 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $sql_add_booking;
 
-        function randomNumber()
-        {
-            $result = '';
-
-            for ($i = 0; $i < rand(4, 6); $i++) {
-                $result .= mt_rand(0, 9);
-            }
-
-            return $result;
-        }
-
         if (isset($_SESSION['user_id'])) {
             $user_id = $_SESSION['user_id'];
-            $bookingCode = randomNumber();
             $sql_add_booking = "INSERT INTO wpzu_trav_tour_bookings (  tour_id , st_id , tour_date , first_name , last_name , email , country_code , phone , 
         address , city , zip , country , special_requirements , adults , kids , discount_rate , total_price , 
         currency_code , exchange_rate , deposit_price , deposit_paid , user_id , pin_code , booking_no , 
@@ -103,9 +109,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if (mysqli_query($con, $sql_add_booking)) {
-            $response = send_response(SUCCESS);
+            $id_booking = mysqli_insert_id($con);
+            $redirect = array('booking_confirm' => $id_booking);
+            $response = send_response(SUCCESS, json_encode($redirect));
         } else {
-            $response = send_response(FAIL, 'Gagal membuat booking baru');
+            $redirect = array('tour' => $tour_id, 'st_id' => $st_id, 'post_title' => $post_title, 'location' => $location, 'duration' => $duration, 'price' => $price, 'dateTour' => $tour_date, 'totalAdults' => $total_adults, 'totalPrice' => $total_price, 'message' => 'Gagal membuat booking baru');
+            $response = send_response(FAIL, json_encode($redirect));
         }
     }
 }

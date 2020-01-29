@@ -13,8 +13,6 @@ $booking = $_GET['booking_confirm'];
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 

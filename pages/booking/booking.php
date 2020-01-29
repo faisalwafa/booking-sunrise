@@ -630,33 +630,57 @@ $total_price = $_GET['totalPrice'];
                     <div class="col-sm-4 col-md-3">
                         <div class="booking-details">
                             <h4>Booking Details</h4>
-                            <div class="d-flex align-items-start">
-                                <div class="mr-2">
-                                    <img src="https://dummyimage.com/75x75/000/fff" alt="thumbnail-image" width="75" height="75">
-                                </div>
-                                <div class="ml-2">
-                                    <a class="text-decoration-none" href="../tour/tour.php?tour=<?php echo $tour_id ?>">
-                                        <?php echo $post_title ?>
+                            <div class="">
+                                <h6>
+                                    <a class="text-decoration-none" href="../tour/tour.php?tour=<?= $tour_id ?>">
+                                        <?= $post_title ?>
                                     </a>
-                                    <span>
-                                        <span>
-                                            <button class="d-inline btn btn-green">Edit</button>
-                                        </span>
-                                    </span>
+                                </h6>
+                                <div class="d-flex justify-content-end">
+                                    <button class="d-inline btn btn-outline-green ">Edit</button>
                                 </div>
                             </div>
                             <hr>
-                            <small><?php echo $tour_date ?></small>
+                            <div class="media d-flex align-items-center">
+                                <h2><i class="far fa-calendar-alt text-orange"></i></h2>
+                                <div class="media-body ml-3">
+                                    <p class="mt-0 mb-1 text-info mb-0">Date</p>
+                                    <p class="mb-0"><?= $tour_date ?></p>
+                                </div>
+                            </div>
                             <hr>
-                            <small><?php echo $duration ?></small>
+                            <div class="media d-flex align-items-center">
+                                <h2><i class="far fa-clock text-orange"></i></h2>
+                                <div class="media-body ml-3">
+                                    <p class="mt-0 mb-1 text-info mb-0">Duration</p>
+                                    <p class="mb-0"><?= $duration ?></p>
+                                </div>
+                            </div>
                             <hr>
-                            <small><?php echo $location ?></small>
+                            <div class="media d-flex align-items-center">
+                                <h2><i class="fas fa-map-marker-alt text-orange"></i></h2>
+                                <div class="media-body ml-3">
+                                    <p class="mt-0 mb-1 text-info mb-0">Location</p>
+                                    <p class="mb-0"><?= $location ?></p>
+                                </div>
+                            </div>
                             <hr>
-                            <small><?php echo $price ?></small>
+                            <h6>Other Details</h6>
                             <hr>
-                            <small><?php echo $total_adults ?></small>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-info mb-0">Harga per Orang</p>
+                                <p class="mb-0">Rp. <?= number_format($price, 0, ".", ".") ?></p>
+                            </div>
                             <hr>
-                            <small><?php echo $total_price ?></small>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-info mb-0">Jumlah Orang</p>
+                                <p class="mb-0"><?= $total_adults ?></p>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-0 font-weight-bold">Total Biaya</h6>
+                                <h6 class="mb-0 text-green">Rp. <?= number_format($total_price, 0, ".", ".") ?></h6>
+                            </div>
                         </div>
                     </div>
                 </div>

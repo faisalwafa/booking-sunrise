@@ -49,7 +49,11 @@ $is_logged_in = isset($_SESSION['user_id']);
                         </li>
                     <?php } else { ?>
                         <li class="nav-item active">
-                            <a class="nav-link text-white mr-3" href="/booking-sunrise/pages/auth/auth.php?tour=<?= $_GET['tour'] ?>">Login</a>
+                            <?php if (isset($_GET['tour'])) { ?>
+                                <a class="nav-link text-white mr-3" href="/booking-sunrise/pages/auth/auth.php?tour=<?= $_GET['tour'] ?>">Login</a>
+                            <?php } else { ?>
+                                <a class="nav-link text-white mr-3" href="/booking-sunrise/pages/auth/auth.php">Login</a>
+                            <?php } ?>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="/booking-sunrise/pages/auth/auth.php">Register</a>

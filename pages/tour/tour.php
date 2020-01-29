@@ -210,7 +210,7 @@ $tour = $_GET['tour'];
                                                     <div class="form-row">
                                                         <div class="col-md-5 form-group">
                                                             <label>Available On</label>
-                                                            <input class="form-control" type="date" name="dateTour">
+                                                            <input class="form-control" type="date" name="dateTour" required>
                                                         </div>
                                                         <div class="col-md-2 form-group">
                                                             <label>Adults</label>

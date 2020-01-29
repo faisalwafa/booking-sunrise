@@ -4,11 +4,7 @@ session_start();
 
 include_once '../../helper/connection.php';
 
-if (!isset($_SESSION["user_id"])) {
-    header("Location: ../auth/auth.php");
-}
-
-$user = $_SESSION["user_id"];
+// $user = $_SESSION["user_id"];
 $booking = $_GET['booking_confirm'];
 
 ?>
@@ -35,7 +31,7 @@ $booking = $_GET['booking_confirm'];
                     <div class="col-sm-8 col-md-9">
                         <div class="booking-information">
                             <?php
-                            $query = "SELECT b.ID, booking_no, email, tour_date, adults, total_price, country, city, post_title, tour_id FROM wpzu_trav_tour_bookings b INNER JOIN wpzu_posts p ON b.tour_id = p.id WHERE b.id = $booking";
+                            $query = "SELECT b.ID, booking_no, email, tour_date, adults, total_price, country, city, post_title, tour_id, status FROM wpzu_trav_tour_bookings b INNER JOIN wpzu_posts p ON b.tour_id = p.id WHERE b.id = $booking";
                             $results = mysqli_query($con, $query);
 
                             $row = mysqli_fetch_assoc($results)
@@ -100,7 +96,9 @@ $booking = $_GET['booking_confirm'];
                                 <li>
                                     <form action="booking_confirm_action.php" method="POST">
                                         <input type="hidden" name="id_booking" value="<?= $row['ID'] ?>">
-                                        <input class="form-control" type="submit" value="Cancel Your Booking">
+                                        <button type="submit" class="btn-block btn btn-outline-secondary <?php if ($row['status'] != 1) {
+                                                                                                                echo "disabled";
+                                                                                                            } ?>">Cancel Your Booking</button>
                                     </form>
                                     </a>
                                 </li>

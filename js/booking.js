@@ -9,7 +9,6 @@ const bookingCity = document.getElementById("booking-city");
 const bookingSpecialReq = document.getElementById("booking-specialReq");
 const formBooking = document.getElementById("bookingForm");
 
-
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -19,7 +18,6 @@ function getParameterByName(name, url) {
     if (!results[2]) return "";
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-
 
 formBooking.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -59,12 +57,14 @@ formBooking.addEventListener("submit", function(e) {
                 gRecaptchaResponse: grecaptcha.getResponse()
             },
             success: function(data) {
-                let response = JSON.parse(data);
+                const response = JSON.parse(data);
+                const responseData = JSON.parse(response.message);
                 if (response.success === "success") {
-                    window.location.href = "../booking_confirm/booking_confirm.php";
-                } else {
                     window.location.href =
-                        "booking.php?success-booking=false&message=" + response.message;
+                        "../booking_confirm/booking_confirm.php?booking_confirm=" +
+                        responseData.booking_confirm;
+                } else {
+                    window.location.href = `booking.php?success-booking=false&message=${responseData.message}&tour=${responseData.tour}&st_id=${responseData.st_id}&post_title=${responseData.post_title}&location=${responseData.location}&duration=${responseData.duration}&price=${responseData.price}&dateTour=${responseData.dateTour}&totalAdults=${responseData.totalAdults}&totalPrice=${responseData.totalPrice}`;
                 }
             },
             error: function(xhr, ajaxOptions, thrownerror) {}
@@ -97,7 +97,9 @@ function checkBookingLastName() {
 }
 
 function checkBookingEmail() {
-    const bookingEmailFeedback = document.getElementById("booking-email-feedback");
+    const bookingEmailFeedback = document.getElementById(
+        "booking-email-feedback"
+    );
     if (bookingEmail.value === "") {
         bookingEmail.classList.remove("is-valid");
         bookingEmail.classList.add("is-invalid");
@@ -118,7 +120,9 @@ function checkBookingEmail() {
 }
 
 function checkBookingConfirmEmail() {
-    const bookingVerifyEmailFeedback = document.getElementById("booking-confirmEmail-feedback");
+    const bookingVerifyEmailFeedback = document.getElementById(
+        "booking-confirmEmail-feedback"
+    );
 
     if (bookingVerifyEmail.value === "") {
         bookingVerifyEmail.classList.remove("is-valid");

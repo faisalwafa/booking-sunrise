@@ -1,3 +1,18 @@
+<?php
+
+session_start();
+
+include_once '../../helper/connection.php';
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: ../auth/auth.php");
+}
+
+$user = $_SESSION["user_id"];
+$booking = $_GET['booking_confirm'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +34,13 @@
                 <div class="row">
                     <div class="col-sm-8 col-md-9">
                         <div class="booking-information">
+                            <?php
+                            $query = "SELECT b.ID, booking_no, email, tour_date, adults, total_price, country, city, post_title, tour_id FROM wpzu_trav_tour_bookings b INNER JOIN wpzu_posts p ON b.tour_id = p.id WHERE b.id = $booking";
+                            $results = mysqli_query($con, $query);
+
+                            $row = mysqli_fetch_assoc($results)
+                            ?>
+
                             <h2 class="mb-4">Booking Confirmation</h2>
                             <hr>
                             <div class="booking-confirmation d-flex">
@@ -35,29 +57,29 @@
                             <h3 style="font-size: 18px;">Check Your Details</h3>
                             <dl class="term-description">
                                 <dt>Booking Number : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row["booking_no"] ?></dd>
                                 <dt>E-mail Address : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row["email"] ?></dd>
                                 <dt>Tour Date : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row["tour_date"] ?></dd>
                                 <dt>Adults : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row["adults"] ?></dd>
                             </dl>
                             <hr>
                             <dl class="term-description" style="font-size: 16px;">
                                 <dt style="text-transform: none;">Total Price : </dt>
-                                <dd><b style="color: #2d3e52">1.000.000</b></dd>
+                                <dd><b style="color: #2d3e52">IDR <?= number_format($row["total_price"], 0, ".", ".") ?> </b></dd>
                             </dl>
                             <hr>
                             <h3 style="font-size: 18px;">Tours Details</h3>
                             <h4 style="font-size: 16px;">
-                                <a href="#">Open Trip Example</a>
+                                <a href="../tour/tour.php?tour=<?= $row["tour_id"] ?>"><?= $row["post_title"] ?></a>
                             </h4>
                             <dl class="term-description">
                                 <dt>Country : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row["country"] ?></dd>
                                 <dt>City : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row["city"] ?></dd>
                                 <dt>Cancellation : </dt>
                                 <dd>
                                     <a href="https://sunrise-indonesia.com/booking-terms-condition/">
@@ -76,8 +98,10 @@
                             <p style="font-size: 13px; margin-bottom: 15px;">You can always view or cancel your booking online - no registration required</p>
                             <ul>
                                 <li>
-                                    <a href="#">
-                                        Cancel Your Booking
+                                    <form action="booking_confirm_action.php" method="POST">
+                                        <input type="hidden" name="id_booking" value="<?= $row['ID'] ?>">
+                                        <input class="form-control" type="submit" value="Cancel Your Booking">
+                                    </form>
                                     </a>
                                 </li>
                             </ul>

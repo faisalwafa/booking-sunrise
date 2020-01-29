@@ -74,6 +74,7 @@ $user_id = $_SESSION["user_id"];
                                 <th>Adult</th>
                                 <th>Price</th>
                                 <th>Created Date</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,6 +97,14 @@ $user_id = $_SESSION["user_id"];
                                     <td><?php $doConvert_createdDate = strtotime($row_booking_list['created']);
                                         echo date('m/d/Y', $doConvert_createdDate);
                                         echo date(' h:i:s A', $doConvert_createdDate);
+                                        ?></td>
+                                    <td><?php if ($row_booking_list['status'] == 0) {
+                                            echo "Cancelled";
+                                        } else if ($row_booking_list['status'] == 1) {
+                                            echo "Upcoming";
+                                        } else {
+                                            echo "Completed";
+                                        }
                                         ?></td>
                                 </tr>
                             <?php

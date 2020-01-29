@@ -94,6 +94,7 @@ $user = $_SESSION["user_id"];
                                 <th>Adult</th>
                                 <th>Price</th>
                                 <th>Created Date</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -117,7 +118,57 @@ $user = $_SESSION["user_id"];
                                         echo date('m/d/Y', $doConvert_createdDate);
                                         echo date(' h:i:s A', $doConvert_createdDate);
                                         ?></td>
+                                    <?php
+                                    $status = "";
+                                    if ($row_booking_list['status'] == 2) {
+                                        $status = "Completed";
+                                    } else if ($row_booking_list['status'] == 1) {
+                                        $status = "Upcoming";
+                                    } else {
+                                        $status = "Canceled";
+                                    }
+                                    ?>
+                                    <td>
+                                        <div id="status<?= $index_history_list ?>">
+                                            <?= $status ?>
+                                        </div>
+                                        <form method="post" action="edit_status.php">
+                                            <div id="selectStatus<?= $index_history_list ?>" style="display: none">
+                                                <input type="hidden" name="booking_id" value="<?= $row_booking_list['id'] ?>">
+                                                <select name="status" onchange="editStatus()">
+                                                    <option value="0">Canceled</option>
+                                                    <option value="1">Upcoming</option>
+                                                    <option value="2">Completed</option>
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <button type="button" class="btn btn-link btn-sm px-0" onclick="editStatus<?= $index_history_list ?>()">Ubah</button>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button class="btn btn-link btn-sm" id="save<?= $index_history_list ?>" style="display: none" type="submit">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
                                 </tr>
+                                <script>
+                                    function editStatus<?= $index_history_list ?>() {
+                                        var status<?= $index_history_list ?> = document.getElementById("status<?= $index_history_list ?>");
+                                        var selectStatus<?= $index_history_list ?> = document.getElementById("selectStatus<?= $index_history_list ?>");
+                                        var save<?= $index_history_list ?> = document.getElementById("save<?= $index_history_list ?>");
+
+                                        if (selectStatus<?= $index_history_list ?>.style.display == "none") {
+                                            selectStatus<?= $index_history_list ?>.style.display = "block";
+                                            status<?= $index_history_list ?>.style.display = "none";
+                                            save<?= $index_history_list ?>.style.display = "block";
+                                        } else {
+                                            selectStatus<?= $index_history_list ?>.style.display = "none";
+                                            status<?= $index_history_list ?>.style.display = "block";
+                                            save<?= $index_history_list ?>.style.display = "none";
+                                        }
+                                    }
+                                </script>
                             <?php
                                 $index_history_list++;
                             } ?>
@@ -129,7 +180,7 @@ $user = $_SESSION["user_id"];
     </div>
 
     <?php include_once '../inc/scripts.php'; ?>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src=" https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"> </script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {

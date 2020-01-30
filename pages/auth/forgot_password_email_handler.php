@@ -31,7 +31,7 @@ if ($email != false) {
         $yourEmail = "no-reply@sunrise-indonesia.com";
         $subject = "Lupa Password";
         $message = "Klik link ini untuk mengubah password anda: http://booking.sunrise-indonesia.com/pages/auth/forgot_password.php?u=$email";
-        $success = sendMail($email, $yourEmail, $subject, $message);
+        sendMail($email, $yourEmail, $subject, $message);
         header("Location: forgot_password.php?u=sent");
     }
 }

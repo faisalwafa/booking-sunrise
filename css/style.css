@@ -393,6 +393,7 @@ dl.term-description::after {
     font-family: FontAwesome;
 }
 
+<<<<<<< HEAD
 
 /* Style for travel */
 
@@ -596,3 +597,8 @@ hr.rules {
         background: violet;
     }
 }
+=======
+.stripped {
+  text-decoration: line-through;
+}
+>>>>>>> 77d5dca3ba93e2ee5b696c711864f4ee5b23f804

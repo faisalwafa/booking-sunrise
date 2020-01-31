@@ -91,23 +91,25 @@ $user = $_SESSION["user_id"];
                                 <th>Customer Name</th>
                                 <th>Tour Name</th>
                                 <th>Tour Date</th>
-                                <th>Adult</th>
+                                <th>Jumlah Pax</th>
                                 <th>Price</th>
                                 <th>Created Date</th>
+                                <th>Status Member</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sql_history_booking = "SELECT * FROM wpzu_trav_tour_bookings AS w INNER JOIN wpzu_posts AS p ON w.tour_id = p.ID";
+                            $sql_history_booking = "SELECT w.first_name, w.last_name, w.id, p.post_title, w.tour_date, w.created, w.total_price, w.status, w.adults, w.user_id, booking_no FROM wpzu_trav_tour_bookings AS w INNER JOIN wpzu_posts AS p ON w.tour_id = p.ID ORDER BY created DESC";
                             $result_history_booking = mysqli_query($con, $sql_history_booking);
                             $index_history_list = 1;
                             while ($row_booking_list = mysqli_fetch_assoc($result_history_booking)) {
                                 $convert_price = $row_booking_list['total_price'];
+                                // var_dump($row_booking_list);
                             ?>
                                 <tr>
                                     <td><?= $index_history_list ?></td>
-                                    <td><?= $row_booking_list['first_name'] ?><br> <?= $row_booking_list['last_name'] ?></td>
+                                    <td><?= $row_booking_list['first_name'] ?> <?= $row_booking_list['last_name'] ?> <br> <a href="../booking_confirm/booking_confirm.php?booking_confirm=<?= $row_booking_list['booking_no'] ?>" class="table-link" target="_blank"><small>Detil Pesanan</small></a> </td>
                                     <td><?= $row_booking_list['post_title'] ?></td>
                                     <td><?php $doConvert_tourDate = strtotime($row_booking_list['tour_date']);
                                         $convert_tourDate = date('m/d/Y', $doConvert_tourDate);
@@ -118,6 +120,14 @@ $user = $_SESSION["user_id"];
                                         echo date('m/d/Y', $doConvert_createdDate);
                                         echo date(' h:i:s A', $doConvert_createdDate);
                                         ?></td>
+                                    <td><?php
+                                        if (isset($row_booking_list['user_id'])) {
+                                            echo "Member";
+                                        } else {
+                                            echo "Non Member";
+                                        }
+                                        ?>
+                                    </td>
                                     <?php
                                     $status = "";
                                     if ($row_booking_list['status'] == 2) {

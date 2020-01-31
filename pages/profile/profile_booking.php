@@ -79,7 +79,7 @@ $user_id = $_SESSION["user_id"];
                         </thead>
                         <tbody>
                             <?php
-                            $sql_history_booking = "SELECT * FROM wpzu_trav_tour_bookings AS w INNER JOIN wpzu_posts AS p ON w.tour_id = p.ID WHERE user_id = $user_id";
+                            $sql_history_booking = "SELECT w.first_name, w.last_name, w.id, p.post_title, w.tour_date, w.created, w.total_price, w.status, w.adults, w.user_id, booking_no FROM wpzu_trav_tour_bookings AS w INNER JOIN wpzu_posts AS p ON w.tour_id = p.ID WHERE user_id = $user_id ORDER BY created DESC";
                             $result_history_booking = mysqli_query($con, $sql_history_booking);
                             $index_history_list = 1;
                             while ($row_booking_list = mysqli_fetch_assoc($result_history_booking)) {
@@ -87,7 +87,7 @@ $user_id = $_SESSION["user_id"];
                             ?>
                                 <tr>
                                     <td><?= $index_history_list ?></td>
-                                    <td><?= $row_booking_list['first_name'] ?><br> <?= $row_booking_list['last_name'] ?></td>
+                                    <td><?= $row_booking_list['first_name'] ?> <?= $row_booking_list['last_name'] ?> <br> <a href="../booking_confirm/booking_confirm.php?booking_confirm=<?= $row_booking_list['booking_no'] ?>" target="_blank"><small>Detil Pesanan</small></a></td>
                                     <td><?= $row_booking_list['post_title'] ?></td>
                                     <td><?php $doConvert_tourDate = strtotime($row_booking_list['tour_date']);
                                         $convert_tourDate = date('m/d/Y', $doConvert_tourDate);

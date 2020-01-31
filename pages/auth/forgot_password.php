@@ -35,7 +35,7 @@ if (!isset($_GET['u'])) {
                         <?php
                         }
                         ?>
-                        <form action="email_handler.php" method="POST">
+                        <form action="forgot_password_email_handler.php" method="POST">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" name="forgot-password-email" class="form-control" id="forgot-password-email" required>

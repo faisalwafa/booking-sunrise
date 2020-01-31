@@ -263,3 +263,8 @@ ul ul a {
   content: "\e88d";
   font-size: xx-large;
 }
+
+.table-link {
+  font-size: 0.9rem;
+  color: #ffa500 !important;
+}

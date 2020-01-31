@@ -392,3 +392,7 @@ dl.term-description::after {
   font-size: 7px;
   font-family: FontAwesome;
 }
+
+.stripped {
+  text-decoration: line-through;
+}

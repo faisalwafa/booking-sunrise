@@ -6,6 +6,30 @@ include_once '../../helper/response.php';
 
 $response;
 
+function spamcheck($field)
+{
+    $field = filter_var($field, FILTER_SANITIZE_EMAIL);
+
+    if (filter_var($field, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function sendMail($toEmail, $subject, $message, $fromEmail)
+{
+    $validFromEmail = spamcheck($fromEmail);
+    if ($validFromEmail) {
+        $headers = "From: $fromEmail\r\n";
+        $headers .= "CC: booking@sunrise-indonesia.com\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+        mail($toEmail, $subject, $message, $headers);
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     function post_captcha($user_response)
     {
@@ -33,6 +57,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Call the function post_captcha
     $res = post_captcha($_POST['gRecaptchaResponse']);
 
+
+    $tour_id = $_POST['tour'];
+    $st_id = $_POST['stId'];
+    $tour_date = $_POST['tourDate'];
+    $total_adults = $_POST['totalAdults'];
+    $total_price = $_POST['totalPrice'];
+    $post_title = $_POST['postTitle'];
+    $location = $_POST['location'];
+    $duration = $_POST['duration'];
+    $price = $_POST['price'];
+
     if (!$res['success']) {
         $redirect = array('tour' => $tour_id, 'st_id' => $st_id, 'post_title' => $post_title, 'location' => $location, 'duration' => $duration, 'price' => $price, 'dateTour' => $tour_date, 'totalAdults' => $total_adults, 'totalPrice' => $total_price, 'message' => 'Gagal membuat booking baru');
         $response = send_response(FAIL, json_encode($redirect));
@@ -59,21 +94,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $_POST['email'];
         $confirm_email = $_POST['confirmEmail'];
         $country_code = $_POST['countryCode'];
+        $country = $_POST['country'];
         $phone_number = $_POST['phoneNumber'];
         $address = $_POST['address'];
         $city = $_POST['city'];
         $zip_code = $_POST['zipCode'];
         $special_req = $_POST['specialReq'];
-        $tour_id = $_POST['tour'];
-        $st_id = $_POST['stId'];
-        $tour_date = $_POST['tourDate'];
-        $total_adults = $_POST['totalAdults'];
-        $total_price = $_POST['totalPrice'];
-
-        $post_title = $_POST['postTitle'];
-        $location = $_POST['location'];
-        $duration = $_POST['duration'];
-        $price = $_POST['price'];
 
         $sql_add_booking;
 
@@ -86,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $tour_id, $st_id, '$tour_date',
             '$first_name', '$last_name', '$email',
             '$country_code', '$phone_number', '$address',
-            '$city', '$zip_code', '$country_code',
+            '$city', '$zip_code', '$country',
             '$special_req', $total_adults, 0,
             0, $total_price, 'idr',
             0, 0, 0, $user_id, 0,
@@ -100,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $tour_id, $st_id, '$tour_date',
             '$first_name', '$last_name', '$email',
             '$country_code', '$phone_number', '$address',
-            '$city', '$zip_code', '$country_code',
+            '$city', '$zip_code', '$country',
             '$special_req', $total_adults, 0,
             0, $total_price, 'idr',
             0, 0, 0, 0,
@@ -111,6 +137,97 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (mysqli_query($con, $sql_add_booking)) {
             $id_booking = mysqli_insert_id($con);
             $redirect = array('booking_confirm' => $id_booking);
+
+            $yourEmail = "booking@sunrise-indonesia.com";
+            $subject = "Lupa Password";
+
+            $message = '<html>
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                    <title>Booking | Sunrise Indonesia</title>
+                    <style>
+                        #booking {
+                            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                            border-collapse: collapse;
+                            width: 100%;
+                        }
+                
+                        #booking td,
+                        #booking th {
+                            border: 1px solid #ddd;
+                            padding: 8px;
+                        }
+                
+                        #booking tr:hover {
+                            background-color: #ddd;
+                        }
+                
+                        #booking th {
+                            padding-top: 12px;
+                            padding-bottom: 12px;
+                            text-align: left;
+                            background-color: white;
+                            color: #FFA500;
+                        }
+                    </style>
+                </head>
+                
+                <body style="background: #f3f3f3; font-family:Arial, Helvetica, sans-serif;">
+                    <div style="margin: 0 auto; width:30%">
+                        <img style="margin: 20px 0px;  display: block;
+                        margin-left: auto;
+                        margin-right: auto;" src="http://booking.sunrise-indonesia.com/assets/logo-pwa.png" alt="logo" width="120">
+                        <div style="background: white; padding: 15px 30px 20px 30px;">
+                            <h3>Informasi Pemesanan</h3>
+                            <a href="http://booking.sunrise-indonesia.com/pages/booking_confirm/booking_confirm.php?booking_confirm=' . $bookingCode . '" style="font-size:0.8rem; text-decoration:none; color:white; padding:10px 15px; background-color:#FFA500; border-radius:10%; margin-bottom: 10px">Detil Pesanan</a>
+                            <br>
+                            <br>
+                            <hr>
+                            <table id="booking">
+                                <tr>
+                                    <th width="40%">Booking ID:</th>
+                                    <td>' . $bookingCode . '</td>
+                                </tr>
+                                <tr>
+                                    <th width="40%">Nama:</th>
+                                    <td>' . $first_name . ' ' . $last_name . '</td>
+                                </tr>
+                                <tr>
+                                    <th width="40%">Tour:</th>
+                                    <td>' . $post_title . '</td>
+                                </tr>
+                                <tr>
+                                    <th width="40%">Tanggal Tour:</th>
+                                    <td>' . $tour_date . '</td>
+                                </tr>
+                                <tr>
+                                    <th width="40%">Jumlah PAX:</th>
+                                    <td>' . $total_adults . '</td>
+                                </tr>
+                                <tr>
+                                    <th width="40%">Tanggal Pemesanan:</th>
+                                    <td>' . date("Y-m-d") . '</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <small><strong>*Terima Kasih, Order telah berhasil diproses, Tim CS akan segera menghubungi anda</strong></small>
+                        </div>
+                        <p style="margin-top: 20px; text-align:center;">
+                            <small>
+                                Copyright © 2020 Sunrise Indonesia
+                                All rights reserved.
+                            </small>
+                        </p>
+                    </div>
+                </body>
+                
+                </html>';
+
+            sendMail($email, $subject, $message, $yourEmail);
+            header("Location: forgot_password.php?u=sent");
+
             $response = send_response(SUCCESS, json_encode($redirect));
         } else {
             $redirect = array('tour' => $tour_id, 'st_id' => $st_id, 'post_title' => $post_title, 'location' => $location, 'duration' => $duration, 'price' => $price, 'dateTour' => $tour_date, 'totalAdults' => $total_adults, 'totalPrice' => $total_price, 'message' => 'Gagal membuat booking baru');

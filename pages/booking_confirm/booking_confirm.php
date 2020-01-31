@@ -31,7 +31,7 @@ $booking = $_GET['booking_confirm'];
                     <div class="col-sm-8 col-md-9">
                         <div class="booking-information">
                             <?php
-                            $query = "SELECT b.ID, booking_no, email, tour_date, adults, total_price, country, city, post_title, tour_id, status FROM wpzu_trav_tour_bookings b INNER JOIN wpzu_posts p ON b.tour_id = p.id WHERE b.id = $booking";
+                            $query = "SELECT b.ID, booking_no, email, tour_date, adults, total_price, country, city, post_title, tour_id, b.phone, status FROM wpzu_trav_tour_bookings b INNER JOIN wpzu_posts p ON b.tour_id = p.id WHERE b.booking_no = $booking";
                             $results = mysqli_query($con, $query);
 
                             $row = mysqli_fetch_assoc($results)
@@ -56,6 +56,8 @@ $booking = $_GET['booking_confirm'];
                                 <dd><?= $row["booking_no"] ?></dd>
                                 <dt>E-mail Address : </dt>
                                 <dd><?= $row["email"] ?></dd>
+                                <dt>Phone : </dt>
+                                <dd><?= $row["phone"] ?></dd>
                                 <dt>Tour Date : </dt>
                                 <dd><?= $row["tour_date"] ?></dd>
                                 <dt>Adults : </dt>

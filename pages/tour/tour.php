@@ -238,22 +238,20 @@ $tour = $_GET['tour'];
                                     <script>
                                         function totalPrice<?= $i ?>() {
                                             // var price<?= $i ?> = document.getElementById("price<?= $i ?>");
-                                            var price<?= $i ?> = <?php
-                                                                    if (isset($_SESSION['user_id'])) {
+                                            var price<?= $i ?> = <?php if (isset($_SESSION['user_id'])) {
                                                                         echo $member_price;
                                                                     } else {
                                                                         echo $price;
-                                                                    }
-                                                                    ?>;
+                                                                    } ?>;
                                             var totalAdults<?= $i ?> = document.getElementById("totalAdults<?= $i ?>");
                                             var totalPrice<?= $i ?> = document.getElementById("totalPrice<?= $i ?>");
                                             var totalPrices<?= $i ?> = document.getElementById("totalPrices<?= $i ?>");
 
                                             var total<?= $i ?> = Number(price<?= $i ?>) * Number(totalAdults<?= $i ?>.value);
-                                            totalPrice<?= $i ?>.innerHTML = total<?= $i ?>.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.');;
+                                            totalPrice<?= $i ?>.innerHTML = total<?= $i ?>.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.');
                                             totalPrices<?= $i ?>.value = total<?= $i ?>;
                                         }
-                                        totalPrice<?= $i ?>()
+                                        totalPrice<?= $i ?>();
                                     </script>
                             <?php
                                     $i++;

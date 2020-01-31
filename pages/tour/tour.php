@@ -5,7 +5,13 @@ $is_logged_in = (isset($_SESSION['user_id'])) ? true : false;
 
 include_once '../../helper/connection.php';
 
+$dateFrom;
+$dateTo;
 $tour = $_GET['tour'];
+if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+    $dateFrom = $_GET['dateFrom'];
+    $dateTo = $_GET['dateTo'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -38,7 +44,7 @@ $tour = $_GET['tour'];
         <section id="content">
             <div class="container">
                 <div class="row">
-                    <div id="main" class="col-sm-8 col-md-9">
+                    <div id="main" class="col-sm-8 col-md-9 " style="margin-bottom: 0%">
                         <div class="content">
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
@@ -79,7 +85,8 @@ $tour = $_GET['tour'];
                                 </a>
                             </div>
                             <div class="row-content">
-                                <form>
+                                <form method="get" action="tour.php?tour=<?= $tour ?>">
+                                    <input type="hidden" name="tour" value="<?= $tour ?>">
                                     <div class="update-search">
                                         <h5>Check Availability</h5>
                                         <div class="row-content">
@@ -88,17 +95,17 @@ $tour = $_GET['tour'];
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <label>From</label>
-                                                            <input class="form-control" type="date" name="dateFrom">
+                                                            <input class="form-control" type="date" name="dateFrom" value="<?= $dateFrom ?>" />
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label>To</label>
-                                                            <input class="form-control" type="date" name="dateTo">
+                                                            <input class="form-control" type="date" name="dateTo" value="<?= $dateTo ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 col-sm-12">
                                                     <label class="visible-md visible-lg">&nbsp;</label>
-                                                    <button type="button" class="btn btn-green btn-block">Update</button>
+                                                    <button type="submit" class="btn btn-green btn-block">Update</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,9 +113,7 @@ $tour = $_GET['tour'];
                                 </form>
                             </div>
                             <?php
-                            // $dateFrom = $_POST['dateFrom'];
-                            // $dateTo = $_POST['dateTo'];
-                            $sql5 = "SELECT * FROM wpzu_trav_tour_schedule WHERE tour_id = $tour ";
+                            $sql5 = "SELECT * FROM wpzu_trav_tour_schedule WHERE tour_id = $tour";
 
                             if ($results5 = mysqli_query($con, $sql5)) {
                                 $i = 1;
@@ -121,7 +126,7 @@ $tour = $_GET['tour'];
                                                 <div class="col-6">
                                                     <p class="label-detail">LOCATION</p>
                                                     <p class="label-detail">DURATION</p>
-                                                    <p class="label-detail">AVAILABLE SEATS</p>
+                                                    <!-- <p class="label-detail">AVAILABLE SEATS</p> -->
                                                     <p class="label-detail">PRICE PER ADULT</p>
                                                     <?php
                                                     if ($row5['child_price'] != 0) {
@@ -146,7 +151,7 @@ $tour = $_GET['tour'];
                                                     $child_price = $row5['child_price'];
 
                                                     echo "<p>$duration</p>";
-                                                    echo "<p>$available</p>";
+                                                    // echo "<p>$available</p>";
                                                     echo "<p>$price</p>";
                                                     if ($row5['child_price'] != 0.00) {
                                                         echo "<p>$child_price</p>";
@@ -181,7 +186,9 @@ $tour = $_GET['tour'];
                                                 <div class="col-md-6 mt-3">
                                                     <label>Harga Normal</label>
                                                     <br>
-                                                    <span class="d-flex">
+                                                    <span class="d-flex <?php if ($is_logged_in) {
+                                                                            echo "stripped";
+                                                                        } ?>">
                                                         <h6 class="mr-2 <?php if (!$is_logged_in) {
                                                                             echo "font-weight-bold text-orange";
                                                                         } ?>">Rp.</h6>
@@ -210,11 +217,16 @@ $tour = $_GET['tour'];
                                                     <div class="form-row">
                                                         <div class="col-md-5 form-group">
                                                             <label>Available On</label>
-                                                            <input class="form-control" type="date" name="dateTour" required>
+                                                            <input class="form-control" type="date" name="dateTour" required <?php
+                                                                                                                                $td = date('Y-m-d', strtotime($row5['tour_date']));
+                                                                                                                                if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                                                                                                                                    $df = date('Y-m-d', strtotime($dateFrom));
+
+                                                                                                                                    if ($td > $df) { ?> min="<?= $td ?>" <?php } else { ?> min="<?= $df ?>" <?php } ?> max="<?= $dateTo ?>" <?php } else { ?> min="<?= $td ?>" <?php } ?> />
                                                         </div>
                                                         <div class="col-md-2 form-group">
                                                             <label>Adults</label>
-                                                            <input type="number" class="form-control" min="1" max="100" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="1" />
+                                                            <input type="number" class="form-control" min="4" max="100" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="1" />
                                                         </div>
                                                         <div class="col-md-1 form-group">
 
@@ -263,12 +275,15 @@ $tour = $_GET['tour'];
                                 </p>
                                 <div class="accordion" id="accordionContent">
                                     <div>
-                                        <strong>
-                                            <button class="text-left btn btn-block collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                <span><i class="soap-icon-plus mr-1"></i></span>
-                                                <span>Harga Paket</span>
-                                            </button>
-                                        </strong>
+                                        <?php
+                                        if ($row["harga_paket"] != null) { ?>
+                                            <strong>
+                                                <button class="text-left btn btn-block collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    <span><i class="soap-icon-plus mr-1"></i></span>
+                                                    <span>Harga Paket</span>
+                                                </button>
+                                            </strong>
+                                        <?php } ?>
                                         <div id="collapseOne" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#accordionContent">
                                             <p>
                                                 <?php echo $row["harga_paket"]; ?>
@@ -276,12 +291,15 @@ $tour = $_GET['tour'];
                                         </div>
                                     </div>
                                     <div>
-                                        <strong>
-                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                <span><i class="soap-icon-plus mr-1"></i></span>
-                                                <span>Detail Itinerary</span>
-                                            </button>
-                                        </strong>
+                                        <?php
+                                        if ($row["detail_itinerary"] != null) { ?>
+                                            <strong>
+                                                <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    <span><i class="soap-icon-plus mr-1"></i></span>
+                                                    <span>Detail Itinerary</span>
+                                                </button>
+                                            </strong>
+                                        <?php } ?>
                                         <div id="collapseTwo" class="collapse ml-2" aria-labelledby="headingTwo" data-parent="#accordionContent">
                                             <p>
                                                 <?php echo $row["detail_itinerary"]; ?>
@@ -289,12 +307,15 @@ $tour = $_GET['tour'];
                                         </div>
                                     </div>
                                     <div>
-                                        <strong>
-                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                <span><i class="soap-icon-plus mr-1"></i></span>
-                                                <span>Harga Termasuk</span>
-                                            </button>
-                                        </strong>
+                                        <?php
+                                        if ($row["harga_termasuk"] != null) { ?>
+                                            <strong>
+                                                <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    <span><i class="soap-icon-plus mr-1"></i></span>
+                                                    <span>Harga Termasuk</span>
+                                                </button>
+                                            </strong>
+                                        <?php } ?>
                                         <div id="collapseThree" class="collapse ml-2" aria-labelledby="headingThree" data-parent="#accordionContent">
                                             <p>
                                                 <?php echo $row["harga_termasuk"]; ?>
@@ -302,12 +323,15 @@ $tour = $_GET['tour'];
                                         </div>
                                     </div>
                                     <div>
-                                        <strong>
-                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                                <span><i class="soap-icon-plus mr-1"></i></span>
-                                                <span>Harga Tidak Termasuk</span>
-                                            </button>
-                                        </strong>
+                                        <?php
+                                        if ($row["harga_tidak_termasuk"] != null) { ?>
+                                            <strong>
+                                                <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                    <span><i class="soap-icon-plus mr-1"></i></span>
+                                                    <span>Harga Tidak Termasuk</span>
+                                                </button>
+                                            </strong>
+                                        <?php } ?>
                                         <div id="collapseFour" class="collapse ml-2" aria-labelledby="headingFour" data-parent="#accordionContent">
                                             <p>
                                                 <?php echo $row["harga_tidak_termasuk"]; ?>
@@ -315,12 +339,15 @@ $tour = $_GET['tour'];
                                         </div>
                                     </div>
                                     <div>
-                                        <strong>
-                                            <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                                <span><i class="soap-icon-plus mr-1"></i></span>
-                                                <span>Force Majeur</span>
-                                            </button>
-                                        </strong>
+                                        <?php
+                                        if ($row["force_majeur"] != null) { ?>
+                                            <strong>
+                                                <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                    <span><i class="soap-icon-plus mr-1"></i></span>
+                                                    <span>Force Majeur</span>
+                                                </button>
+                                            </strong>
+                                        <?php } ?>
                                         <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
                                             <p>
                                                 <?php echo $row["force_majeur"]; ?>

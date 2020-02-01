@@ -36,21 +36,23 @@ include_once '../../helper/connection.php';
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3">
-                        <?php
-                        $sql = "SELECT * FROM wpzu_trav_city WHERE id";
-                        $results = mysqli_query($con, $sql);
+                    <?php
+                    $sql = "SELECT * FROM wpzu_trav_city WHERE id";
+                    $results = mysqli_query($con, $sql);
 
-                        while ($row =  mysqli_fetch_assoc($results)) { ?>
+                    while ($row =  mysqli_fetch_assoc($results)) {
+                        $convert_price = $row["price"];
+                    ?>
+                        <div class="col-sm-3">
                             <div class="pricing-table box">
                                 <div class="box-title d-flex justify-content-between">
                                     <div class="title">
-                                        <h4 style="font-size: 17px;"><?= $row["location_from"] ?> - <?= $row["location_to"] ?></h4>
+                                        <h4 style="font-size: 15px;"><?= $row["location_from"] ?> - <?= $row["location_to"] ?></h4>
                                         <small>Jam Ganjil</small>
                                     </div>
                                     <div class="price">
                                         <small>PER orang</small>
-                                        <h4 style="font-size: 19px">Rp. 1000</h4>
+                                        <h4 style="font-size: 17px">Rp. <?= number_format($convert_price, 0, ".", ".") ?></h4>
                                     </div>
                                 </div>
                                 <p></p>
@@ -67,8 +69,9 @@ include_once '../../helper/connection.php';
                                     </a>
                                 </div>
                             </div>
-                        <?php } ?>
-                    </div>
+
+                        </div>
+                    <?php } ?>
                 </div>
                 <div style="background-color: #ffffff !important;" class="row">
                     <div class="col-sm-12" style=" margin-bottom: 25px;">

@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 include_once '../../helper/connection.php';
@@ -9,6 +8,12 @@ if (!isset($_SESSION["user_id"]) || (isset($_SESSION["user_id"]) && $_SESSION["u
 }
 
 $user = $_SESSION["user_id"];
+
+$travel = $_GET['travel'];
+
+$sql = "SELECT * FROM wpzu_trav_city WHERE id = $travel";
+$results = mysqli_query($con, $sql);
+$row = mysqli_fetch_assoc($results);
 
 ?>
 
@@ -24,12 +29,14 @@ $user = $_SESSION["user_id"];
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <title>Admin | Sunrise Indonesia</title>
     <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/trumbowyg.min.css">
+    <link rel="stylesheet" href="../../css/trumbowyg.colors.min.css">
+    <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="wrapper">
-        <!-- Sidebar -->
         <nav id="sidebar-admin" class="tes">
             <div class="sidebar-admin-header">
                 <h4>Sunrise Indonesia</h4>
@@ -50,30 +57,10 @@ $user = $_SESSION["user_id"];
                     </a>
                 </li>
                 <li class="my-2">
-                    <a href="admin_city_travel.php">
-                        <i class="fas fa-route" style="color: #ff99cc"></i>
-                        Travel
-                    </a>
-                </li>
-                <li class="my-2">
-                    <a href="#bookingSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="admin_booking.php">
                         <i class="fas fa-book text-orange"></i>
                         Booking
                     </a>
-                    <ul class="collapse list-unstyled" id="bookingSubMenu">
-                        <li>
-                            <a href="admin_booking_tour.php">
-                                <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
-                                Booking Tour
-                            </a>
-                        </li>
-                        <li>
-                            <a href="admin_booking_travel.php">
-                                <i class="fas fa-route" style="color: #ff99cc"></i>
-                                Booking Travel
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="my-2">
                     <a href="admin_city_travel.php">
@@ -108,50 +95,48 @@ $user = $_SESSION["user_id"];
             </nav>
 
             <div class="container mt-4 py-3 w-95 rounded bg-white">
-                <h4 class="mt-2 mb-4">List Tour</h4>
-                <div class="table-responsive">
-                    <table id="table-tour" class="table">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>ID</th>
-                                <th>Nama Tour</th>
-                                <th>Tanggal Publish</th>
-                                <th>Schedule</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $sql_tour_list = "SELECT * FROM `wpzu_posts` WHERE `post_status` = 'publish' AND `post_type` = 'tour' ORDER BY `post_date` DESC";
-                            $results_tour_list = mysqli_query($con, $sql_tour_list);
-                            $index_tour_list = 1;
-                            while ($row_tour_list = mysqli_fetch_assoc($results_tour_list)) {
-                            ?>
-
-                                <tr>
-                                    <td><?= $index_tour_list ?></td>
-                                    <td><?= $row_tour_list['ID'] ?></td>
-                                    <td><?= $row_tour_list['post_title'] ?></td>
-                                    <td><?php
-                                        $datetime = strtotime($row_tour_list['post_date']);
-                                        $date = date('m/d/y', $datetime);
-                                        echo $date
-                                        ?></td>
-                                    <td>
-                                        <a href="admin_tour_detail.php?tour=<?= $row_tour_list['ID']; ?>" style="font-size: 0.9rem">
-                                            <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
-                                            Lihat Schedule
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php
-                                $index_tour_list++;
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                <div class="mt-2 mb-4 d-flex justify-content-between">
+                    <h5><?= $row['location_from'] ?> - <?= $row['location_to'] ?></h5>
+                    <button type="button" class="btn btn-outline-info" onclick="formEditDetailTravel()">Edit Detail</button>
+                </div>
+                <div id="editTravelForm" style="display: none">
+                    <form method="POST" action="../travel_city/update-travel_action.php">
+                        <input type="hidden" name="travel_id" value="<?= $travel ?>">
+                        <div class="row-content">
+                            <div class="accordion" id="accordionContent">
+                                <div>
+                                    <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                        <span>Inter-City Travel Details</span>
+                                    </button>
+                                    <div id="collapseOne" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#accordionContent">
+                                        <textarea name="details" class="editor" placeholder="" autofocus><?= $row['details'] ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="saveChanges" onclick="saveChanges()">Simpan Perubahan</button>
+                    </form>
+                </div>
+                <div id="detailTravel">
+                    <div class="row-content">
+                        <div class="accordion" id="accordionContent">
+                            <div>
+                                <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+                                    <span>Inter-City Travel Details</span>
+                                </button>
+                                <div id="collapseOne" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#accordionContent">
+                                    <p>
+                                        <?= $row['details'] ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 

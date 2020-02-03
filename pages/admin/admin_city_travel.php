@@ -50,30 +50,10 @@ $user = $_SESSION["user_id"];
                     </a>
                 </li>
                 <li class="my-2">
-                    <a href="admin_city_travel.php">
-                        <i class="fas fa-route" style="color: #ff99cc"></i>
-                        Travel
-                    </a>
-                </li>
-                <li class="my-2">
-                    <a href="#bookingSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="admin_booking.php">
                         <i class="fas fa-book text-orange"></i>
                         Booking
                     </a>
-                    <ul class="collapse list-unstyled" id="bookingSubMenu">
-                        <li>
-                            <a href="admin_booking_tour.php">
-                                <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
-                                Booking Tour
-                            </a>
-                        </li>
-                        <li>
-                            <a href="admin_booking_travel.php">
-                                <i class="fas fa-route" style="color: #ff99cc"></i>
-                                Booking Travel
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="my-2">
                     <a href="admin_city_travel.php">
@@ -108,44 +88,45 @@ $user = $_SESSION["user_id"];
             </nav>
 
             <div class="container mt-4 py-3 w-95 rounded bg-white">
-                <h4 class="mt-2 mb-4">List Tour</h4>
+                <h4 class="mt-2 mb-4">List Inter-City Travel</h4>
                 <div class="table-responsive">
-                    <table id="table-tour" class="table">
+                    <table id="table-travel" class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>ID</th>
-                                <th>Nama Tour</th>
-                                <th>Tanggal Publish</th>
+                                <th>Lokasi Awal</th>
+                                <th>Tujuan Akhir</th>
                                 <th>Schedule</th>
+                                <th>Price</th>
+                                <th>Edit Travel</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sql_tour_list = "SELECT * FROM `wpzu_posts` WHERE `post_status` = 'publish' AND `post_type` = 'tour' ORDER BY `post_date` DESC";
-                            $results_tour_list = mysqli_query($con, $sql_tour_list);
-                            $index_tour_list = 1;
-                            while ($row_tour_list = mysqli_fetch_assoc($results_tour_list)) {
+                            $sql_travel_list = "SELECT * FROM wpzu_trav_city WHERE id";
+                            $results_travel_list = mysqli_query($con, $sql_travel_list);
+                            $index_travel_list = 1;
+                            while ($row_travel_list = mysqli_fetch_assoc($results_travel_list)) {
+                                $convert_price = $row_travel_list['price'];
                             ?>
 
                                 <tr>
-                                    <td><?= $index_tour_list ?></td>
-                                    <td><?= $row_tour_list['ID'] ?></td>
-                                    <td><?= $row_tour_list['post_title'] ?></td>
-                                    <td><?php
-                                        $datetime = strtotime($row_tour_list['post_date']);
-                                        $date = date('m/d/y', $datetime);
-                                        echo $date
-                                        ?></td>
+                                    <td><?= $index_travel_list ?></td>
+                                    <td><?= $row_travel_list['id'] ?></td>
+                                    <td><?= $row_travel_list['location_from'] ?></td>
+                                    <td><?= $row_travel_list['location_to'] ?></td>
+                                    <td><?= $row_travel_list['schedule'] ?></td>
+                                    <td>IDR <?= number_format($convert_price, 0, ".", ".") ?></td>
                                     <td>
-                                        <a href="admin_tour_detail.php?tour=<?= $row_tour_list['ID']; ?>" style="font-size: 0.9rem">
+                                        <a href="admin_city_travel_detail.php?travel=<?= $row_travel_list['id'] ?>" style="font-size: 0.9rem">
                                             <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
-                                            Lihat Schedule
+                                            Lihat Travel
                                         </a>
                                     </td>
                                 </tr>
                             <?php
-                                $index_tour_list++;
+                                $index_travel_list++;
                             }
                             ?>
                         </tbody>

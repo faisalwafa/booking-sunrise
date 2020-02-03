@@ -11,6 +11,7 @@ if (!isset($_SESSION["user_id"]) || (isset($_SESSION["user_id"]) && $_SESSION["u
 $user = $_SESSION["user_id"];
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,13 +21,14 @@ $user = $_SESSION["user_id"];
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <title>Admin | Sunrise Indonesia</title>
     <link rel="stylesheet" type="text/css" href="../../css/admin.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="wrapper bg-white">
+    <div class="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar-admin" class="tes">
             <div class="sidebar-admin-header">
@@ -73,7 +75,7 @@ $user = $_SESSION["user_id"];
                         </li>
                     </ul>
                 </li>
-                <li class="my-2">
+                <li class="my-2 active">
                     <a href="admin_newsfeed.php">
                         <i class="far fa-newspaper text-green"></i>
                         Newsfeed
@@ -105,18 +107,18 @@ $user = $_SESSION["user_id"];
                 </div>
             </nav>
 
-            <div class="container mt-4 py-5 w-75 rounded">
-                <img src="../../assets/logo-pwa.png" alt="logo" width="200" class="mb-5 mx-auto d-block">
-                <h2 class="text-center">Selamat datang Admin Sunrise Indonesia</h2>
-                <!-- <div class="">
-                </div> -->
+            <div class="container mt-4 py-3 w-95 rounded bg-white">
+
             </div>
         </div>
     </div>
 
     <?php include_once '../inc/scripts.php'; ?>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('#table-tour').DataTable();
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar-admin').toggleClass('active');
             });

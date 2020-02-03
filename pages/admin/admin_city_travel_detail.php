@@ -15,6 +15,9 @@ $sql = "SELECT * FROM wpzu_trav_city WHERE id = $travel";
 $results = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($results);
 
+$convert_price = $row['price'];
+$convert_memberPrice = $row['price_member'];
+
 ?>
 
 <!DOCTYPE html>
@@ -130,7 +133,7 @@ $row = mysqli_fetch_assoc($results);
                                             <h6>Location From</h6>
                                         </div>
                                         <div class="col-md-7 mb-4">
-                                            <input type="text" class="form-control" id="travelAdmin-LocationFrom" required>
+                                            <input type="text" name="location_from" class="form-control" id="travelAdmin-LocationFrom" value="<?= $row['location_from'] ?>">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -138,7 +141,7 @@ $row = mysqli_fetch_assoc($results);
                                             <h6>Price</h6>
                                         </div>
                                         <div class="col-md-7 mb-4">
-                                            <input type="text" class="form-control" id="travelAdmin-Price" required>
+                                            <input type="text" name="price" class="form-control" id="travelAdmin-Price" value="<?= $row['price'] ?>">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -146,7 +149,7 @@ $row = mysqli_fetch_assoc($results);
                                             <h6>Schedule</h6>
                                         </div>
                                         <div class="col-md-7 mb-4">
-                                            <input type="text" class="form-control" id="travelAdmin-Schedule" required>
+                                            <input type="text" name="schedule" class="form-control" id="travelAdmin-Schedule" value="<?= $row['schedule'] ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +162,7 @@ $row = mysqli_fetch_assoc($results);
                                             <h6>Location To</h6>
                                         </div>
                                         <div class="col-md-7 mb-4">
-                                            <input type="text" class="form-control" id="travelAdmin-LocationFrom" required>
+                                            <input type="text" name="location_to" class="form-control" id="travelAdmin-LocationTo" value="<?= $row['location_to'] ?>">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -167,7 +170,19 @@ $row = mysqli_fetch_assoc($results);
                                             <h6>Member Price</h6>
                                         </div>
                                         <div class="col-md-7 mb-4">
-                                            <input type="text" class="form-control" id="travelAdmin-Price" required>
+                                            <input type="text" name="price_member" class="form-control" id="travelAdmin-Price" value="<?= $row['price_member'] ?>">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <h6>Card Color</h6>
+                                        </div>
+                                        <div class="col-md-7 mb-4">
+                                            <select class="form-control" name="color">
+                                                <option value="squeaky">Squeaky</option>
+                                                <option value="blueCuracao">Blue Curacao</option>
+                                                <option value="purpleMountain">Purple Mountain Majesty</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -194,29 +209,34 @@ $row = mysqli_fetch_assoc($results);
                         <div class="row">
                             <div class="col-md-5 mb-2">
                                 <h6 class="float-md-left">Location From</h6>
-                                <p class="float-md-right">Malang</p>
+                                <p class="float-md-right"><?= $row['location_from'] ?></p>
                             </div>
                             <div class="col-md-2"></div>
                             <div class="col-md-5 mb-2">
                                 <h6 class="float-md-left">Location To</h6>
-                                <p class="float-md-right">Malang</p>
+                                <p class="float-md-right"><?= $row['location_to'] ?></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5 mb-2">
                                 <h6 class="float-md-left">Price</h6>
-                                <p class="float-md-right">Rp. 1000</p>
+                                <p class="float-md-right">Rp. <?= number_format($convert_price, 0, ".", ".") ?></p>
                             </div>
                             <div class="col-md-2"></div>
                             <div class="col-md-5 mb-2">
                                 <h6 class="float-md-left">Member Price</h6>
-                                <p class="float-md-right">Rp. 1000</p>
+                                <p class="float-md-right">Rp. <?= number_format($convert_memberPrice, 0, ".", ".") ?></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5 mb-3">
                                 <h6 class="float-md-left">Schedule</h6>
                                 <p class="float-md-right">Jam Ganjil</p>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5 mb-2">
+                                <h6 class="float-md-left">Card Color</h6>
+                                <p class="float-md-right"><?= $row['color'] ?></p>
                             </div>
                         </div>
                         <div class="accordion" id="accordionContent">

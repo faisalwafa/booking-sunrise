@@ -119,6 +119,7 @@ $user = $_SESSION["user_id"];
                                 <th>Tujuan Akhir</th>
                                 <th>Schedule</th>
                                 <th>Price</th>
+                                <th>Member Price</th>
                                 <th>Edit Travel</th>
                             </tr>
                         </thead>
@@ -129,6 +130,7 @@ $user = $_SESSION["user_id"];
                             $index_travel_list = 1;
                             while ($row_travel_list = mysqli_fetch_assoc($results_travel_list)) {
                                 $convert_price = $row_travel_list['price'];
+                                $convert_memberPrice = $row_travel_list['price_member'];
                             ?>
 
                                 <tr>
@@ -137,7 +139,8 @@ $user = $_SESSION["user_id"];
                                     <td><?= $row_travel_list['location_from'] ?></td>
                                     <td><?= $row_travel_list['location_to'] ?></td>
                                     <td><?= $row_travel_list['schedule'] ?></td>
-                                    <td>IDR <?= number_format($convert_price, 0, ".", ".") ?></td>
+                                    <td>Rp. <?= number_format($convert_price, 0, ".", ".") ?></td>
+                                    <td>Rp. <?= number_format($convert_memberPrice, 0, ".", ".") ?></td>
                                     <td>
                                         <a href="admin_city_travel_detail.php?travel=<?= $row_travel_list['id'] ?>" style="font-size: 0.9rem">
                                             <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>

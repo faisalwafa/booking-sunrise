@@ -42,26 +42,31 @@ include_once '../../helper/connection.php';
 
                     while ($row =  mysqli_fetch_assoc($results)) {
                         $convert_price = $row["price"];
+                        $convert_memberPrice = $row["price_member"];
                     ?>
                         <div class="col-sm-3">
-                            <div class="pricing-table box">
-                                <div class="box-title d-flex justify-content-between">
+                            <div class="pricing-table box <?= $row["color"] ?>">
+                                <div class="box-title d-flex justify-content-between mb-3">
                                     <div class="title">
                                         <h4 style="font-size: 15px;"><?= $row["location_from"] ?> - <?= $row["location_to"] ?></h4>
-                                        <small>Jam Ganjil</small>
                                     </div>
                                     <div class="price">
-                                        <small>PER orang</small>
+                                        <small>Jam Ganjil</small>
+                                    </div>
+                                </div>
+                                <div class="box-title d-flex justify-content-between">
+                                    <div class="price">
+                                        <small>Member Price</small>
+                                        <h4 style="font-size: 17px">Rp. <?= number_format($convert_memberPrice, 0, ".", ".") ?></h4>
+                                    </div>
+                                    <div class="price">
+                                        <small>Normal Price</small>
                                         <h4 style="font-size: 17px">Rp. <?= number_format($convert_price, 0, ".", ".") ?></h4>
                                     </div>
                                 </div>
                                 <p></p>
-                                <ul>
-                                    <li>Keberangkatan</li>
-                                    <li>Keberangkatan</li>
-                                    <li>Keberangkatan</li>
-                                    <li>Keberangkatan</li>
-                                    <li>Keberangkatan</li>
+                                <ul class="sizing <?= $row["color"] ?>">
+                                    <?= $row["details"] ?>
                                 </ul>
                                 <div class="mt-3 animate-btn">
                                     <a href="../booking_travel/booking_travel.php">

@@ -3,7 +3,7 @@
 
 <head>
     <?php include_once '../inc/header.php'; ?>
-    <title>Tours | Sunrise Indonesia</title>
+    <title>Bookings Travel Antar Kota | Sunrise Indonesia</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
                     <div class="col-sm-8 col-md-9">
                         <div class="booking-section">
                             <h2 class="mb-4">Your Personal Information</h2>
-                            <form class="booking-form" id="travelBookingForm">
+                            <form class="bookingTravel-form" id="travelBookingForm">
                                 <div class="form-group row">
                                     <div class="col-sm-6 col-md-5 mb-3">
                                         <label>First Name</label>

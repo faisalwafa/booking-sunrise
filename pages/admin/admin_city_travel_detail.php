@@ -102,6 +102,57 @@ $row = mysqli_fetch_assoc($results);
                 <div id="editTravelForm" style="display: none">
                     <form method="POST" action="../travel_city/update-travel_action.php">
                         <input type="hidden" name="travel_id" value="<?= $travel ?>">
+                        <div class="form-row">
+                            <div class="col-md-5 col-sm-12">
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <h6>Location From</h6>
+                                        </div>
+                                        <div class="col-md-7 mb-4">
+                                            <input type="text" class="form-control" id="travelAdmin-LocationFrom" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <h6>Price</h6>
+                                        </div>
+                                        <div class="col-md-7 mb-4">
+                                            <input type="text" class="form-control" id="travelAdmin-Price" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <h6>Schedule</h6>
+                                        </div>
+                                        <div class="col-md-7 mb-4">
+                                            <input type="text" class="form-control" id="travelAdmin-Schedule" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5 col-sm-12 mb-3">
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <h6>Location To</h6>
+                                        </div>
+                                        <div class="col-md-7 mb-4">
+                                            <input type="text" class="form-control" id="travelAdmin-LocationFrom" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <h6>Member Price</h6>
+                                        </div>
+                                        <div class="col-md-7 mb-4">
+                                            <input type="text" class="form-control" id="travelAdmin-Price" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row-content">
                             <div class="accordion" id="accordionContent">
                                 <div>
@@ -120,6 +171,34 @@ $row = mysqli_fetch_assoc($results);
                 </div>
                 <div id="detailTravel">
                     <div class="row-content">
+                        <div class="row">
+                            <div class="col-md-5 mb-2">
+                                <h6 class="float-md-left">Location From</h6>
+                                <p class="float-md-right">Malang</p>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5 mb-2">
+                                <h6 class="float-md-left">Location To</h6>
+                                <p class="float-md-right">Malang</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 mb-2">
+                                <h6 class="float-md-left">Price</h6>
+                                <p class="float-md-right">Rp. 1000</p>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5 mb-2">
+                                <h6 class="float-md-left">Member Price</h6>
+                                <p class="float-md-right">Rp. 1000</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 mb-3">
+                                <h6 class="float-md-left">Schedule</h6>
+                                <p class="float-md-right">Jam Ganjil</p>
+                            </div>
+                        </div>
                         <div class="accordion" id="accordionContent">
                             <div>
                                 <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">

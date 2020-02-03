@@ -9,6 +9,34 @@ const bookingTravelTime = document.getElementById("travelBooking-time");
 const bookingTravelLocation = document.getElementById("travelBooking-location");
 const bookingTravelCountry = document.getElementById("travelBooking-country");
 const bookingTravelReq = document.getElementById("travelBooking-specialReq");
+const formTravelBooking = document.getElementById("travelBookingForm")
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return "";
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+// formTravelBooking.addEventListener("submit", function(e)) {
+//     e.preventDefault();
+//     if (
+//         checkBookingTravelFirstName() &&
+//         checkBookingTravelLastName() &&
+//         checkBookingTravelEmail() &&
+//         checkBookingTravelConfirmEmail() &&
+//         checkBookingTravelLocation() &&
+//         checkBookingTravelPhoneNumber() 
+//     ) {
+//         $.ajax({
+//             type: "POST",
+//             url: ""
+//         })
+//     }
+// }
 
 function checkBookingTravelFirstName() {
     if (bookingTravelFirstName.value === "") {
@@ -68,11 +96,16 @@ function checkBookingTravelConfirmEmail() {
         bookingTravelVerifyEmailFeedback.innerHTML = "Email tidak boleh kosong";
         return false;
     } else if (!/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-            bookingEmail.value
+            bookingTravelEmailVerify.value
         )) {
         bookingTravelEmailVerify.classList.remove("is-valid");
         bookingTravelEmailVerify.classList.add("is-invalid");
         bookingTravelVerifyEmailFeedback.innerHTML = "Format email harus benar";
+        return false;
+    } else if (bookingTravelEmailVerify.value != bookingTravelEmail.value) {
+        bookingTravelEmailVerify.classList.remove("is-valid");
+        bookingTravelEmailVerify.classList.add("is-invalid");
+        bookingTravelVerifyEmailFeedback.innerHTML = "Email tidak cocok";
         return false;
     } else {
         bookingTravelEmailVerify.classList.remove("is-invalid");

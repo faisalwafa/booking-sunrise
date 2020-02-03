@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $redirect = array('booking_confirm' => $id_booking);
 
             $yourEmail = "booking@sunrise-indonesia.com";
-            $subject = "Lupa Password";
+            $subject = "Booking - Sunrise Indonesia ";
 
             $message = '<html>
                 <head>

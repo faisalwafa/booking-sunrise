@@ -64,7 +64,7 @@ include_once '../../helper/connection.php';
                                     <li>Keberangkatan</li>
                                 </ul>
                                 <div class="mt-3 animate-btn">
-                                    <a href="#">
+                                    <a href="../booking_travel/booking_travel.php">
                                         <span>Pesan Disini</span>
                                     </a>
                                 </div>

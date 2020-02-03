@@ -74,9 +74,9 @@ $user = $_SESSION["user_id"];
                     </ul>
                 </li>
                 <li class="my-2">
-                    <a href="admin_city_travel.php">
-                        <i class="fas fa-shuttle-van" style="color: #ff99cc"></i>
-                        Inter-City Travel
+                    <a href="admin_newsfeed.php">
+                        <i class="far fa-newspaper text-green"></i>
+                        Newsfeed
                     </a>
                 </li>
             </ul>

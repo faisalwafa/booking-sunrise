@@ -125,7 +125,6 @@ function checkBookingEmail() {
 }
 
 function checkBookingConfirmEmail() {
-  console.log(bookingEmail.value, bookingVerifyEmail.value);
   const bookingVerifyEmailFeedback = document.getElementById(
     "booking-confirmEmail-feedback"
   );

@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 include_once '../../helper/connection.php';
@@ -8,12 +9,6 @@ if (!isset($_SESSION["user_id"]) || (isset($_SESSION["user_id"]) && $_SESSION["u
 }
 
 $user = $_SESSION["user_id"];
-
-$travel = $_GET['travel'];
-
-$sql = "SELECT * FROM wpzu_trav_city WHERE id = $travel";
-$results = mysqli_query($con, $sql);
-$row = mysqli_fetch_assoc($results);
 
 ?>
 
@@ -29,14 +24,12 @@ $row = mysqli_fetch_assoc($results);
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <title>Admin | Sunrise Indonesia</title>
     <link rel="stylesheet" type="text/css" href="../../css/admin.css">
-    <link rel="stylesheet" type="text/css" href="../../css/trumbowyg.min.css">
-    <link rel="stylesheet" href="../../css/trumbowyg.colors.min.css">
-    <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="wrapper">
+        <!-- Sidebar -->
         <nav id="sidebar-admin" class="tes">
             <div class="sidebar-admin-header">
                 <h4>Sunrise Indonesia</h4>
@@ -56,7 +49,7 @@ $row = mysqli_fetch_assoc($results);
                         Tour
                     </a>
                 </li>
-                <li class="my-2 active">
+                <li class="my-2">
                     <a href="admin_city_travel.php">
                         <i class="fas fa-route" style="color: #ff99cc"></i>
                         Travel
@@ -82,7 +75,7 @@ $row = mysqli_fetch_assoc($results);
                         </li>
                     </ul>
                 </li>
-                <li class="my-2">
+                <li class="my-2 active">
                     <a href="admin_newsfeed.php">
                         <i class="far fa-newspaper text-green"></i>
                         Newsfeed
@@ -115,48 +108,8 @@ $row = mysqli_fetch_assoc($results);
             </nav>
 
             <div class="container mt-4 py-3 w-95 rounded bg-white">
-                <div class="mt-2 mb-4 d-flex justify-content-between">
-                    <h5><?= $row['location_from'] ?> - <?= $row['location_to'] ?></h5>
-                    <button type="button" class="btn btn-outline-info" onclick="formEditDetailTravel()">Edit Detail</button>
-                </div>
-                <div id="editTravelForm" style="display: none">
-                    <form method="POST" action="../travel_city/update-travel_action.php">
-                        <input type="hidden" name="travel_id" value="<?= $travel ?>">
-                        <div class="row-content">
-                            <div class="accordion" id="accordionContent">
-                                <div>
-                                    <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
-                                        <span>Inter-City Travel Details</span>
-                                    </button>
-                                    <div id="collapseOne" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#accordionContent">
-                                        <textarea name="details" class="editor" placeholder="" autofocus><?= $row['details'] ?></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="saveChanges" onclick="saveChanges()">Simpan Perubahan</button>
-                    </form>
-                </div>
-                <div id="detailTravel">
-                    <div class="row-content">
-                        <div class="accordion" id="accordionContent">
-                            <div>
-                                <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
-                                    <span>Inter-City Travel Details</span>
-                                </button>
-                                <div id="collapseOne" class="collapse ml-2" aria-labelledby="headingOne" data-parent="#accordionContent">
-                                    <p>
-                                        <?= $row['details'] ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+            </div>
         </div>
     </div>
 

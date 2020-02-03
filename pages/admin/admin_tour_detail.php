@@ -45,23 +45,43 @@ $row = mysqli_fetch_assoc($results);
             </div>
 
             <ul class="list-unstyled components">
-                <li class="mb-2">
+                <li class="mb-2 active">
                     <a href="admin_dashboard.php">
                         <i class="fas fa-home text-primary"></i>
                         Dashboard
                     </a>
                 </li>
-                <li class="my-2 active">
+                <li class="my-2">
                     <a href="admin_tour.php">
                         <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
                         Tour
                     </a>
                 </li>
                 <li class="my-2">
-                    <a href="admin_booking.php">
+                    <a href="admin_city_travel.php">
+                        <i class="fas fa-route" style="color: #ff99cc"></i>
+                        Travel
+                    </a>
+                </li>
+                <li class="my-2">
+                    <a href="#bookingSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-book text-orange"></i>
                         Booking
                     </a>
+                    <ul class="collapse list-unstyled" id="bookingSubMenu">
+                        <li>
+                            <a href="admin_booking_tour.php">
+                                <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
+                                Booking Tour
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_booking_travel.php">
+                                <i class="fas fa-route" style="color: #ff99cc"></i>
+                                Booking Travel
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="my-2">
                     <a href="admin_city_travel.php">

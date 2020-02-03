@@ -7,10 +7,10 @@ $status = $_POST['status'];
 $sql = "UPDATE wpzu_trav_tour_bookings SET status = $status WHERE id = $booking_id";
 
 if (mysqli_query($con, $sql)) {
-    header("Location:./admin_booking.php");
+    header("Location:./admin_booking_tour.php");
 } else {
     $error = urldecode("<div class='alert alert-danger' role='alert'>Edit Status Gagal</div>");
-    header("Location:./admin_booking.php?error=$error");
+    header("Location:./admin_booking_tour.php?error=$error");
 }
 
 mysqli_close($con);

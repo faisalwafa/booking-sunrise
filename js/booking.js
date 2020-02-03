@@ -125,6 +125,7 @@ function checkBookingEmail() {
 }
 
 function checkBookingConfirmEmail() {
+  console.log(bookingEmail.value, bookingVerifyEmail.value);
   const bookingVerifyEmailFeedback = document.getElementById(
     "booking-confirmEmail-feedback"
   );
@@ -136,12 +137,17 @@ function checkBookingConfirmEmail() {
     return false;
   } else if (
     !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-      bookingEmail.value
+      bookingVerifyEmail.value
     )
   ) {
     bookingVerifyEmail.classList.remove("is-valid");
     bookingVerifyEmail.classList.add("is-invalid");
     bookingVerifyEmailFeedback.innerHTML = "Format email harus benar";
+    return false;
+  } else if (bookingVerifyEmail.value != bookingEmail.value) {
+    bookingVerifyEmail.classList.remove("is-valid");
+    bookingVerifyEmail.classList.add("is-invalid");
+    bookingVerifyEmailFeedback.innerHTML = "Email tidak cocok";
     return false;
   } else {
     bookingVerifyEmail.classList.remove("is-invalid");

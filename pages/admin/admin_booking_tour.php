@@ -49,11 +49,31 @@ $user = $_SESSION["user_id"];
                         Tour
                     </a>
                 </li>
-                <li class="my-2 active  ">
-                    <a href="admin_booking.php">
+                <li class="my-2">
+                    <a href="admin_city_travel.php">
+                        <i class="fas fa-route" style="color: #ff99cc"></i>
+                        Travel
+                    </a>
+                </li>
+                <li class="my-2">
+                    <a href="#bookingSubMenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
                         <i class="fas fa-book text-orange"></i>
                         Booking
                     </a>
+                    <ul class="collapse list-unstyled show" id="bookingSubMenu">
+                        <li class="active">
+                            <a href="admin_booking_tour.php">
+                                <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
+                                Booking Tour
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_booking_travel.php">
+                                <i class="fas fa-route" style="color: #ff99cc"></i>
+                                Booking Travel
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
@@ -142,7 +162,7 @@ $user = $_SESSION["user_id"];
                                         <div id="status<?= $index_history_list ?>">
                                             <?= $status ?>
                                         </div>
-                                        <form method="post" action="edit_status.php">
+                                        <form method="post" action="edit_status_tour.php">
                                             <div id="selectStatus<?= $index_history_list ?>" style="display: none">
                                                 <input type="hidden" name="booking_id" value="<?= $row_booking_list['id'] ?>">
                                                 <select name="status" onchange="editStatus()">

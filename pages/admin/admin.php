@@ -48,10 +48,30 @@ $user = $_SESSION["user_id"];
                     </a>
                 </li>
                 <li class="my-2">
-                    <a href="admin_booking.php">
+                    <a href="admin_city_travel.php">
+                        <i class="fas fa-route" style="color: #ff99cc"></i>
+                        Travel
+                    </a>
+                </li>
+                <li class="my-2">
+                    <a href="#bookingSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-book text-orange"></i>
                         Booking
                     </a>
+                    <ul class="collapse list-unstyled" id="bookingSubMenu">
+                        <li>
+                            <a href="admin_booking_tour.php">
+                                <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
+                                Booking Tour
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_booking_travel.php">
+                                <i class="fas fa-route" style="color: #ff99cc"></i>
+                                Booking Travel
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>

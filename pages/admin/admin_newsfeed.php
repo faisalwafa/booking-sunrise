@@ -24,6 +24,9 @@ $user = $_SESSION["user_id"];
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <title>Admin | Sunrise Indonesia</title>
     <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/trumbowyg.min.css">
+    <link rel="stylesheet" href="../../css/trumbowyg.colors.min.css">
+    <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -107,8 +110,40 @@ $user = $_SESSION["user_id"];
                 </div>
             </nav>
 
+            <?php
+            if (isset($_GET['message'])) {
+            ?>
+                <div class="container w-95 mt-4">
+                    <div class="alert alert-light alert-dismissible fade show" role="alert">
+                        <?= $_GET['message'] ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
             <div class="container mt-4 py-3 w-95 rounded bg-white">
+                <form action="admin_newsfeed_action.php" method="POST">
+                    <div class="form-group">
+                        <label for="newsfeedCC">CC :</label>
+                        <input type="text" class="form-control" id="newsfeedCC" placeholder="email@example.com, example@gmail.com" name="newsfeed_CC">
+                    </div>
 
+                    <div class="form-group">
+                        <label for="newsfeedSubjek">Email Subject :</label>
+                        <input type="text" class="form-control" id="newsfeedSubjek" placeholder="[Penawaran] Tour" name="newsfeed_subject" required>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="newsfeedBody">Email Body :</label>
+                        <textarea class="form-control editor" id="newsfeedBody" name="newsfeed_body" required></textarea>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary btn-lg">Kirim Email</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

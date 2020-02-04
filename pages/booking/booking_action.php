@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $redirect = array('booking_confirm' => $id_booking);
 
             $yourEmail = "booking@sunrise-indonesia.com";
-            $subject = "Lupa Password";
+            $subject = "Booking - Sunrise Indonesia ";
 
             $message = '<html>
                 <head>
@@ -226,7 +226,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </html>';
 
             sendMail($email, $subject, $message, $yourEmail);
-            header("Location: forgot_password.php?u=sent");
 
             $response = send_response(SUCCESS, json_encode($redirect));
         } else {

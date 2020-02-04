@@ -412,6 +412,10 @@ dl.term-description::after {
     background-color: #ff6000;
 }
 
+.pricing-table.squeaky {
+    background-color: #63cdda;
+}
+
 .pricing-table .header .box-title {
     float: left;
     line-height: 1.3333em;
@@ -460,10 +464,21 @@ dl.term-description::after {
     font-family: soap-icons;
 }
 
+.pricing-table ul.squeaky li:before {
+    background: #63cdda;
+    list-style: none;
+    content: "\e8ba";
+    margin-right: 10px;
+    color: #fff;
+    padding: 1px 4px 0;
+    font-size: 12px;
+    font-family: soap-icons;
+}
+
 .pricing-table li {
     color: #fff;
     background-color: rgba(255, 255, 255, 0.110);
-    font-size: .9167em;
+    font-size: 14px;
     padding-left: 20px;
     line-height: 40px;
     margin-top: 2.5px;

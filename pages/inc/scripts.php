@@ -10,3 +10,4 @@
 <script src="../../js/main.js"></script>
 <script src="../../js/profile.js"></script>
 <script src="../../js/booking.js"></script>
+<script src="../../js/bookingTravel.js"></script>

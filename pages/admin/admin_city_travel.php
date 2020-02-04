@@ -43,22 +43,42 @@ $user = $_SESSION["user_id"];
                         Dashboard
                     </a>
                 </li>
-                <li class="my-2 active">
+                <li class="my-2">
                     <a href="admin_tour.php">
                         <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
                         Tour
                     </a>
                 </li>
-                <li class="my-2">
-                    <a href="admin_booking.php">
-                        <i class="fas fa-book text-orange"></i>
-                        Booking
+                <li class="my-2 active">
+                    <a href="admin_city_travel.php">
+                        <i class="fas fa-route" style="color: #ff99cc"></i>
+                        Travel
                     </a>
                 </li>
                 <li class="my-2">
-                    <a href="admin_city_travel.php">
-                        <i class="fas fa-shuttle-van" style="color: #ff99cc"></i>
-                        Inter-City Travel
+                    <a href="#bookingSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-book text-orange"></i>
+                        Booking
+                    </a>
+                    <ul class="collapse list-unstyled" id="bookingSubMenu">
+                        <li>
+                            <a href="admin_booking_tour.php">
+                                <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
+                                Booking Tour
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_booking_travel.php">
+                                <i class="fas fa-route" style="color: #ff99cc"></i>
+                                Booking Travel
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="my-2">
+                    <a href="admin_newsfeed.php">
+                        <i class="far fa-newspaper text-green"></i>
+                        Newsfeed
                     </a>
                 </li>
             </ul>
@@ -99,6 +119,7 @@ $user = $_SESSION["user_id"];
                                 <th>Tujuan Akhir</th>
                                 <th>Schedule</th>
                                 <th>Price</th>
+                                <th>Member Price</th>
                                 <th>Edit Travel</th>
                             </tr>
                         </thead>
@@ -109,6 +130,7 @@ $user = $_SESSION["user_id"];
                             $index_travel_list = 1;
                             while ($row_travel_list = mysqli_fetch_assoc($results_travel_list)) {
                                 $convert_price = $row_travel_list['price'];
+                                $convert_memberPrice = $row_travel_list['price_member'];
                             ?>
 
                                 <tr>
@@ -117,7 +139,8 @@ $user = $_SESSION["user_id"];
                                     <td><?= $row_travel_list['location_from'] ?></td>
                                     <td><?= $row_travel_list['location_to'] ?></td>
                                     <td><?= $row_travel_list['schedule'] ?></td>
-                                    <td>IDR <?= number_format($convert_price, 0, ".", ".") ?></td>
+                                    <td>Rp. <?= number_format($convert_price, 0, ".", ".") ?></td>
+                                    <td>Rp. <?= number_format($convert_memberPrice, 0, ".", ".") ?></td>
                                     <td>
                                         <a href="admin_city_travel_detail.php?travel=<?= $row_travel_list['id'] ?>" style="font-size: 0.9rem">
                                             <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>

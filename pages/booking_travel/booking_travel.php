@@ -610,6 +610,62 @@ $travel_id = $_GET['travel'];
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-4 col-md-3">
+                    <div class="booking-details">
+                        <h4>Booking Details</h4>
+                        <div class="">
+                            <h6>
+                                <a class="text-decoration-none" href="../tour/tour.php?tour=<?= $tour_id ?>">
+                                    <?= $post_title ?>
+                                </a>
+                            </h6>
+                            <div class="d-flex justify-content-end">
+                                <button class="d-inline btn btn-outline-green ">Edit</button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="media d-flex align-items-center">
+                            <h2><i class="far fa-calendar-alt text-orange"></i></h2>
+                            <div class="media-body ml-3">
+                                <p class="mt-0 mb-1 text-info mb-0">Date</p>
+                                <p class="mb-0"><?= $tour_date ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="media d-flex align-items-center">
+                            <h2><i class="far fa-clock text-orange"></i></h2>
+                            <div class="media-body ml-3">
+                                <p class="mt-0 mb-1 text-info mb-0">Duration</p>
+                                <p class="mb-0"><?= $duration ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="media d-flex align-items-center">
+                            <h2><i class="fas fa-map-marker-alt text-orange"></i></h2>
+                            <div class="media-body ml-3">
+                                <p class="mt-0 mb-1 text-info mb-0">Location</p>
+                                <p class="mb-0"><?= $location ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <h6>Other Details</h6>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-info mb-0">Harga per Orang</p>
+                            <p class="mb-0">Rp. <?= number_format($price, 0, ".", ".") ?></p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-info mb-0">Jumlah Orang</p>
+                            <p class="mb-0"><?= $total_adults ?></p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="mb-0 font-weight-bold">Total Biaya</h6>
+                            <h6 class="mb-0 text-green">Rp. <?= number_format($total_price, 0, ".", ".") ?></h6>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -226,7 +226,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </html>';
 
             sendMail($email, $subject, $message, $yourEmail);
-            header("Location: forgot_password.php?u=sent");
 
             $response = send_response(SUCCESS, json_encode($redirect));
         } else {

@@ -9,7 +9,7 @@ $location_to = $_POST['location_to'];
 $schedule = $_POST['schedule'];
 $price = $_POST['price'];
 $member_price = $_POST['price_member'];
-$details = htmlspecialchars($_POST['details']);
+$details = $_POST['details'];
 $color = $_POST['color'];
 
 $query = "UPDATE wpzu_trav_city SET location_from = '$location_from', location_to = '$location_to', schedule = '$schedule', 

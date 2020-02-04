@@ -86,7 +86,11 @@ function formEditDetailTravel() {
   }
 }
 
-// function saveEditSchedule() {
-//   var formEditSchedule = document.getElementById("editScheduleForm");
-//   formEditSchedule.style.display = "none";
-// }
+function formAddTravSchedule() {
+  var formAddTravSchedule = document.getElementById("formAddTravSchedule");
+  if (formAddTravSchedule.style.display == "none") {
+    formAddTravSchedule.style.display = "block";
+  } else {
+    formAddTravSchedule.style.display = "none";
+  }
+}

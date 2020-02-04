@@ -254,23 +254,80 @@ $convert_memberPrice = $row['price_member'];
                         </div>
                     </div>
                 </div>
+                <div class="mt-4 mb-2 d-flex justify-content-between">
+                    <h5>List Schedule</h5>
+                    <button type="button" class="btn btn-outline-success" onclick="formAddTravSchedule()">Add Schedule</button>
+                </div>
+                <div class="mt-2 mb-4" id="formAddTravSchedule" style="display: none">
+                    <h6>Add New Travel Schedule</h6>
+                    <form method="post" action="../travel_city/add-trav-schedule_action.php">
+                        <input type="hidden" name="travel_id" value="<?= $travel ?>">
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Travel</h6>
+                            <div class="col-sm-9">
+                                <input disabled class="form-control" value="<?= $row['location_from'] ?> - <?= $row['location_to'] ?>" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Available Time</h6>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="availableTime" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3 "></div>
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-primary" id="saveSchedule" onclick="saveTourSchedule()">Save Schedule</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <table id="table-tour" class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Available Time</th>
+                            <th>Other</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sql_trav_schedule_list = "SELECT * FROM `wpzu_trav_city_schedule` WHERE `id_travel` = $travel ORDER BY `id` DESC";
+                        $results_trav_schedule_list = mysqli_query($con, $sql_trav_schedule_list);
+                        $index_trav_schedule_list = 1;
+                        while ($row_trav_schedule_list = mysqli_fetch_assoc($results_trav_schedule_list)) {
+                        ?>
+                            <tr>
+                                <td><?= $index_trav_schedule_list ?></td>
+                                <td><?= $row_trav_schedule_list['available_time'] ?></td>
+                                <td>
+                                    <a href="../travel_city/delete-trav-schedule_action.php?schedule=<?= $row_trav_schedule_list['id'] ?>&travel=<?= $travel ?>" style="font-size: 0.9rem">
+                                        <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php
+                            $index_trav_schedule_list++;
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
-
         </div>
-    </div>
 
-    <?php include_once '../inc/scripts.php'; ?>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#table-tour').DataTable();
-            $('#sidebarCollapse').on('click', function() {
-                $('#sidebar-admin').toggleClass('active');
+        <?php include_once '../inc/scripts.php'; ?>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#table-tour').DataTable();
+                $('#sidebarCollapse').on('click', function() {
+                    $('#sidebar-admin').toggleClass('active');
+                });
+
             });
-
-        });
-    </script>
+        </script>
 </body>
 
 </html>

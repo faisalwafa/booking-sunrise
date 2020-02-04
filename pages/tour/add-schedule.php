@@ -38,9 +38,15 @@ $row = mysqli_fetch_assoc($results);
                 </div>
             </div>
             <div class="form-group row">
-                <h5 class="col-sm-3 mt-3">Max People</h5>
+                <h5 class="col-sm-3 mt-3">Pax</h5>
                 <div class="col-sm-9">
                     <input type="number" class="form-control" name="maxPeople" min="1" value="1" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <h5 class="col-sm-3 mt-3">Min People</h5>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" name="minPeople" min="1" />
                 </div>
             </div>
             <div class="form-group row">

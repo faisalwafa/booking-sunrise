@@ -146,6 +146,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                     $stID = $row5['st_id'];
                                                     $duration = $row5['duration'];
                                                     $available = $row5['max_people'];
+                                                    $min_people = $row5['min_people'];
                                                     $price = $row5['price'];
                                                     $member_price = $row5['member_price'];
                                                     $child_price = $row5['child_price'];
@@ -225,8 +226,8 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                                                                                                     if ($td > $df) { ?> min="<?= $td ?>" <?php } else { ?> min="<?= $df ?>" <?php } ?> max="<?= $dateTo ?>" <?php } else { ?> min="<?= $td ?>" <?php } ?> />
                                                         </div>
                                                         <div class="col-md-2 form-group">
-                                                            <label>Adults</label>
-                                                            <input type="number" class="form-control" min="4" max="100" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="1" />
+                                                            <label>Pax</label>
+                                                            <input type="number" class="form-control" min="<?= $min_people ?>" max="100" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" />
                                                         </div>
                                                         <div class="col-md-1 form-group">
 

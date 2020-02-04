@@ -6,6 +6,10 @@ include_once '../../helper/connection.php';
 if (!isset($_SESSION["user_id"]) || (isset($_SESSION["user_id"]) && $_SESSION["user_level"] != 10)) {
     header("Location: ../auth/auth.php");
 }
+$scheduleId;
+if (isset($_GET['schedule'])) {
+    $scheduleId = $_GET['schedule'];
+}
 
 $user = $_SESSION["user_id"];
 
@@ -222,102 +226,222 @@ $row = mysqli_fetch_assoc($results);
                     </div>
                 </div>
                 <hr>
-                <div class="mt-2 mb-4 d-flex justify-content-between">
-                    <h5 class=" ">List Schedule </h5>
-                    <!-- <a class="  " href="../tour/add-schedule.php?tour=<?= $tour ?>"> -->
-                    <button type="button" class="btn btn-outline-success" onclick="formAddSchedule()">Add Schedule</button>
-                    <!-- </a> -->
-                </div>
-                <div class="mt-2 mb-4" id="formAddSchedule" style="display: none">
-                    <h6>Add New Tour Schedule</h6>
-                    <form method="post" action="../tour/add-schedule_action.php">
-                        <input type="hidden" name="tour_id" value="<?= $tour ?>">
-                        <div class="form-group row">
-                            <h6 class="col-sm-3 mt-3">Tour</h6>
-                            <div class="col-sm-9">
-                                <input disabled class="form-control" value="<?= $row['post_title'] ?>" />
-                            </div>
+                <?php
+                if (!isset($_GET['schedule'])) { ?>
+                    <div>
+                        <div class="mt-2 mb-4 d-flex justify-content-between">
+                            <h5 class=" ">List Schedule </h5>
+                            <!-- <a class="  " href="../tour/add-schedule.php?tour=<?= $tour ?>"> -->
+                            <button type="button" class="btn btn-outline-success" onclick="formAddSchedule()">Add Schedule</button>
+                            <!-- </a> -->
                         </div>
-                        <div class="form-group row">
-                            <h6 class="col-sm-3 mt-3">Schedule Type</h6>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="scheduleType">
-                                    <option value="0"></option>
-                                    <option value="0">Weekday</option>
-                                    <option value="1">Weekend</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <h6 class="col-sm-3 mt-3">Max People</h6>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" name="maxPeople" min="1" value="1" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <h6 class="col-sm-3 mt-3">Duration</h6>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="duration" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <h6 class="col-sm-3 mt-3">Is Daily?</h6>
-                            <div class="col-sm-9">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="isDaily" onchange="myFunction()" id="check">
+                        <div class="mt-2 mb-4" id="formAddSchedule" style="display: none">
+                            <h6>Add New Tour Schedule</h6>
+                            <form method="post" action="../tour/add-schedule_action.php">
+                                <input type="hidden" name="tour_id" value="<?= $tour ?>">
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Tour</h6>
+                                    <div class="col-sm-9">
+                                        <input disabled class="form-control" value="<?= $row['post_title'] ?>" />
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <h6 class="col-sm-3 mt-3">Tour Date</h6>
-                            <div class="col-sm-9">
-                                <input type="date" class="form-control" name="tourDate" />
-                            </div>
-                        </div>
-                        <div id="endDate" style="display: none">
-                            <div class="form-group row">
-                                <h6 class="col-sm-3 mt-3">End Date</h6>
-                                <div class="col-sm-9">
-                                    <input id="inputEndDate" type="date" class="form-control" name="endDate" />
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Schedule Type</h6>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="scheduleType">
+                                            <option value="0"></option>
+                                            <option value="0">Weekday</option>
+                                            <option value="1">Weekend</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class=" form-group row">
-                            <h6 class="col-sm-3 mt-3">Charge Per Person?</h6>
-                            <div class="col-sm-9">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="perPerson" onchange="myFunction2()" id="check2">
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Max People</h6>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="maxPeople" min="1" />
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <h6 class="col-sm-3 mt-3">Price</h6>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="price" />
-                            </div>
-                        </div>
-                        <div id="childPrice" style="display: none">
-                            <div class="form-group row">
-                                <h6 class="col-sm-3 mt-3">Price Per Child</h6>
-                                <div class="col-sm-9">
-                                    <input id="inputChildPrice" type="text" class="form-control" name="childPrice" />
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Min People</h6>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="minPeople" min="1" />
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Duration</h6>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="duration" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Is Daily?</h6>
+                                    <div class="col-sm-9">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="isDaily" onchange="myFunction()" id="check">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Tour Date</h6>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" name="tourDate" />
+                                    </div>
+                                </div>
+                                <div id="endDate" style="display: none">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-3 mt-3">End Date</h6>
+                                        <div class="col-sm-9">
+                                            <input id="inputEndDate" type="date" class="form-control" name="endDate" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" form-group row">
+                                    <h6 class="col-sm-3 mt-3">Charge Per Person?</h6>
+                                    <div class="col-sm-9">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="perPerson" onchange="myFunction2()" id="check2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Price</h6>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="price" />
+                                    </div>
+                                </div>
+                                <div id="childPrice" style="display: none">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-3 mt-3">Price Per Child</h6>
+                                        <div class="col-sm-9">
+                                            <input id="inputChildPrice" type="text" class="form-control" name="childPrice" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Member Price</h6>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="memberPrice" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-9">
+                                        <button type="submit" class="btn btn-primary" id="saveSchedule" onclick="saveSchedule()">Save Schedule</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-group row">
-                            <h6 class="col-sm-3 mt-3">Member Price</h6>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="memberPrice" />
-                            </div>
+                    </div>
+                <?php } else { ?>
+                    <div>
+                        <?php
+                        $sql2 = "SELECT * FROM `wpzu_trav_tour_schedule` WHERE `tour_id` = $tour AND `id` = $scheduleId";
+                        $results2 = mysqli_query($con, $sql2);
+                        $row2 = mysqli_fetch_assoc($results2);
+                        ?>
+                        <div class="mt-2 mb-4 d-flex justify-content-between">
+                            <h5 class=" ">List Schedule </h5>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-3 "></div>
-                            <div class="col-sm-9">
-                                <button type="submit" class="btn btn-primary" id="saveSchedule" onclick="saveSchedule()">Save Schedule</button>
-                            </div>
+                        <div class="mt-2 mb-4">
+                            <h6>Edit Tour Schedule</h6>
+                            <form method="post" action="../tour/update-schedule_action.php">
+                                <input type="hidden" name="tour_id" value="<?= $tour ?>">
+                                <input type="hidden" name="id" value="<?= $scheduleId ?>">
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Tour</h6>
+                                    <div class="col-sm-9">
+                                        <input disabled class="form-control" value="<?= $row['post_title'] ?>" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Schedule Type</h6>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="scheduleType">
+                                            <option value="0"></option>
+                                            <option value="0">Weekday</option>
+                                            <option value="1">Weekend</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Max People</h6>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="maxPeople" min="1" value="<?= $row2['max_people'] ?>" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Min People</h6>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="minPeople" min="1" value="<?= $row2['min_people'] ?>" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Duration</h6>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="duration" value="<?= $row2['duration'] ?>" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Is Daily?</h6>
+                                    <div class="col-sm-9">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="isDaily" onchange="myFunction()" id="check" value="<?= $row2['is_daily'] ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Tour Date</h6>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" name="tourDate" value="<?= $row2['tour_date'] ?>" />
+                                    </div>
+                                </div>
+                                <div id="endDate" style="display: none">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-3 mt-3">End Date</h6>
+                                        <div class="col-sm-9">
+                                            <input id="inputEndDate" type="date" class="form-control" name="endDate" value="<?= $row2['date_to'] ?>" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" form-group row">
+                                    <h6 class="col-sm-3 mt-3">Charge Per Person?</h6>
+                                    <div class="col-sm-9">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="perPerson" onchange="myFunction2()" id="check2" value="<?= $row2['per_person_yn'] ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Price</h6>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="price" value="<?= $row2['price'] ?>" />
+                                    </div>
+                                </div>
+                                <div id="childPrice" style="display: none">
+                                    <div class="form-group row">
+                                        <h6 class="col-sm-3 mt-3">Price Per Child</h6>
+                                        <div class="col-sm-9">
+                                            <input id="inputChildPrice" type="text" class="form-control" name="childPrice" value="<?= $row2['child_price'] ?>" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <h6 class="col-sm-3 mt-3">Member Price</h6>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="memberPrice" value="<?= $row2['member_price'] ?>" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-9">
+                                        <button type="submit" class="btn btn-primary" id="saveSchedule" onclick="saveEditSchedule()"> Update Schedule</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                <?php }
+                ?>
                 <table id="table-tour" class="table">
                     <thead>
                         <tr>
@@ -325,6 +449,7 @@ $row = mysqli_fetch_assoc($results);
                             <th>ID</th>
                             <th>Tour Date</th>
                             <th>Max People</th>
+                            <th>Min People</th>
                             <th>Price adult</th>
                             <th>Member Price</th>
                             <th>Duration</th>
@@ -350,6 +475,7 @@ $row = mysqli_fetch_assoc($results);
                                     echo $dateTour;
                                     ?></td>
                                 <td><?= $row_schedule_list['max_people'] ?></td>
+                                <td><?= $row_schedule_list['min_people'] ?></td>
                                 <td><?= $row_schedule_list['price'] ?></td>
                                 <td><?= $row_schedule_list['member_price'] ?></td>
                                 <td><?= $row_schedule_list['duration'] ?></td>
@@ -369,11 +495,18 @@ $row = mysqli_fetch_assoc($results);
                                             echo $dateEnd;
                                             ?></td> -->
                                 <td>
-
-                                    <a href="../tour/delete_schedule_action.php?schedule=<?= $row_schedule_list['id']; ?>&tour=<?= $tour ?>" style="font-size: 0.9rem">
-                                        <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
-                                        Delete Schedule
-                                    </a>
+                                    <div>
+                                        <a href="./admin_tour_detail.php?schedule=<?= $row_schedule_list['id']; ?>&tour=<?= $tour ?>" style="font-size: 0.9rem">
+                                            <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
+                                            Edit
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="../tour/delete_schedule_action.php?schedule=<?= $row_schedule_list['id']; ?>&tour=<?= $tour ?>" style="font-size: 0.9rem">
+                                            <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
+                                            Delete
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         <?php

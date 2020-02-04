@@ -4,6 +4,7 @@ include_once '../../helper/connection.php';
 
 $tour = $_POST['tour_id'];
 
+$scheduleId = $_POST['id'];
 $stId = $_POST["scheduleType"];
 $maxPeople = $_POST["maxPeople"];
 $minPeople = $_POST["minPeople"];
@@ -19,19 +20,15 @@ $memberPrice = $_POST["memberPrice"];
 $tourDate = date('Y-m-d', strtotime($rawTourDate));
 $endDate = date('Y-m-d', strtotime($rawEndDate));
 
-// echo $rawTourDate;
-// echo $rawEndDate;
-// echo $tourDate;
-// echo $endDate;
-// return;
+$query = "UPDATE wpzu_trav_tour_schedule SET st_id = '$stId' , max_people = '$maxPeople' , min_people = '$minPeople' , duration = '$duration' , is_daily = '$isDaily' , tour_date = '$tourDate' , date_to = '$endDate' , per_person_yn = '$perPerson' , price = '$price' , child_price = '$childPrice' , member_price = '$memberPrice' WHERE id = '$scheduleId'";
 
-$query = "INSERT INTO wpzu_trav_tour_schedule ( tour_id , st_id , tour_date , duration , max_people , min_people, price , child_price , member_price , is_daily , per_person_yn , date_to ) 
-VALUES ( $tour , $stId , '$tourDate', '$duration' , $maxPeople, $minPeople, $price, $childPrice , $memberPrice , $isDaily , $perPerson , '$endDate')";
+// echo $query;
+// return;
 
 if (mysqli_query($con, $query)) {
     header("Location:../admin/admin_tour_detail.php?tour=$tour");
 } else {
-    $error = urldecode("<div class='alert alert-danger' role='alert'>Edit Schedule Gagal</div>");
+    $error = urldecode("<div class='alert alert-danger' role='alert'>Edit Tour Gagal</div>");
     header("Location:../admin/admin_tour_detail.php?error=$error");
 }
 

@@ -396,7 +396,7 @@ $row = mysqli_fetch_assoc($results);
                             </div>
                             <hr>
                             <div class="media d-flex align-items-center">
-                                <h2><i class="far fa-calendar-alt text-orange"></i></h2>
+                                <h2><i class="fas fa-route text-orange"></i></h2>
                                 <div class="media-body ml-3">
                                     <p class="mt-0 mb-1 text-info mb-0">Travel</p>
                                     <p class="mb-0"><?= $row['location_from'] ?>-<?= $row['location_to'] ?></p>

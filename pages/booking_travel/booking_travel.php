@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+include_once '../../helper/connection.php';
+
+$is_logged_in = isset($_SESSION['user_id']);
+
+$user;
+if ($is_logged_in) {
+    $user = $_SESSION["user_id"];
+}
+
+$travel_id = $_GET['travel'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,20 +39,32 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 col-md-5 mb-3">
                                         <label>First Name</label>
-                                        <input type="text" name="firstNameTravel" class="form-control" id="travelBooking-firstName" onfocusout="checkBookingTravelFirstName()" value="">
+                                        <input type="text" name="firstNameTravel" class="form-control" id="travelBooking-firstName" onfocusout="checkBookingTravelFirstName()" value="<?php if ($is_logged_in) {
+                                                                                                                                                                                            echo $_SESSION['first_name'];
+                                                                                                                                                                                        } else {
+                                                                                                                                                                                            echo "";
+                                                                                                                                                                                        }  ?>">
                                         <small class="invalid-feedback">Nama depan tidak boleh kosong</small>
                                     </div>
                                     <div class="col-md-1"></div>
                                     <div class="col-sm-6 col-md-5 mb-3">
                                         <label>Last Name</label>
-                                        <input type="text" name="lastNameTravel" class="form-control" id="travelBooking-lastName" onfocusout="checkBookingTravelLastName()" value="">
+                                        <input type="text" name="lastNameTravel" class="form-control" id="travelBooking-lastName" onfocusout="checkBookingTravelLastName()" value="<?php if ($is_logged_in) {
+                                                                                                                                                                                        echo $_SESSION['last_name'];
+                                                                                                                                                                                    } else {
+                                                                                                                                                                                        echo "";
+                                                                                                                                                                                    } ?> ">
                                         <small class="invalid-feedback">Nama belakang tidak boleh kosong</small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 col-md-5 mb-3">
                                         <label>Email Address</label>
-                                        <input type="email" name="emailTravel" class="form-control" id="travelBooking-email" onfocusout="checkBookingTravelEmail()" value="">
+                                        <input type="email" name="emailTravel" class="form-control" id="travelBooking-email" onfocusout="checkBookingTravelEmail()" value="<?php if ($is_logged_in) {
+                                                                                                                                                                                echo $_SESSION['user_email'];
+                                                                                                                                                                            } else {
+                                                                                                                                                                                echo "";
+                                                                                                                                                                            } ?>">
                                         <small class="invalid-feedback" id="bookingTravel-email-feedback">Email tidak boleh kosong</small>
                                     </div>
                                     <div class="col-md-1"></div>

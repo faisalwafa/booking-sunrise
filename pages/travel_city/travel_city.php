@@ -69,7 +69,7 @@ include_once '../../helper/connection.php';
                                     <?= $row["details"] ?>
                                 </ul>
                                 <div class="mt-3 animate-btn">
-                                    <a href="../booking_travel/booking_travel.php">
+                                    <a href="../booking_travel/booking_travel.php?travel=<?= $row['id'] ?>">
                                         <span>Pesan Disini</span>
                                     </a>
                                 </div>

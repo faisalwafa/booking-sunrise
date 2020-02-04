@@ -133,7 +133,7 @@ $convert_memberPrice = $row['price_member'];
                                             <h6>Location From</h6>
                                         </div>
                                         <div class="col-md-7 mb-4">
-                                            <input type="text" name="location_from" class="form-control" id="travelAdmin-LocationFrom" value="<?= $row['location_from'] ?>">
+                                            <input type="text" name="location_from" class="form-control" id="travelAdmin-LocationFrom" value="<?= $row['location_from'] ?>" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -141,7 +141,7 @@ $convert_memberPrice = $row['price_member'];
                                             <h6>Price</h6>
                                         </div>
                                         <div class="col-md-7 mb-4">
-                                            <input type="text" name="price" class="form-control" id="travelAdmin-Price" value="<?= $row['price'] ?>">
+                                            <input type="text" name="price" class="form-control" id="travelAdmin-Price" value="<?= $row['price'] ?>" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -149,7 +149,7 @@ $convert_memberPrice = $row['price_member'];
                                             <h6>Schedule</h6>
                                         </div>
                                         <div class="col-md-7 mb-4">
-                                            <input type="text" name="schedule" class="form-control" id="travelAdmin-Schedule" value="<?= $row['schedule'] ?>">
+                                            <input type="text" name="schedule" class="form-control" id="travelAdmin-Schedule" value="<?= $row['schedule'] ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@ $convert_memberPrice = $row['price_member'];
                                             <h6>Location To</h6>
                                         </div>
                                         <div class="col-md-7 mb-4">
-                                            <input type="text" name="location_to" class="form-control" id="travelAdmin-LocationTo" value="<?= $row['location_to'] ?>">
+                                            <input type="text" name="location_to" class="form-control" id="travelAdmin-LocationTo" value="<?= $row['location_to'] ?>" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -170,7 +170,7 @@ $convert_memberPrice = $row['price_member'];
                                             <h6>Member Price</h6>
                                         </div>
                                         <div class="col-md-7 mb-4">
-                                            <input type="text" name="price_member" class="form-control" id="travelAdmin-Price" value="<?= $row['price_member'] ?>">
+                                            <input type="text" name="price_member" class="form-control" id="travelAdmin-Price" value="<?= $row['price_member'] ?>" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -178,7 +178,7 @@ $convert_memberPrice = $row['price_member'];
                                             <h6>Card Color</h6>
                                         </div>
                                         <div class="col-md-7 mb-4">
-                                            <select class="form-control" name="color">
+                                            <select class="form-control" name="color" required>
                                                 <option value="squeaky">Squeaky</option>
                                                 <option value="blueCuracao">Blue Curacao</option>
                                                 <option value="purpleMountain">Purple Mountain Majesty</option>

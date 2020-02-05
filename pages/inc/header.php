@@ -14,4 +14,3 @@
 <link rel="stylesheet" type="text/css" href="../../css/trumbowyg.min.css">
 <link rel="stylesheet" href="../../css/trumbowyg.colors.min.css">
 <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
-<link rel="stylesheet" href="../../css/trumbowyg.table.min.css">

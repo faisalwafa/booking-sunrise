@@ -36,6 +36,7 @@ $row = mysqli_fetch_assoc($results);
     <link rel="stylesheet" type="text/css" href="../../css/trumbowyg.min.css">
     <link rel="stylesheet" href="../../css/trumbowyg.colors.min.css">
     <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
+    <link rel="stylesheet" href="../../css/trumbowyg.table.min.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
 </head>
 

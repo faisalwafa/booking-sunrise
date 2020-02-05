@@ -118,7 +118,6 @@ $user = $_SESSION["user_id"];
                                 <th>Travel Name</th>
                                 <th>Travel Date</th>
                                 <th>Jumlah Pax</th>
-                                <th>Pickup Time</th>
                                 <th>Pickup Location</th>
                                 <th>Total Price</th>
                                 <th>Created Date</th>
@@ -128,7 +127,7 @@ $user = $_SESSION["user_id"];
                         </thead>
                         <tbody>
                             <?php
-                            $sql_history_booking = "SELECT w.first_name, w.last_name, w.id, p.location_from, p.location_to, w.pick_up_date, w.date, w.total_price, w.status, w.pax, w.user_id, w.booking_no FROM wpzu_trav_city_bookings AS w INNER JOIN wpzu_trav_city AS p ON w.travel_id = p.id ORDER BY w.date DESC";
+                            $sql_history_booking = "SELECT w.first_name, w.last_name, w.id, p.location_from, p.location_to, w.pick_up_date, w.pick_up_location, w.date, w.total_price, w.status, w.pax, w.user_id, w.booking_no FROM wpzu_trav_city_bookings AS w INNER JOIN wpzu_trav_city AS p ON w.travel_id = p.id ORDER BY w.date DESC";
                             $result_history_booking = mysqli_query($con, $sql_history_booking);
                             $index_history_list = 1;
                             while ($row_booking_list = mysqli_fetch_assoc($result_history_booking)) {
@@ -138,11 +137,11 @@ $user = $_SESSION["user_id"];
                                 <tr>
                                     <td><?= $index_history_list ?></td>
                                     <td><?= $row_booking_list['first_name'] ?> <?= $row_booking_list['last_name'] ?> <br> <a href="../booking_confirm/booking_confirm.php?booking_confirm=<?= $row_booking_list['booking_no'] ?>" class="table-link" target="_blank"><small>Detil Pesanan</small></a> </td>
-                                    <td><?= $row_booking_list['post_title'] ?></td>
-                                    <td><?= $row_booking_list['pax'] ?></td>
+                                    <td><?= $row_booking_list['location_from'] ?>-<?= $row_booking_list['location_to'] ?></td>
                                     <td><?php $doConvert_tourDate = strtotime($row_booking_list['pick_up_date']);
                                         $convert_tourDate = date('m/d/Y', $doConvert_tourDate);
                                         echo $convert_tourDate ?></td>
+                                    <td><?= $row_booking_list['pax'] ?></td>
                                     <td><?= $row_booking_list['pick_up_location'] ?></td>
                                     <td>IDR <?= number_format($convert_price, 0, ".", ".") ?></td>
                                     <td><?php $doConvert_createdDate = strtotime($row_booking_list['date']);

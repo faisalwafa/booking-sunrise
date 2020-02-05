@@ -105,8 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             )";
         }
 
-        // echo $sql_add_booking_city;
-        // return;
         if (mysqli_query($con, $sql_add_booking_city)) {
             $redirect = array('booking_confirm' => $bookingCode);
             $yourEmail = "booking@sunrise-indonesia.com";

@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+include_once '../../helper/connection.php';
+
+$booking = $_GET['booking_confirm'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +30,15 @@
                 <div class="row">
                     <div class="col-sm-8 col-md-9">
                         <div class="booking-information">
+                            <?php
+                            $query = "SELECT b.id, location_to, location_from, booking_no, first_name, last_name, email, country, phone, pax, 
+                        pick_up_date, pick_up_time, pick_up_location, special_requirements, total_price, date, status FROM wpzu_trav_city_bookings b 
+                        INNER JOIN wpzu_trav_city p ON b.travel_id = p.id WHERE b.booking_no = $booking";
+                            $results = mysqli_query($con, $query);
+
+                            $row = mysqli_fetch_assoc($results)
+
+                            ?>
                             <h2 class="mb-4">Booking Confirmation</h2>
                             <hr>
                             <div class="booking-confirmation d-flex">
@@ -35,79 +55,81 @@
                             <h3 style="font-size: 18px;">Check Your Details</h3>
                             <dl class="term-description">
                                 <dt>Booking Number : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row['booking_no'] ?></dd>
                                 <dt>E-mail Address : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row['email'] ?></dd>
                                 <dt>Phone : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row['phone'] ?></dd>
                                 <dt>Booking Date : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row['date'] ?></dd>
                                 <dt>Tour Date : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row['pick_up_date'] ?></dd>
                                 <dt>Max People : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row['pax'] ?></dd>
                                 <dt>Pick-Up Time : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row['pick_up_time'] ?></dd>
                                 <dt>Pick-Up Location : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row['pick_up_location'] ?></dd>
                                 <dt>Drop-Off Location : </dt>
-                                <dd>test</dd>
+                                <dd><?= $row['location_to'] ?></dd>
+                                <dt>Special Requirements : </dt>
+                                <dd><?= $row['special_requirements'] ?></dd>
                             </dl>
                             <hr>
                             <dl class="term-description" style="font-size: 16px;">
-                                <dt style="text-transform: none;">Total Price : </dt>
-                                <dd><b style="color: #2d3e52">Rp. </b></dd>
+                                <dt style="text-transform: none; font-size: 16px; font-weight: 600">Total Price : </dt>
+                                <dd><b style="color: #2d3e52; font-size: 16px; font-weight: 600"">Rp. <?= number_format($row['total_price'], 0, ".", ".") ?></b></dd>
                             </dl>
                             <hr>
-                            <h3 style="font-size: 18px;">Travel Antar Kota Details</h3>
-                            <h4 style="font-size: 16px;">
-                                <a href="../tour/tour.php?tour=<?= $row["tour_id"] ?>"><?= $row["post_title"] ?></a>
-                            </h4>
-                            <dl class="term-description">
-                                <dt>Country : </dt>
-                                <dd><?= $row["country"] ?></dd>
-                                <dt>Cancellation : </dt>
-                                <dd>
-                                    <a href="https://sunrise-indonesia.com/booking-terms-condition/">
-                                        Cek syarat dan ketentuan apabila anda ingin refund.
-                                    </a>
-                                </dd>
-                            </dl>
-                            <hr>
-                            <h3 class="text-center" style="font-size: 18px; font-weight: 900;">Payment Methods</h3>
-                            <div style=" margin-right: 40px;">
-                                <div class="d-flex justify-content-around mt-4">
-                                    <div>
-                                        <h3 style="font-size: 15px; margin-right: 17px;">Rekening Pembayaran&nbsp; | &nbsp;BCA</h3>
-                                    </div>
-                                    <div>
-                                        <h3 style="font-size: 15px;">Rekening Pembayaran&nbsp; | &nbsp;Mandiri</h3>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-around mt-2">
-                                    <div>
+                            <h3 style=" font-size: 18px;">Travel Antar Kota Details</h3>
+                                        <h4 style="font-size: 16px;">
+                                            <a href="../travel_city/travel_city.php" target="_blank"><?= $row["location_from"] ?> - <?= $row["location_to"] ?></a>
+                                        </h4>
                                         <dl class="term-description">
-                                            <dt>Account Holder : </dt>
-                                            <dd>Dery Okky Pratama</dd>
-                                            <dt>Account Number : </dt>
-                                            <dd>8160987651</dd>
-                                            <dt>Branch : </dt>
-                                            <dd>BCA Borobudur Malang</dd>
+                                            <dt>Country : </dt>
+                                            <dd><?= $row["country"] ?></dd>
+                                            <dt>Cancellation : </dt>
+                                            <dd>
+                                                <a href="https://sunrise-indonesia.com/booking-terms-condition/">
+                                                    Cek syarat dan ketentuan apabila anda ingin refund.
+                                                </a>
+                                            </dd>
                                         </dl>
-                                    </div>
-                                    <div>
-                                        <dl class="term-description">
-                                            <dt>Account Holder : </dt>
-                                            <dd>Dery Okky Pratama</dd>
-                                            <dt>Account Number : </dt>
-                                            <dd>144-00-1673900-2</dd>
-                                            <dt>Branch : </dt>
-                                            <dd>Mandiri Borobudur Malang</dd>
-                                        </dl>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr style="margin: 0;">
+                                        <hr>
+                                        <h3 class="text-center" style="font-size: 18px; font-weight: 900;">Payment Methods</h3>
+                                        <div style=" margin-right: 40px;">
+                                            <div class="d-flex justify-content-around mt-4">
+                                                <div>
+                                                    <h3 style="font-size: 15px; margin-right: 17px;">Rekening Pembayaran&nbsp; | &nbsp;BCA</h3>
+                                                </div>
+                                                <div>
+                                                    <h3 style="font-size: 15px;">Rekening Pembayaran&nbsp; | &nbsp;Mandiri</h3>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-around mt-2">
+                                                <div>
+                                                    <dl class="term-description">
+                                                        <dt>Account Holder : </dt>
+                                                        <dd>Dery Okky Pratama</dd>
+                                                        <dt>Account Number : </dt>
+                                                        <dd>8160987651</dd>
+                                                        <dt>Branch : </dt>
+                                                        <dd>BCA Borobudur Malang</dd>
+                                                    </dl>
+                                                </div>
+                                                <div>
+                                                    <dl class="term-description">
+                                                        <dt>Account Holder : </dt>
+                                                        <dd>Dery Okky Pratama</dd>
+                                                        <dt>Account Number : </dt>
+                                                        <dd>144-00-1673900-2</dd>
+                                                        <dt>Branch : </dt>
+                                                        <dd>Mandiri Borobudur Malang</dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="margin: 0;">
                         </div>
                     </div>
                     <div class="col-sm-4 col-md-3">
@@ -119,8 +141,10 @@
                             <ul>
                                 <li>
                                     <form action="booking_confirm_action.php" method="POST">
-                                        <input type="hidden" name="id_booking" value="<?= $row['ID'] ?>">
-                                        <button type="submit" class="btn-block btn btn-outline-secondary">Cancel Your Booking</button>
+                                        <input type="hidden" name="id_booking" value="<?= $row['id'] ?>">
+                                        <button type="submit" class="btn-block btn btn-outline-secondary <?php if ($row['status'] != 1) {
+                                                                                                                echo "disabled";
+                                                                                                            } ?>">Cancel Your Booking</button>
                                     </form>
                                     </a>
                                 </li>

@@ -15,7 +15,8 @@ $(".editor").trumbowyg({
     ["fullscreen"],
     ["foreColor", "backColor"],
     ["emoji"],
-    ["fontsize"]
+    ["fontsize"],
+    ["table"]
   ]
 });
 

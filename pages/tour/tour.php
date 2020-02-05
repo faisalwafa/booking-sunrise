@@ -128,11 +128,11 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                     <p class="label-detail">DURATION</p>
                                                     <!-- <p class="label-detail">AVAILABLE SEATS</p> -->
                                                     <p class="label-detail">PRICE PER ADULT</p>
-                                                    <!-- <?php
-                                                            if ($row5['child_price'] != 0) {
-                                                                echo "<p>PRICE PER KIDS</p>";
-                                                            }
-                                                            ?> -->
+                                                    <?php
+                                                    if ($row5['child_price'] != 0) {
+                                                        echo "<p>PRICE PER KIDS</p>";
+                                                    }
+                                                    ?>
                                                 </div>
                                                 <div class="col-6">
                                                     <?php

@@ -22,10 +22,10 @@ function sendMail($toEmail, $subject, $message, $fromEmail, $CC)
     $validFromEmail = spamcheck($fromEmail);
     if ($validFromEmail) {
         $headers = "From: $fromEmail\r\n";
-        // $headers .= "CC: booking@sunrise-indonesia.com\r\n";
-        if (!empty($CC)) {
-            // $headers .= "CC: $CC \r\n";
-            $headers .= "CC: carfinnifrac@gmail.com\r\n";
+        if (empty($CC)) {
+            $headers .= "CC: no-reply@sunrise-indonesia.com\r\n";
+        } else {
+            $headers .= "CC: $CC\r\n";
         }
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
@@ -36,24 +36,22 @@ function sendMail($toEmail, $subject, $message, $fromEmail, $CC)
 
 if (!empty($newsfeed_subject) && !empty($newsfeed_body)) {
     $sql_user_emails = "SELECT user_email FROM wpzu_users";
-    $results_user_emails = mysqli_query($con, $sql_user_email);
-    if (mysqli_num_rows($results) === 0) {
+    $results_user_emails = mysqli_query($con, $sql_user_emails);
+    if (mysqli_num_rows($results_user_emails) === 0) {
         header("Location: admin_newsfeed.php?message=Email tidak dapat ditemukan");
     } else {
         $to = array();
         while ($row_user_emails = mysqli_fetch_assoc($results_user_emails)) {
-            array_push($to, $row['user_email']);
+            array_push($to, $row_user_emails['user_email']);
         }
-
-        // $email = implode(', ', $to);
-        $email = "daffaputradamar@gmail.com, appleimport123@gmail.com";
+        $email = implode(', ', $to);
         $yourEmail = "info@sunrise-indonesia.com";
         $subject = $newsfeed_subject;
 
         $message = '<html>
 
-        <head>
-            <meta charset="UTF-8">
+        <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title>Newsfeed | Sunrise Indonesia</title>

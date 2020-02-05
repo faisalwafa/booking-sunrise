@@ -23,7 +23,7 @@ $is_logged_in = isset($_SESSION['user_id']);
                         <a class="nav-link mr-3" href="https://sunrise-indonesia.com/rent-car">Rent Car</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mr-3" href="https://sunrise-indonesia.com/travel-malang-surabaya">Travel Antar Kota</a>
+                        <a class="nav-link mr-3" href="../travel_city/travel_city.php">Travel Antar Kota</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mr-3" href="https://sunrise-indonesia.com/info-wisata-indonesia/">Blog</a>

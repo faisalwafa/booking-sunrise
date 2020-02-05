@@ -634,7 +634,7 @@ dl.term-description::after {
     left: 0;
     width: 0;
     height: 100%;
-    background: linear-gradient(90deg, rgba(112, 112, 111, 1) 0%, rgba(190, 192, 194, 1) 32%, rgba(179, 182, 181, 1) 82%);
+    background: linear-gradient(to right, #606c88, #2d3e52);
     transition: all .5s;
 }
 

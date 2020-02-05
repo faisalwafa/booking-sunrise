@@ -38,6 +38,7 @@ $row = mysqli_fetch_assoc($results);
     <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
     <link rel="stylesheet" href="../../css/trumbowyg.table.min.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/ico" sizes="192x192" href="../../assets/564da423-cropped-4c267bf8-logo-300x300.png">
 </head>
 
 <body>
@@ -519,13 +520,13 @@ $row = mysqli_fetch_assoc($results);
                                     <div>
                                         <a href="./admin_tour_detail.php?schedule=<?= $row_schedule_list['id']; ?>&tour=<?= $tour ?>" style="font-size: 0.9rem">
                                             <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
-                                            Edit Schedule
+                                            Edit
                                         </a>
                                     </div>
                                     <div>
                                         <a href="../tour/delete_schedule_action.php?schedule=<?= $row_schedule_list['id']; ?>&tour=<?= $tour ?>" style="font-size: 0.9rem">
                                             <i class="fas fa-trash-alt" style="font-size: 0.7rem"></i>
-                                            Delete Schedule
+                                            Delete
                                         </a>
                                     </div>
                                 </td>

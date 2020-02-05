@@ -171,7 +171,7 @@ $row = mysqli_fetch_assoc($results);
                                 <div>
                                     <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                         <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
-                                        <span>Force Majeur</span>
+                                        <span>Syarat dan Ketentuan</span>
                                     </button>
                                     <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
                                         <textarea name="forceMajeur" class="editor" placeholder="" autofocus><?= $row['force_majeur'] ?></textarea>

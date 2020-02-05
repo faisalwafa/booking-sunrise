@@ -518,13 +518,13 @@ $row = mysqli_fetch_assoc($results);
                                     <div>
                                         <a href="./admin_tour_detail.php?schedule=<?= $row_schedule_list['id']; ?>&tour=<?= $tour ?>" style="font-size: 0.9rem">
                                             <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
-                                            Edit Schedule
+                                            Edit
                                         </a>
                                     </div>
                                     <div>
                                         <a href="../tour/delete_schedule_action.php?schedule=<?= $row_schedule_list['id']; ?>&tour=<?= $tour ?>" style="font-size: 0.9rem">
                                             <i class="fas fa-trash-alt" style="font-size: 0.7rem"></i>
-                                            Delete Schedule
+                                            Delete
                                         </a>
                                     </div>
                                 </td>

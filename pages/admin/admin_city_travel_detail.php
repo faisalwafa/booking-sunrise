@@ -177,11 +177,16 @@ $convert_memberPrice = $row['price_member'];
                                         <div class="col-md-5">
                                             <h6>Card Color</h6>
                                         </div>
-                                        <div class="col-md-7 mb-4">
+                                        <div class="col-md-7 mb-4" class="coloringCard">
                                             <select class="form-control" name="color" required>
-                                                <option value="squeaky">Squeaky</option>
-                                                <option value="blueCuracao">Blue Curacao</option>
-                                                <option value="purpleMountain">Purple Mountain Majesty</option>
+                                                <option value="porcelainRose" style="background-color: #e66767; color: #fff">Porcelain Rose</option>
+                                                <option value="blueCuracao" style="background-color: #3dc1d3; color: #fff">Blue Curacao</option>
+                                                <option value="purpleCorallite" style="background-color: #786fa6; color: #fff">Purple Corallite</option>
+                                                <option value="brewedMustard" style="background-color: #e77f67; color: #fff">Brewed Mustard</option>
+                                                <option value="softBlue" style="background-color: #778beb; color: #fff">Soft Blue</option>
+                                                <option value="dupain" style="background-color: #60a3bc; color: #fff">Dupain</option>
+                                                <option value="goodSamaritan" style="background-color: #3c6382; color: #fff">Good Samaritan</option>
+                                                <option value="syntheticPumpkin" style="background-color: #ff793f; color: #fff">Synthetic Pumpkin</option>
                                             </select>
                                         </div>
                                     </div>

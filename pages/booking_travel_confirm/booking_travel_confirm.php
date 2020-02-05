@@ -140,11 +140,15 @@ $booking = $_GET['booking_confirm'];
                             <p style="font-size: 13px; margin-bottom: 15px;">You can always view or cancel your booking online - no registration required</p>
                             <ul>
                                 <li>
-                                    <form action="booking_confirm_action.php" method="POST">
+                                    <form action="booking_travel_confirm_action.php" method="POST">
                                         <input type="hidden" name="id_booking" value="<?= $row['id'] ?>">
-                                        <button type="submit" class="btn-block btn btn-outline-secondary <?php if ($row['status'] != 1) {
-                                                                                                                echo "disabled";
-                                                                                                            } ?>">Cancel Your Booking</button>
+                                        <button <?php if ($row['status'] == 1) {
+                                                    echo 'type = "submit"';
+                                                } ?> class="btn-block btn btn-outline-secondary <?php if ($row['status'] != 1) {
+                                                                                                    echo "disabled";
+                                                                                                } ?>" <?php if ($row['status'] != 1) {
+                                                                                                            echo 'onclick="event.preventDefault();"';
+                                                                                                        } ?>>Cancel Your Booking</button>
                                     </form>
                                     </a>
                                 </li>

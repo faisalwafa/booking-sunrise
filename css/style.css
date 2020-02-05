@@ -418,8 +418,124 @@ dl.term-description::after {
     background-color: #ff6000;
 }
 
-.pricing-table.squeaky {
-    background-color: #63cdda;
+.pricing-table.brewedMustard {
+    background-color: #e77f67;
+}
+
+.pricing-table ul.brewedMustard li:before {
+    background: #e77f67;
+    list-style: none;
+    content: "\e8ba";
+    margin-right: 10px;
+    color: #fff;
+    padding: 1px 4px 0;
+    font-size: 12px;
+    font-family: soap-icons;
+}
+
+.pricing-table.purpleCorallite {
+    background-color: #786fa6;
+}
+
+.pricing-table ul.purpleCorallite li:before {
+    background: #786fa6;
+    list-style: none;
+    content: "\e8ba";
+    margin-right: 10px;
+    color: #fff;
+    padding: 1px 4px 0;
+    font-size: 12px;
+    font-family: soap-icons;
+}
+
+.pricing-table.syntheticPumpkin {
+    background-color: #ff793f;
+}
+
+.pricing-table ul.syntheticPumpkin li:before {
+    background: #ff793f;
+    list-style: none;
+    content: "\e8ba";
+    margin-right: 10px;
+    color: #fff;
+    padding: 1px 4px 0;
+    font-size: 12px;
+    font-family: soap-icons;
+}
+
+.pricing-table.dupain {
+    background-color: #60a3bc;
+}
+
+.pricing-table ul.dupain li:before {
+    background: #60a3bc;
+    list-style: none;
+    content: "\e8ba";
+    margin-right: 10px;
+    color: #fff;
+    padding: 1px 4px 0;
+    font-size: 12px;
+    font-family: soap-icons;
+}
+
+.pricing-table.goodSamaritan {
+    background-color: #3c6382;
+}
+
+.pricing-table ul.goodSamaritan li:before {
+    background: #3c6382;
+    list-style: none;
+    content: "\e8ba";
+    margin-right: 10px;
+    color: #fff;
+    padding: 1px 4px 0;
+    font-size: 12px;
+    font-family: soap-icons;
+}
+
+.pricing-table.softBlue {
+    background-color: #778beb;
+}
+
+.pricing-table ul.softBlue li:before {
+    background: #778beb;
+    list-style: none;
+    content: "\e8ba";
+    margin-right: 10px;
+    color: #fff;
+    padding: 1px 4px 0;
+    font-size: 12px;
+    font-family: soap-icons;
+}
+
+.pricing-table.porcelainRose {
+    background-color: #e66767;
+}
+
+.pricing-table ul.porcelainRose li:before {
+    background: #e66767;
+    list-style: none;
+    content: "\e8ba";
+    margin-right: 10px;
+    color: #fff;
+    padding: 1px 4px 0;
+    font-size: 12px;
+    font-family: soap-icons;
+}
+
+.pricing-table.blueCuracao {
+    background-color: #3dc1d3;
+}
+
+.pricing-table ul.blueCuracao li:before {
+    background: #3dc1d3;
+    list-style: none;
+    content: "\e8ba";
+    margin-right: 10px;
+    color: #fff;
+    padding: 1px 4px 0;
+    font-size: 12px;
+    font-family: soap-icons;
 }
 
 .pricing-table .header .box-title {
@@ -461,17 +577,6 @@ dl.term-description::after {
 
 .pricing-table ul li:before {
     background: #ff6000;
-    list-style: none;
-    content: "\e8ba";
-    margin-right: 10px;
-    color: #fff;
-    padding: 1px 4px 0;
-    font-size: 12px;
-    font-family: soap-icons;
-}
-
-.pricing-table ul.squeaky li:before {
-    background: #63cdda;
     list-style: none;
     content: "\e8ba";
     margin-right: 10px;

@@ -46,7 +46,7 @@ if (!empty($newsfeed_subject) && !empty($newsfeed_body)) {
         }
 
         // $email = implode(', ', $to);
-        $email = "carfinnifrac@gmail.com";
+        $email = "daffaputradamar@gmail.com, appleimport123@gmail.com";
         $yourEmail = "info@sunrise-indonesia.com";
         $subject = $newsfeed_subject;
 

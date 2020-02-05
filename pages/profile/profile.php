@@ -48,7 +48,10 @@ $user = $_SESSION["user_id"];
                         <a href="profile.php" class="font-weight-bold"><i class="fas fa-user-alt mr-3 py-2 profile-icon"></i> Profile</a>
                     </li>
                     <li>
-                        <a href="profile_booking.php" class="font-weight-bold"><i class="fas fa-clipboard-check mr-3 py-2 profile-icon"></i> Riwayat Booking</a>
+                        <a href="profile_booking.php" class="font-weight-bold"><i class="fas fa-map-marked-alt mr-3 py-2 profile-icon"></i> Riwayat Booking Tour</a>
+                    </li>
+                    <li>
+                        <a href="profile_booking.php" class="font-weight-bold"><i class="fas fa-route mr-3 py-2 profile-icon"></i> Riwayat Booking Travel</a>
                     </li>
                     <li>
                         <a href="../auth/logout.php" class="font-weight-bold"><i class="fa fa-sign-out mr-3 py-2 profile-icon"></i> Sign Out</a>

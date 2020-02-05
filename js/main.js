@@ -75,6 +75,15 @@ function saveChanges() {
   formSchedule.style.display = "none";
 }
 
+function formAddTravel() {
+  var formAddTravel = document.getElementById("addTravel");
+  if (formAddTravel.style.display == "none") {
+    formAddTravel.style.display = "block";
+  } else {
+    formAddTravel.style.display = "none";
+  }
+}
+
 function formEditDetailTravel() {
   var formEditDetailTravel = document.getElementById("editTravelForm");
   var detailTravel = document.getElementById("detailTravel");

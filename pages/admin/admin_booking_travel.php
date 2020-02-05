@@ -136,7 +136,7 @@ $user = $_SESSION["user_id"];
                             ?>
                                 <tr>
                                     <td><?= $index_history_list ?></td>
-                                    <td><?= $row_booking_list['first_name'] ?> <?= $row_booking_list['last_name'] ?> <br> <a href="../booking_confirm/booking_confirm.php?booking_confirm=<?= $row_booking_list['booking_no'] ?>" class="table-link" target="_blank"><small>Detil Pesanan</small></a> </td>
+                                    <td><?= $row_booking_list['first_name'] ?> <?= $row_booking_list['last_name'] ?> <br> <a href="../booking_travel_confirm/booking_travel_confirm.php?booking_confirm=<?= $row_booking_list['booking_no'] ?>" class="table-link" target="_blank"><small>Detil Pesanan</small></a> </td>
                                     <td><?= $row_booking_list['location_from'] ?>-<?= $row_booking_list['location_to'] ?></td>
                                     <td><?php $doConvert_tourDate = strtotime($row_booking_list['pick_up_date']);
                                         $convert_tourDate = date('m/d/Y', $doConvert_tourDate);

@@ -36,6 +36,7 @@ $row = mysqli_fetch_assoc($results);
     <link rel="stylesheet" type="text/css" href="../../css/trumbowyg.min.css">
     <link rel="stylesheet" href="../../css/trumbowyg.colors.min.css">
     <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
+    <link rel="stylesheet" href="../../css/trumbowyg.table.min.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -234,7 +235,7 @@ $row = mysqli_fetch_assoc($results);
                             <div>
                                 <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                     <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
-                                    <span>Force Majeur</span>
+                                    <span>Syarat dan Ketentuan</span>
                                 </button>
                                 <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
                                     <p>

@@ -7,4 +7,5 @@
 <script src="../../js/trumbowyg.colors.min.js"></script>
 <script src="../../js/trumbowyg.emoji.min.js"></script>
 <script src="../../js/trumbowyg.fontsize.min.js"></script>
+<script src="../../js/trumbowyg.table.min.js"></script>
 <script src="../../js/main.js"></script>

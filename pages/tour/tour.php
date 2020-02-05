@@ -128,11 +128,11 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                     <p class="label-detail">DURATION</p>
                                                     <!-- <p class="label-detail">AVAILABLE SEATS</p> -->
                                                     <p class="label-detail">PRICE PER ADULT</p>
-                                                    <?php
-                                                    if ($row5['child_price'] != 0) {
-                                                        echo "<p>PRICE PER KIDS</p>";
-                                                    }
-                                                    ?>
+                                                    <!-- <?php
+                                                            if ($row5['child_price'] != 0) {
+                                                                echo "<p>PRICE PER KIDS</p>";
+                                                            }
+                                                            ?> -->
                                                 </div>
                                                 <div class="col-6">
                                                     <?php
@@ -345,7 +345,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                             <strong>
                                                 <button class="text-left btn btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                                     <span><i class="soap-icon-plus mr-1"></i></span>
-                                                    <span>Force Majeur</span>
+                                                    <span>Syarat dan Ketentuan</span>
                                                 </button>
                                             </strong>
                                         <?php } ?>

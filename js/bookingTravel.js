@@ -13,6 +13,7 @@ const bookingTravelTime = document.getElementById("travelBooking-time");
 const bookingTravelLocation = document.getElementById("travelBooking-location");
 const bookingTravelCountry = document.getElementById("travelBooking-country");
 const bookingTravelReq = document.getElementById("travelBooking-specialReq");
+const bookingTravelPrice = document.getElementById("travelBooking-price");
 const formTravelBooking = document.getElementById("travelBookingForm");
 
 function getParameterByName(name, url) {
@@ -25,22 +26,55 @@ function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-// formTravelBooking.addEventListener("submit", function(e)) {
-//     e.preventDefault();
-//     if (
-//         checkBookingTravelFirstName() &&
-//         checkBookingTravelLastName() &&
-//         checkBookingTravelEmail() &&
-//         checkBookingTravelConfirmEmail() &&
-//         checkBookingTravelLocation() &&
-//         checkBookingTravelPhoneNumber()
-//     ) {
-//         $.ajax({
-//             type: "POST",
-//             url: ""
-//         })
-//     }
-// }
+formTravelBooking.addEventListener("submit", function(e) {
+  e.preventDefault();
+  const totalPrice =
+    Number(bookingTravelPrice.value) * Number(bookingTravelPax.value);
+  if (
+    checkBookingTravelFirstName() &&
+    checkBookingTravelLastName() &&
+    checkBookingTravelEmail() &&
+    checkBookingTravelConfirmEmail() &&
+    checkBookingTravelPax() &&
+    checkBookingTravelLocation() &&
+    checkBookingTravelPhoneNumber()
+  ) {
+    $.ajax({
+      type: "POST",
+      url: "booking_travel_action.php",
+      data: {
+        travelId: getParameterByName("travel"),
+        firstName: bookingTravelFirstName.value,
+        lastName: bookingTravelLastName.value,
+        email: bookingTravelEmail.value,
+        country: bookingTravelCountry.value,
+        phone: bookingTravelPhone.value,
+        pax: bookingTravelPax.value,
+        pickupDate: bookingTravelDate.value,
+        pickupTime: bookingTravelTime.value,
+        pickupLocation: bookingTravelLocation.value,
+        specialRequirement: bookingTravelReq.value,
+        totalPrice: totalPrice,
+        gRecaptchaResponse: grecaptcha.getResponse()
+      },
+      success: function(data) {
+        // console.log(data);
+        // return;
+        const response = JSON.parse(data);
+        const responseData = JSON.parse(response.message);
+        if (response.success === "success") {
+          window.location.href =
+            "../booking_travel_confirm/booking_travel_confirm.php?booking_confirm=" +
+            responseData.booking_confirm;
+          console.log(response);
+        } else {
+          window.location.href = `booking_travel.php?success-booking=false&message=${responseData.message}&travel=${responseData.travel}`;
+        }
+      },
+      error: function(xhr, ajaxOptions, thrownerror) {}
+    });
+  }
+});
 
 function checkBookingTravelFirstName() {
   if (bookingTravelFirstName.value === "") {

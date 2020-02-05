@@ -694,6 +694,7 @@ $total_price = $_GET['totalPrice'];
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <?php include_once '../inc/footer.php'; ?>
     <?php include_once '../inc/scripts.php'; ?>
+    <script src="../../js/booking.js"></script>
 </body>
 
 </html>

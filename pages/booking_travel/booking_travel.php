@@ -91,7 +91,7 @@ $row = mysqli_fetch_assoc($results);
                                     <div class="col-sm-6 col-md-5">
                                         <label>Phone Number</label>
                                         <input type="text" name="phoneNumberTravel" class="form-control" id="travelBooking-phoneNumber" onfocusout="checkBookingTravelPhoneNumber()">
-                                        <small class="invalid-feedback">No. Telefon tidak boleh kosong</small>
+                                        <small class="invalid-feedback">No. Telepon tidak boleh kosong</small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -103,7 +103,12 @@ $row = mysqli_fetch_assoc($results);
                                     <div class="col-sm-6 col-md-5 mb-3">
                                         <label>Pick Up Time</label>
                                         <select name="confirmEmailTravel" class="form-control" id="travelBooking-time" required>
-
+                                            <?php
+                                            $results_travel_time = mysqli_query($con, "SELECT available_time FROM wpzu_trav_city_schedule WHERE id_travel = $travel_id");
+                                            while ($row_travel_time = mysqli_fetch_assoc($results_travel_time)) {
+                                            ?>
+                                                <option value="<?= $row_travel_time['available_time'] ?>"><?= $row_travel_time['available_time'] ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -413,19 +418,26 @@ $row = mysqli_fetch_assoc($results);
                             <hr>
                             <h6>Other Details</h6>
                             <hr>
-                            <?php
-                            if (!$is_logged_in) { ?>
-                                <div class="d-flex justify-content-between">
-                                    <p class="text-info mb-0">Harga per Orang</p>
-                                    <p id="travelBooking-price" class="mb-0">Rp. <?= number_format($row['price'], 0, ".", ".") ?></p>
-                                </div>
-                            <?php } else { ?>
-                                <div class="d-flex justify-content-between">
-                                    <p class="text-info mb-0">Harga per Orang</p>
-                                    <p id="travelBooking-price" class="mb-0">Rp. <?= number_format($row['price_member'], 0, ".", ".") ?></p>
-                                </div>
-                            <?php }
-                            ?>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-info mb-0">Harga per Orang</p>
+                                <p class="mb-0">IDR.
+                                    <?php
+                                    if (!$is_logged_in) {
+                                        echo number_format($row['price'], 0, ".", ".");
+                                    } else {
+                                        echo number_format($row['price_member'], 0, ".", ".");
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                            <input type="number" class="d-none" id="travelBooking-price" value="<?php
+                                                                                                if (!$is_logged_in) {
+                                                                                                    echo $row['price'];
+                                                                                                } else {
+                                                                                                    echo $row['price_member'];
+                                                                                                }
+                                                                                                ?>">
+                            </input>
                         </div>
                     </div>
                 </div>
@@ -435,7 +447,7 @@ $row = mysqli_fetch_assoc($results);
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <?php include_once '../inc/footer.php'; ?>
     <?php include_once '../inc/scripts.php'; ?>
-
+    <script src="../../js/bookingTravel.js"></script>
 </body>
 
 </html>

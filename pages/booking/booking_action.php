@@ -135,11 +135,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if (mysqli_query($con, $sql_add_booking)) {
-            $id_booking = mysqli_insert_id($con);
-            $redirect = array('booking_confirm' => $id_booking);
+            $redirect = array('booking_confirm' => $bookingCode);
 
             $yourEmail = "booking@sunrise-indonesia.com";
-            $subject = "Booking - Sunrise Indonesia ";
+            $subject = "Booking Tour - Sunrise Indonesia ";
 
             $message = '<html>
                 <head>
@@ -229,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $response = send_response(SUCCESS, json_encode($redirect));
         } else {
-            $redirect = array('tour' => $tour_id, 'st_id' => $st_id, 'post_title' => $post_title, 'location' => $location, 'duration' => $duration, 'price' => $price, 'dateTour' => $tour_date, 'totalAdults' => $total_adults, 'totalPrice' => $total_price, 'message' => 'Gagal membuat booking baru');
+            $redirect = array('tour' => $tour_id, 'st_id' => $st_id, 'post_title' => $post_title, 'location' => $location, 'duration' => $duration, 'price' => $price, 'dateTour' => $tour_date, 'totalAdults' => $total_adults, 'totalPrice' => $total_price, 'message' => 'Gagal membuat booking tour baru');
             $response = send_response(FAIL, json_encode($redirect));
         }
     }

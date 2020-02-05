@@ -84,7 +84,7 @@ $travel_id = $_GET['travel'];
                                     <div class="col-sm-6 col-md-5">
                                         <label>Phone Number</label>
                                         <input type="text" name="phoneNumberTravel" class="form-control" id="travelBooking-phoneNumber" onfocusout="checkBookingTravelPhoneNumber()">
-                                        <small class="invalid-feedback">No. Telefon tidak boleh kosong</small>
+                                        <small class="invalid-feedback">No. Telepon tidak boleh kosong</small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -96,7 +96,12 @@ $travel_id = $_GET['travel'];
                                     <div class="col-sm-6 col-md-5 mb-3">
                                         <label>Pick Up Time</label>
                                         <select name="confirmEmailTravel" class="form-control" id="travelBooking-time" required>
-
+                                            <?php
+                                            $results_travel_time = mysqli_query($con, "SELECT available_time FROM wpzu_trav_city_schedule WHERE id_travel = $travel_id");
+                                            while ($row_travel_time = mysqli_fetch_assoc($results_travel_time)) {
+                                            ?>
+                                                <option value="<?= $row_travel_time['available_time'] ?>"><?= $row_travel_time['available_time'] ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>

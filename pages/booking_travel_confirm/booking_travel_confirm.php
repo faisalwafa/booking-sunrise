@@ -62,9 +62,9 @@ $booking = $_GET['booking_confirm'];
                                 <dd><?= $row['phone'] ?></dd>
                                 <dt>Booking Date : </dt>
                                 <dd><?= $row['date'] ?></dd>
-                                <dt>Tour Date : </dt>
+                                <dt>Pick-Up Date : </dt>
                                 <dd><?= $row['pick_up_date'] ?></dd>
-                                <dt>Max People : </dt>
+                                <dt>Pax : </dt>
                                 <dd><?= $row['pax'] ?></dd>
                                 <dt>Pick-Up Time : </dt>
                                 <dd><?= $row['pick_up_time'] ?></dd>

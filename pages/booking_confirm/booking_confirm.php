@@ -62,7 +62,7 @@ $booking = $_GET['booking_confirm'];
                                 <dd><?= $row["created"] ?></dd>
                                 <dt>Tour Date : </dt>
                                 <dd><?= $row["tour_date"] ?></dd>
-                                <dt>Adults : </dt>
+                                <dt>Pax : </dt>
                                 <dd><?= $row["adults"] ?></dd>
                                 <dt>Special Requirements : </dt>
                                 <dd><?= $row["special_requirements"] ?></dd>

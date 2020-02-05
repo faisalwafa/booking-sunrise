@@ -54,15 +54,18 @@ formTravelBooking.addEventListener("submit", function(e) {
         pickupTime: bookingTravelTime.value,
         pickupLocation: bookingTravelLocation.value,
         specialRequirement: bookingTravelReq.value,
-        totalPrice: totalPrice
+        totalPrice: totalPrice,
+        gRecaptchaResponse: grecaptcha.getResponse()
       },
       success: function(data) {
+        // console.log(data);
+        // return;
         const response = JSON.parse(data);
         const responseData = JSON.parse(response.message);
         if (response.success === "success") {
-          // window.location.href =
-          //   "../booking_confirm/booking_confirm.php?booking_confirm=" +
-          //   responseData.booking_confirm;
+          window.location.href =
+            "../booking_travel_confirm/booking_travel_confirm.php?booking_confirm=" +
+            responseData.booking_confirm;
           console.log(response);
         } else {
           window.location.href = `booking_travel.php?success-booking=false&message=${responseData.message}&travel=${responseData.travel}`;

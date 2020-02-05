@@ -418,19 +418,26 @@ $row = mysqli_fetch_assoc($results);
                             <hr>
                             <h6>Other Details</h6>
                             <hr>
-                            <?php
-                            if (!$is_logged_in) { ?>
-                                <div class="d-flex justify-content-between">
-                                    <p class="text-info mb-0">Harga per Orang</p>
-                                    <p id="travelBooking-price" class="mb-0">Rp. <?= number_format($row['price'], 0, ".", ".") ?></p>
-                                </div>
-                            <?php } else { ?>
-                                <div class="d-flex justify-content-between">
-                                    <p class="text-info mb-0">Harga per Orang</p>
-                                    <p id="travelBooking-price" class="mb-0">Rp. <?= number_format($row['price_member'], 0, ".", ".") ?></p>
-                                </div>
-                            <?php }
-                            ?>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-info mb-0">Harga per Orang</p>
+                                <p class="mb-0">IDR.
+                                    <?php
+                                    if (!$is_logged_in) {
+                                        echo number_format($row['price'], 0, ".", ".");
+                                    } else {
+                                        echo number_format($row['price_member'], 0, ".", ".");
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                            <input type="number" class="d-none" id="travelBooking-price" value="<?php
+                                                                                                if (!$is_logged_in) {
+                                                                                                    echo $row['price'];
+                                                                                                } else {
+                                                                                                    echo $row['price_member'];
+                                                                                                }
+                                                                                                ?>">
+                            </input>
                         </div>
                     </div>
                 </div>
@@ -440,7 +447,7 @@ $row = mysqli_fetch_assoc($results);
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <?php include_once '../inc/footer.php'; ?>
     <?php include_once '../inc/scripts.php'; ?>
-
+    <script src="../../js/bookingTravel.js"></script>
 </body>
 
 </html>

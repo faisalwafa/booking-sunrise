@@ -24,6 +24,9 @@ $user = $_SESSION["user_id"];
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <title>Admin | Sunrise Indonesia</title>
     <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/trumbowyg.min.css">
+    <link rel="stylesheet" href="../../css/trumbowyg.colors.min.css">
+    <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -108,7 +111,72 @@ $user = $_SESSION["user_id"];
             </nav>
 
             <div class="container mt-4 py-3 w-95 rounded bg-white">
-                <h4 class="mt-2 mb-4">List Inter-City Travel</h4>
+                <div class="mt-2 mb-4 d-flex justify-content-between">
+                    <h4>List Inter-City Travel</h4>
+                    <button type="button" class="btn btn-outline-info" onclick="formAddTravel()">Add Travel</button>
+                </div>
+                <div id="addTravel" class="mt-2 mb-4" style="display: none;">
+                    <h6 style="font-weight: 700;" class="mb-4">Add New Tour Schedule</h6>
+                    <form method="post" action="../travel_city/add-trav_action.php">
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Location From</h6>
+                            <div class="col-sm-9">
+                                <input class="form-control" required name="location_from" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Location To</h6>
+                            <div class="col-sm-9">
+                                <input class="form-control" required name="location_to" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Schedule</h6>
+                            <div class="col-sm-9">
+                                <input class="form-control" required name="schedule" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Price</h6>
+                            <div class="col-sm-9">
+                                <input class="form-control" required name="price" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Price Member</h6>
+                            <div class="col-sm-9">
+                                <input class="form-control" required name="price_member" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Details</h6>
+                            <div class="col-sm-9">
+                                <textarea placeholder="Tambah list dengan menggunakan Unordered list" required name="details" class="editor"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <h6 class="col-sm-3 mt-3">Color</h6>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="color" required>
+                                    <option value="porcelainRose" style="background-color: #e66767; color: #fff">Porcelain Rose</option>
+                                    <option value="blueCuracao" style="background-color: #3dc1d3; color: #fff">Blue Curacao</option>
+                                    <option value="purpleCorallite" style="background-color: #786fa6; color: #fff">Purple Corallite</option>
+                                    <option value="brewedMustard" style="background-color: #e77f67; color: #fff">Brewed Mustard</option>
+                                    <option value="softBlue" style="background-color: #778beb; color: #fff">Soft Blue</option>
+                                    <option value="dupain" style="background-color: #60a3bc; color: #fff">Dupain</option>
+                                    <option value="goodSamaritan" style="background-color: #3c6382; color: #fff">Good Samaritan</option>
+                                    <option value="syntheticPumpkin" style="background-color: #ff793f; color: #fff">Synthetic Pumpkin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3 "></div>
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-primary" id="saveTravel">Save Schedule</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="table-responsive">
                     <table id="table-travel" class="table">
                         <thead>
@@ -120,7 +188,7 @@ $user = $_SESSION["user_id"];
                                 <th>Schedule</th>
                                 <th>Price</th>
                                 <th>Member Price</th>
-                                <th>Edit Travel</th>
+                                <th>Other</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -142,10 +210,18 @@ $user = $_SESSION["user_id"];
                                     <td>Rp. <?= number_format($convert_price, 0, ".", ".") ?></td>
                                     <td>Rp. <?= number_format($convert_memberPrice, 0, ".", ".") ?></td>
                                     <td>
-                                        <a href="admin_city_travel_detail.php?travel=<?= $row_travel_list['id'] ?>" style="font-size: 0.9rem">
-                                            <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
-                                            Lihat Travel
-                                        </a>
+                                        <div>
+                                            <a href="admin_city_travel_detail.php?travel=<?= $row_travel_list['id'] ?>" style="font-size: 0.9rem">
+                                                <i class="fas fa-external-link-alt" style="font-size: 0.7rem"></i>
+                                                Lihat Travel
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="../travel_city/delete-trav_action.php?travel=<?= $row_travel_list['id'] ?>" style="font-size: 0.9rem">
+                                                <i class="fas fa-trash-alt" style="font-size: 0.7rem"></i>
+                                                Hapus Travel
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php
@@ -164,7 +240,7 @@ $user = $_SESSION["user_id"];
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#table-tour').DataTable();
+            $('#table-travel').DataTable();
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar-admin').toggleClass('active');
             });

@@ -170,7 +170,7 @@ $user = $_SESSION["user_id"];
                                         <div id="status<?= $index_history_list ?>">
                                             <?= $status ?>
                                         </div>
-                                        <form method="post" action="edit_status_tour.php">
+                                        <form method="post" action="edit_status_travel.php">
                                             <div id="selectStatus<?= $index_history_list ?>" style="display: none">
                                                 <input type="hidden" name="booking_id" value="<?= $row_booking_list['id'] ?>">
                                                 <select name="status" onchange="editStatus()">

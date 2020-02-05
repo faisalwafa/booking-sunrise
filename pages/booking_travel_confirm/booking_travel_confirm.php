@@ -1,27 +1,16 @@
-<?php
-
-session_start();
-
-include_once '../../helper/connection.php';
-
-// $user = $_SESSION["user_id"];
-$booking = $_GET['booking_confirm'];
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <?php include_once '../inc/header.php'; ?>
-    <title>Tour Booking Confirmation | Sunrise Indonesia</title>
+    <title>Travel Antar Kota Booking Confirmation | Sunrise Indonesia</title>
 </head>
 
 <body>
     <?php include_once '../inc/navbar.php'; ?>
     <div class="page-title">
         <div class="container">
-            <h2 style="margin-top: 10px;" class="post-title">Tour Booking Confirmation </h2>
+            <h2 style="margin-top: 10px;" class="post-title">Travel Antar Kota Booking Confirmation </h2>
         </div>
     </div>
     <section id="content">
@@ -30,13 +19,6 @@ $booking = $_GET['booking_confirm'];
                 <div class="row">
                     <div class="col-sm-8 col-md-9">
                         <div class="booking-information">
-                            <?php
-                            $query = "SELECT b.ID, booking_no, email, special_requirements, created, tour_date, adults, total_price, country, city, post_title, tour_id, b.phone, status FROM wpzu_trav_tour_bookings b INNER JOIN wpzu_posts p ON b.tour_id = p.id WHERE b.booking_no = $booking";
-                            $results = mysqli_query($con, $query);
-
-                            $row = mysqli_fetch_assoc($results)
-                            ?>
-
                             <h2 class="mb-4">Booking Confirmation</h2>
                             <hr>
                             <div class="booking-confirmation d-flex">
@@ -53,35 +35,37 @@ $booking = $_GET['booking_confirm'];
                             <h3 style="font-size: 18px;">Check Your Details</h3>
                             <dl class="term-description">
                                 <dt>Booking Number : </dt>
-                                <dd><?= $row["booking_no"] ?></dd>
+                                <dd>test</dd>
                                 <dt>E-mail Address : </dt>
-                                <dd><?= $row["email"] ?></dd>
+                                <dd>test</dd>
                                 <dt>Phone : </dt>
-                                <dd><?= $row["phone"] ?></dd>
+                                <dd>test</dd>
                                 <dt>Booking Date : </dt>
-                                <dd><?= $row["created"] ?></dd>
+                                <dd>test</dd>
                                 <dt>Tour Date : </dt>
-                                <dd><?= $row["tour_date"] ?></dd>
-                                <dt>Adults : </dt>
-                                <dd><?= $row["adults"] ?></dd>
-                                <dt>Special Requirements : </dt>
-                                <dd><?= $row["special_requirements"] ?></dd>
+                                <dd>test</dd>
+                                <dt>Max People : </dt>
+                                <dd>test</dd>
+                                <dt>Pick-Up Time : </dt>
+                                <dd>test</dd>
+                                <dt>Pick-Up Location : </dt>
+                                <dd>test</dd>
+                                <dt>Drop-Off Location : </dt>
+                                <dd>test</dd>
                             </dl>
                             <hr>
                             <dl class="term-description" style="font-size: 16px;">
                                 <dt style="text-transform: none;">Total Price : </dt>
-                                <dd><b style="color: #2d3e52">Rp. <?= number_format($row["total_price"], 0, ".", ".") ?> </b></dd>
+                                <dd><b style="color: #2d3e52">Rp. </b></dd>
                             </dl>
                             <hr>
-                            <h3 style="font-size: 18px;">Tours Details</h3>
+                            <h3 style="font-size: 18px;">Travel Antar Kota Details</h3>
                             <h4 style="font-size: 16px;">
                                 <a href="../tour/tour.php?tour=<?= $row["tour_id"] ?>"><?= $row["post_title"] ?></a>
                             </h4>
                             <dl class="term-description">
                                 <dt>Country : </dt>
                                 <dd><?= $row["country"] ?></dd>
-                                <dt>City : </dt>
-                                <dd><?= $row["city"] ?></dd>
                                 <dt>Cancellation : </dt>
                                 <dd>
                                     <a href="https://sunrise-indonesia.com/booking-terms-condition/">
@@ -136,9 +120,7 @@ $booking = $_GET['booking_confirm'];
                                 <li>
                                     <form action="booking_confirm_action.php" method="POST">
                                         <input type="hidden" name="id_booking" value="<?= $row['ID'] ?>">
-                                        <button type="submit" class="btn-block btn btn-outline-secondary <?php if ($row['status'] != 1) {
-                                                                                                                echo "disabled";
-                                                                                                            } ?>">Cancel Your Booking</button>
+                                        <button type="submit" class="btn-block btn btn-outline-secondary">Cancel Your Booking</button>
                                     </form>
                                     </a>
                                 </li>

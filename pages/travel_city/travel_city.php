@@ -32,7 +32,22 @@ include_once '../../helper/connection.php';
             <div id="main" class="entry-content">
                 <div class="row">
                     <div class="col-sm-12" style=" margin-bottom: 25px;">
-                        <h4 style="font-size: 13px;" class="text-center"><strong>HARGA TRAVEL ANTAR KOTA</strong></h4>
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-3">
+                                <hr class="rules1">
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 style="font-size: 13px;" class="text-center">
+                                    <strong>HARGA TRAVEL ANTAR KOTA</strong>
+                                </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <hr class="rules1">
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <!-- <h4 style="font-size: 13px;" class="text-center"><strong>HARGA TRAVEL ANTAR KOTA</strong></h4> -->
                     </div>
                 </div>
                 <div class="row">
@@ -80,14 +95,22 @@ include_once '../../helper/connection.php';
                 </div>
                 <div style="background-color: #ffffff !important;" class="row">
                     <div class="col-sm-12" style=" margin-bottom: 25px;">
-                        <div class="d-flex justify-content-between">
-                            <hr class="rules">
-                            <h4 style="font-size: 13px;" class="mt-3 text-center">
-                                <strong>MENGAPA SUNRISE INDONESIA</strong>
-                            </h4>
-                            <hr class="rules">
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-3">
+                                <hr class="rules2">
+                            </div>
+                            <div class="col-sm-2">
+                                <h4 style="font-size: 13px;" class="mt-3 text-center">
+                                    <strong>MENGAPA SUNRISE INDONESIA</strong>
+                                </h4>
+                            </div>
+                            <div class="col-sm-3">
+                                <hr class="rules2">
+                            </div>
+                            <div class="col-sm-2"></div>
                         </div>
-                        <ul class="nav nav-tabs whySunrise mt-5" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs whySunrise mt-4" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#armada" role="tab" aria-selected="true"><i class="fas fa-car"></i> &nbsp;&nbsp;
                                     Armada Terbaik</a>

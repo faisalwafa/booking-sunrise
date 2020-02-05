@@ -294,6 +294,10 @@ button span {
     font-size: 97%;
 }
 
+.bookingTravel-form small {
+    font-size: 97%;
+}
+
 
 /* booking information */
 
@@ -331,6 +335,7 @@ button span {
 }
 
 .term-description dt {
+    font-size: 13px;
     border-right: 1px solid #f5f5f5;
     color: #12a0c3;
     font-weight: 400;
@@ -342,6 +347,7 @@ button span {
 }
 
 .term-description dd {
+    font-size: 12px;
     padding: 5.5px 0px 5.5px 20px;
     text-transform: none;
     line-height: 1.3333em;
@@ -540,16 +546,25 @@ dl.term-description::after {
 }
 
 .whySunrise li a {
-    animation: colorchange 1s;
+    /* animation: colorchange 1s;
     -webkit-animation: super-rainbow 10s infinite alternate linear;
-    -moz-animation: super-rainbow 10s infinite alternate linear;
+    -moz-animation: super-rainbow 10s infinite alternate linear; */
     border-color: #4868cf;
-    background-color: #5472d2;
+    background-color: #2d3e52;
     color: #fff;
     border-radius: 5px;
+    text-align: center;
     border: solid transparent;
     border-width: 1px;
     padding: 14px 20px;
+    width: 170px;
+    transition: width .5s;
+}
+
+.whySunrise li a:hover {
+    color: #ff6000;
+    transition: .7s;
+    width: 180px;
 }
 
 .whySunrise .nav-link.active {
@@ -563,14 +578,24 @@ dl.term-description::after {
     color: #838383;
 }
 
-hr.rules {
-    width: 100px;
+hr.rules2 {
+    margin-top: 25px;
+    width: 100%;
     height: 10px;
     border: 0;
     box-shadow: 0 10px 10px -10px #8c8b8b inset;
 }
 
-@-webkit-keyframes super-rainbow {
+hr.rules1 {
+    margin-top: 7px;
+    width: 100%;
+    height: 10px;
+    border: 0;
+    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+
+/* @-webkit-keyframes super-rainbow {
     0% {
         background: #f67280;
     }
@@ -610,7 +635,7 @@ hr.rules {
     100% {
         background: violet;
     }
-}
+} */
 
 .stripped {
     text-decoration: line-through;

@@ -88,6 +88,7 @@ function checkBookingFirstName() {
 }
 
 function checkBookingLastName() {
+    console.log(bookingLastName.value);
     if (bookingLastName.value === "") {
         bookingLastName.classList.remove("is-valid");
         bookingLastName.classList.add("is-invalid");

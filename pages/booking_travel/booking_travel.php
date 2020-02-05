@@ -11,6 +11,13 @@ if ($is_logged_in) {
 }
 
 $travel_id = $_GET['travel'];
+
+// $sql = "SELECT b.travel_id , c.location_from , c.location_to , c.schedule , c.price , c.price_member FROM wpzu_trav_city c INNER JOIN wpzu_trav_city_bookings b ON c.travel_id = b.id WHERE travel_id = $travel_id";
+
+$sql = "SELECT * FROM wpzu_trav_city WHERE id = $travel_id";
+$results = mysqli_query($con, $sql);
+$row = mysqli_fetch_assoc($results);
+
 ?>
 
 <!DOCTYPE html>
@@ -380,6 +387,50 @@ $travel_id = $_GET['travel'];
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-3">
+                        <div class="booking-details">
+                            <h4>Booking Details</h4>
+                            <div class="">
+                                <h6>
+                                    <a class="text-decoration-none" href="#">
+                                        <?= $row['location_from'] ?>-<?= $row['location_to'] ?>
+                                    </a>
+                                </h6>
+                            </div>
+                            <hr>
+                            <div class="media d-flex align-items-center">
+                                <h2><i class="fas fa-route text-orange"></i></h2>
+                                <div class="media-body ml-3">
+                                    <p class="mt-0 mb-1 text-info mb-0">Travel</p>
+                                    <p class="mb-0"><?= $row['location_from'] ?>-<?= $row['location_to'] ?></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="media d-flex align-items-center">
+                                <h2><i class="far fa-clock text-orange"></i></h2>
+                                <div class="media-body ml-3">
+                                    <p class="mt-0 mb-1 text-info mb-0">Schedule</p>
+                                    <p class="mb-0"><?= $row['schedule'] ?></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <h6>Other Details</h6>
+                            <hr>
+                            <?php
+                            if (!$is_logged_in) { ?>
+                                <div class="d-flex justify-content-between">
+                                    <p class="text-info mb-0">Harga per Orang</p>
+                                    <p id="travelBooking-price" class="mb-0">Rp. <?= number_format($row['price'], 0, ".", ".") ?></p>
+                                </div>
+                            <?php } else { ?>
+                                <div class="d-flex justify-content-between">
+                                    <p class="text-info mb-0">Harga per Orang</p>
+                                    <p id="travelBooking-price" class="mb-0">Rp. <?= number_format($row['price_member'], 0, ".", ".") ?></p>
+                                </div>
+                            <?php }
+                            ?>
                         </div>
                     </div>
                 </div>

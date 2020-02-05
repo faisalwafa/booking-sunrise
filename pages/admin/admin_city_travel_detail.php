@@ -37,6 +37,7 @@ $convert_memberPrice = $row['price_member'];
     <link rel="stylesheet" href="../../css/trumbowyg.emoji.min.css">
     <link rel="stylesheet" href="../../css/trumbowyg.table.min.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/ico" sizes="192x192" href="../../assets/564da423-cropped-4c267bf8-logo-300x300.png">
 </head>
 
 <body>

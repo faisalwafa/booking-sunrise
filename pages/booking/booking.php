@@ -20,6 +20,10 @@ $duration = $_GET['duration'];
 $tour_date = $_GET['dateTour'];
 $price = $_GET['price'];
 $total_adults = $_GET['totalAdults'];
+$total_childs;
+if (isset($_GET['totalChild'])) {
+    $total_childs = $_GET['totalChild'];
+}
 $total_price = $_GET['totalPrice'];
 
 ?>
@@ -51,7 +55,10 @@ $total_price = $_GET['totalPrice'];
                                     <input type="hidden" name="tour" value="<?= $tour_id ?>">
                                     <input type="hidden" name="stId" value="<?= $st_id ?>">
                                     <input type="hidden" name="tourDate" value="<?= $tour_date ?>">
-                                    <input type="hidden" name="totalAdults" value="<?= $total_adults ?>">
+                                    <input type="hidden" name="totalAdults" value="<?= $total_adults ?>">\
+                                    <?php if (isset($_GET['totalChild'])) { ?>
+                                        <input type="hidden" name="totalChilds" value="<?= $total_childs ?>">
+                                    <?php } ?>
                                     <input type="hidden" name="price" value="<?= $price ?>">
                                     <input type="hidden" name="totalPrice" value="<?= $total_price ?>">
                                     <input type="hidden" name="postTitle" value="<?= $post_title ?>">
@@ -677,9 +684,16 @@ $total_price = $_GET['totalPrice'];
                             </div>
                             <hr>
                             <div class="d-flex justify-content-between">
-                                <p class="text-info mb-0">Jumlah Orang</p>
+                                <p class="text-info mb-0">Jumlah Pax</p>
                                 <p class="mb-0"><?= $total_adults ?></p>
                             </div>
+                            <?php if (isset($_GET['totalChild'])) { ?>
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    <p class="text-info mb-0">Jumlah Child Pax</p>
+                                    <p class="mb-0"><?= $total_adults ?></p>
+                                </div>
+                            <?php } ?>
                             <hr>
                             <div class="d-flex justify-content-between">
                                 <h6 class="mb-0 font-weight-bold">Total Biaya</h6>

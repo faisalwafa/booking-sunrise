@@ -11,6 +11,7 @@ if (!isset($_SESSION["user_id"]) || (isset($_SESSION["user_id"]) && $_SESSION["u
 $user = $_SESSION["user_id"];
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +21,7 @@ $user = $_SESSION["user_id"];
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <title>Admin | Sunrise Indonesia</title>
     <link rel="stylesheet" type="text/css" href="../../css/admin.css">
     <script src="https://kit.fontawesome.com/29c1d44eb7.js" crossorigin="anonymous"></script>
@@ -27,7 +29,7 @@ $user = $_SESSION["user_id"];
 </head>
 
 <body>
-    <div class="wrapper bg-white">
+    <div class="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar-admin" class="tes">
             <div class="sidebar-admin-header">
@@ -42,7 +44,7 @@ $user = $_SESSION["user_id"];
                         Dashboard
                     </a>
                 </li>
-                <li class="mb-2">
+                <li class="mb-2 active">
                     <a href="admin_member.php">
                         <i class="fas fa-users" style="color: #1abc9c"></i>
                         Member
@@ -112,18 +114,79 @@ $user = $_SESSION["user_id"];
                 </div>
             </nav>
 
-            <div class="container mt-4 py-5 w-75 rounded">
-                <img src="../../assets/logo-pwa.png" alt="logo" width="200" class="mb-5 mx-auto d-block">
-                <h2 class="text-center">Selamat datang Admin Sunrise Indonesia</h2>
-                <!-- <div class="">
-                </div> -->
+            <div class="container mt-4 py-3 w-95 rounded bg-white">
+                <h4 class="mt-2 mb-4">List Member</h4>
+                <div class="table-responsive">
+                    <table id="table-tour" class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $sql_member_meta = "SELECT * FROM wpzu_usermeta WHERE meta_key = 'first_name' OR meta_key = 'last_name' ORDER BY meta_key, user_id";
+                            $results_member_meta = mysqli_query($con, $sql_member_meta);
+
+                            $member_meta_size = mysqli_num_rows($results_member_meta);
+
+                            $sql_member_list = "SELECT * FROM wpzu_users";
+                            $results_member_list = mysqli_query($con, $sql_member_list);
+
+
+                            $members_meta = array();
+                            while ($row_member_meta = mysqli_fetch_assoc($results_member_meta)) {
+                                array_push($members_meta, $row_member_meta);
+                            }
+
+                            $members_meta_split_size = $member_meta_size / 2;
+
+                            $members_meta = array_chunk($members_meta, $members_meta_split_size);
+
+                            $members = array();
+                            while ($row_member_list = mysqli_fetch_assoc($results_member_list)) {
+                                array_push($members, $row_member_list);
+                            }
+
+                            for ($i = 0; $i < count($members); $i++) {
+                                $members[$i] += ['first_name' => $members_meta[0][$i]['meta_value']];
+                                $members[$i] += ['last_name' => $members_meta[1][$i]['meta_value']];
+                            }
+
+                            $index_member_list = 1;
+                            foreach ($members as $member) {
+                                $name = $member['first_name'] . ' ' . $member['last_name'];
+                                if ($name == " ") {
+                                    $name = "-";
+                                }
+                            ?>
+
+                                <tr>
+                                    <td><?= $index_member_list ?></td>
+                                    <td><?= $name ?></td>
+                                    <td><?= $member['user_login'] ?></td>
+                                    <td><?= $member['user_email'] ?></td>
+                                </tr>
+                            <?php
+                                $index_member_list++;
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 
     <?php include_once '../inc/scripts.php'; ?>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('#table-tour').DataTable();
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar-admin').toggleClass('active');
             });

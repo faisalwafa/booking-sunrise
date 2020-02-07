@@ -53,6 +53,18 @@ body {
   font: 75%/150% Lato, Arial, Helvetica, sans-serif;
   background-color: #f5f5f5;
   color: #223d41;
+<<<<<<< HEAD
+=======
+}
+
+@media only screen and (max-width: 1024px) {
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: inner-spin-button !important;
+    opacity: 1;
+    margin-left: 5px;
+  }
+>>>>>>> 790b5d0b38df2d12a030b4707ed95fdc5ca5ffca
 }
 
 .booking-details {

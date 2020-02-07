@@ -40,10 +40,10 @@ if (!empty($newsfeed_subject) && !empty($newsfeed_body)) {
     if (mysqli_num_rows($results_user_emails) === 0) {
         header("Location: admin_newsfeed.php?message=Email tidak dapat ditemukan");
     } else {
-        $to = array();
-        while ($row_user_emails = mysqli_fetch_assoc($results_user_emails)) {
-            array_push($to, $row_user_emails['user_email']);
-        }
+        // $to = array();
+        // while ($row_user_emails = mysqli_fetch_assoc($results_user_emails)) {
+        //     array_push($to, $row_user_emails['user_email']);
+        // }
         $email = implode(', ', $to);
         $yourEmail = "info@sunrise-indonesia.com";
         $subject = $newsfeed_subject;
@@ -63,7 +63,9 @@ if (!empty($newsfeed_subject) && !empty($newsfeed_body)) {
         
         </html>';
 
-        sendMail($email, $subject, $message, $yourEmail, $newsfeed_CC);
+        while ($row_user_emails = mysqli_fetch_assoc($results_user_emails)) {
+            sendMail($row_user_emails['user_email'], $subject, $message, $yourEmail, $newsfeed_CC);
+        }
         header("Location: admin_newsfeed.php?message=Email sukses terkirim");
     }
 } else {

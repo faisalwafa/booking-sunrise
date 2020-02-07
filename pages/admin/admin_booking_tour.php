@@ -44,6 +44,12 @@ $user = $_SESSION["user_id"];
                         Dashboard
                     </a>
                 </li>
+                <li class="mb-2">
+                    <a href="admin_member.php">
+                        <i class="fas fa-users" style="color: #1abc9c"></i>
+                        Member
+                    </a>
+                </li>
                 <li class="my-2">
                     <a href="admin_tour.php">
                         <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
@@ -118,7 +124,8 @@ $user = $_SESSION["user_id"];
                                 <th>Customer Name</th>
                                 <th>Tour Name</th>
                                 <th>Tour Date</th>
-                                <th>Jumlah Pax</th>
+                                <th>Pax</th>
+                                <th>Pax Child</th>
                                 <th>Price</th>
                                 <th>Created Date</th>
                                 <th>Status Member</th>
@@ -127,7 +134,7 @@ $user = $_SESSION["user_id"];
                         </thead>
                         <tbody>
                             <?php
-                            $sql_history_booking = "SELECT w.first_name, w.last_name, w.id, p.post_title, w.tour_date, w.created, w.total_price, w.status, w.adults, w.user_id, booking_no FROM wpzu_trav_tour_bookings AS w INNER JOIN wpzu_posts AS p ON w.tour_id = p.ID ORDER BY created DESC";
+                            $sql_history_booking = "SELECT w.first_name, w.last_name, w.id, p.post_title, w.tour_date, w.created, w.total_price, w.status, w.adults, w.kids, w.user_id, booking_no FROM wpzu_trav_tour_bookings AS w INNER JOIN wpzu_posts AS p ON w.tour_id = p.ID ORDER BY created DESC";
                             $result_history_booking = mysqli_query($con, $sql_history_booking);
                             $index_history_list = 1;
                             while ($row_booking_list = mysqli_fetch_assoc($result_history_booking)) {
@@ -142,6 +149,7 @@ $user = $_SESSION["user_id"];
                                         $convert_tourDate = date('m/d/Y', $doConvert_tourDate);
                                         echo $convert_tourDate ?></td>
                                     <td><?= $row_booking_list['adults'] ?></td>
+                                    <td><?= $row_booking_list['kids'] ?></td>
                                     <td>IDR <?= number_format($convert_price, 0, ".", ".") ?></td>
                                     <td><?php $doConvert_createdDate = strtotime($row_booking_list['created']);
                                         echo date('m/d/Y', $doConvert_createdDate);
@@ -173,9 +181,15 @@ $user = $_SESSION["user_id"];
                                             <div id="selectStatus<?= $index_history_list ?>" style="display: none">
                                                 <input type="hidden" name="booking_id" value="<?= $row_booking_list['id'] ?>">
                                                 <select name="status" onchange="editStatus()">
-                                                    <option value="0">Canceled</option>
-                                                    <option value="1">Upcoming</option>
-                                                    <option value="2">Completed</option>
+                                                    <option value="0" <?php if ($row_booking_list['status'] == 0) {
+                                                                            echo "selected";
+                                                                        } ?>>Canceled</option>
+                                                    <option value="1" <?php if ($row_booking_list['status'] == 1) {
+                                                                            echo "selected";
+                                                                        } ?>>Upcoming</option>
+                                                    <option value="2" <?php if ($row_booking_list['status'] == 2) {
+                                                                            echo "selected";
+                                                                        } ?>>Completed</option>
                                                 </select>
                                             </div>
                                             <div class="row">

@@ -58,6 +58,12 @@ $row = mysqli_fetch_assoc($results);
                         Dashboard
                     </a>
                 </li>
+                <li class="mb-2">
+                    <a href="admin_member.php">
+                        <i class="fas fa-users" style="color: #1abc9c"></i>
+                        Member
+                    </a>
+                </li>
                 <li class="my-2">
                     <a href="admin_tour.php">
                         <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
@@ -173,10 +179,7 @@ $row = mysqli_fetch_assoc($results);
                                 <div>
                                     <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                         <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
-                                        <<<<<<< HEAD <span>Syarat dan Ketentuan</span>
-                                            =======
-                                            <span>Syarat dan Ketentuan </span>
-                                            >>>>>>> 7053d462a8b8f8dd2c7cb4600e82f25bf3beacd0
+                                        <span>Syarat dan Ketentuan </span>
                                     </button>
                                     <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
                                         <textarea name="forceMajeur" class="editor" placeholder="" autofocus><?= $row['force_majeur'] ?></textarea>
@@ -383,9 +386,13 @@ $row = mysqli_fetch_assoc($results);
                                     <h6 class="col-sm-3 mt-3">Schedule Type</h6>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="scheduleType">
-                                            <option value="0"></option>
+                                            <option value="0" <?php if ($row2['st_id'] == 0) {
+                                                                    echo "selected";
+                                                                } ?>></option>
                                             <option value="0">Weekday</option>
-                                            <option value="1">Weekend</option>
+                                            <option value="1" <?php if ($row2['st_id'] == 1) {
+                                                                    echo "selected";
+                                                                } ?>>Weekend</option>
                                         </select>
                                     </div>
                                 </div>
@@ -411,7 +418,9 @@ $row = mysqli_fetch_assoc($results);
                                     <h6 class="col-sm-3 mt-3">Is Daily?</h6>
                                     <div class="col-sm-9">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="isDaily" onchange="myFunction()" id="check" value="<?= $row2['is_daily'] ?>">
+                                            <input class="form-check-input" type="checkbox" name="isDaily" onchange="myFunction()" id="check" value="<?= $row2['is_daily'] ?>" <?php if ($row2['is_daily']) {
+                                                                                                                                                                                    echo "checked";
+                                                                                                                                                                                } ?>>
                                         </div>
                                     </div>
                                 </div>
@@ -421,7 +430,9 @@ $row = mysqli_fetch_assoc($results);
                                         <input type="date" class="form-control" required name="tourDate" value="<?= $row2['tour_date'] ?>" />
                                     </div>
                                 </div>
-                                <div id="endDate" style="display: none">
+                                <div id="endDate" <?php if (!$row2['is_daily']) {
+                                                        echo 'style="display: none"';
+                                                    } ?>>
                                     <div class="form-group row">
                                         <h6 class="col-sm-3 mt-3">End Date</h6>
                                         <div class="col-sm-9">
@@ -433,7 +444,9 @@ $row = mysqli_fetch_assoc($results);
                                     <h6 class="col-sm-3 mt-3">Charge Per Person?</h6>
                                     <div class="col-sm-9">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="perPerson" onchange="myFunction2()" id="check2" value="<?= $row2['per_person_yn'] ?>">
+                                            <input class="form-check-input" type="checkbox" name="perPerson" onchange="myFunction2()" id="check2" value="<?= $row2['per_person_yn'] ?>" <?php if ($row2['per_person_yn']) {
+                                                                                                                                                                                            echo "checked";
+                                                                                                                                                                                        } ?>>
                                         </div>
                                     </div>
                                 </div>
@@ -443,7 +456,9 @@ $row = mysqli_fetch_assoc($results);
                                         <input type="text" class="form-control" required name="price" value="<?= $row2['price'] ?>" />
                                     </div>
                                 </div>
-                                <div id="childPrice" style="display: none">
+                                <div id="childPrice" <?php if (!$row2['per_person_yn']) {
+                                                            echo 'style="display: none"';
+                                                        } ?>>
                                     <div class="form-group row">
                                         <h6 class="col-sm-3 mt-3">Price Per Child</h6>
                                         <div class="col-sm-9">

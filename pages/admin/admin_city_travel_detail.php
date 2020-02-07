@@ -299,7 +299,7 @@ $convert_memberPrice = $row['price_member'];
                     </thead>
                     <tbody>
                         <?php
-                        $sql_trav_schedule_list = "SELECT * FROM `wpzu_trav_city_schedule` WHERE `id_travel` = $travel ORDER BY `id` DESC";
+                        $sql_trav_schedule_list = "SELECT * FROM `wpzu_trav_city_schedule` WHERE `id_travel` = $travel ORDER BY `available_time` ASC";
                         $results_trav_schedule_list = mysqli_query($con, $sql_trav_schedule_list);
                         $index_trav_schedule_list = 1;
                         while ($row_trav_schedule_list = mysqli_fetch_assoc($results_trav_schedule_list)) {

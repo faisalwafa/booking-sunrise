@@ -13,6 +13,7 @@ $booking = $_GET['booking_confirm'];
 <html lang="en">
 
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <?php include_once '../inc/header.php'; ?>
     <title>Tour Booking Confirmation | Sunrise Indonesia</title>
 </head>
@@ -100,8 +101,9 @@ $booking = $_GET['booking_confirm'];
                                                     <h3 style="font-size: 15px;">Rekening Pembayaran&nbsp; | &nbsp;Mandiri</h3>
                                                 </div>
                                             </div>
-                                            <div class="d-flex justify-content-around mt-2">
-                                                <div>
+                                            <div class="row d-flex justify-content-around mt-2">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-5 col-sm-12 mb-sm-3">
                                                     <dl class="term-description">
                                                         <dt>Account Holder : </dt>
                                                         <dd>Dery Okky Pratama</dd>
@@ -111,7 +113,8 @@ $booking = $_GET['booking_confirm'];
                                                         <dd>BCA Borobudur Malang</dd>
                                                     </dl>
                                                 </div>
-                                                <div>
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-5 col-sm-12">
                                                     <dl class="term-description">
                                                         <dt>Account Holder : </dt>
                                                         <dd>Dery Okky Pratama</dd>

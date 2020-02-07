@@ -25,7 +25,8 @@ $row = mysqli_fetch_assoc($results);
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -172,7 +173,11 @@ $row = mysqli_fetch_assoc($results);
                                 <div>
                                     <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                         <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
+<<<<<<< HEAD
                                         <span>Syarat dan Ketentuan</span>
+=======
+                                        <span>Syarat dan Ketentuan </span>
+>>>>>>> 7053d462a8b8f8dd2c7cb4600e82f25bf3beacd0
                                     </button>
                                     <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
                                         <textarea name="forceMajeur" class="editor" placeholder="" autofocus><?= $row['force_majeur'] ?></textarea>

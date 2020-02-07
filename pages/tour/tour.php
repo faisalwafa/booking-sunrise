@@ -216,21 +216,26 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                     ?>
                                                     <hr>
                                                     <div class="form-row">
-                                                        <div class="col-md-5 form-group">
+                                                        <div class="col-md-4 form-group">
                                                             <label>Available On</label>
                                                             <input class="form-control" type="date" name="dateTour" required <?php
                                                                                                                                 $td = date('Y-m-d', strtotime($row5['tour_date']));
                                                                                                                                 if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                                                                                                     $df = date('Y-m-d', strtotime($dateFrom));
 
-                                                                                                                                    if ($td > $df) { ?> min="<?= $td ?>" <?php } else { ?> min="<?= $df ?>" <?php } ?> max="<?= $dateTo ?>" <?php } else { ?> min="<?= $td ?>" <?php } ?> />
+                                                                                                                                    if ($td > $df || $df == null) { ?> min="<?= $td ?>" <?php } else { ?> min="<?= $df ?>" <?php } ?> max="<?= $dateTo ?>" <?php } else { ?> min="<?= $td ?>" <?php } ?> />
                                                         </div>
                                                         <div class="col-md-2 form-group">
                                                             <label>Pax</label>
                                                             <input type="number" class="form-control" min="<?= $min_people ?>" max="<?= $max_people ?>" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="<?= $min_people ?>" />
                                                         </div>
-                                                        <div class="col-md-1 form-group">
-
+                                                        <div class="col-md-2 form-group">
+                                                            <?php
+                                                            if ($child_price != 0) { ?>
+                                                                <label>Child Pax</label>
+                                                                <input type="number" class="form-control" min="" max="" name="totalChild" id="totalChild<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="0" />
+                                                            <?php }
+                                                            ?>
                                                         </div>
                                                         <div class="col-md-4 form-group">
                                                             <label>Total</label>
@@ -259,6 +264,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                             var totalAdults<?= $i ?> = document.getElementById("totalAdults<?= $i ?>");
                                             var totalPrice<?= $i ?> = document.getElementById("totalPrice<?= $i ?>");
                                             var totalPrices<?= $i ?> = document.getElementById("totalPrices<?= $i ?>");
+                                            var totalChilds<?= $i ?> = document.getElementById("totalChild<?= $i ?>");
                                             var min = <?= $min_people ?>;
                                             var max = <?= $max_people ?>;
                                             var total<?= $i ?>;
@@ -268,6 +274,9 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                             } else {
                                                 total<?= $i ?> = Number(price<?= $i ?>) * Number(totalAdults<?= $i ?>.value);
                                             }
+                                            // if (totalChilds<?= $i ?>.value != 0) {
+                                            //     total<?= $i ?> = total<?= $i ?> + (Number(totalChilds<?= $i ?>.value) * Number($child_price));
+                                            // }
                                             totalPrice<?= $i ?>.innerHTML = total<?= $i ?>.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.');
                                             totalPrices<?= $i ?>.value = total<?= $i ?>;
                                         }

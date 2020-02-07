@@ -129,9 +129,9 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                     <!-- <p class="label-detail">AVAILABLE SEATS</p> -->
                                                     <p class="label-detail">PRICE PER ADULT</p>
                                                     <?php
-                                                    if ($row5['child_price'] != 0) {
-                                                        echo "<p>PRICE PER KIDS</p>";
-                                                    }
+                                                    if ($row5['child_price'] != 0) { ?>
+                                                        <p class="label-detail">PRICE PER KIDS</p>
+                                                    <?php }
                                                     ?>
                                                 </div>
                                                 <div class="col-6">
@@ -150,6 +150,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                     $price = $row5['price'];
                                                     $member_price = $row5['member_price'];
                                                     $child_price = $row5['child_price'];
+                                                    $note = $row5['note'];
 
                                                     echo "<p>$duration</p>";
                                                     // echo "<p>$available</p>";
@@ -216,26 +217,35 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                     ?>
                                                     <hr>
                                                     <div class="form-row">
-                                                        <div class="col-md-4 form-group">
-                                                            <label>Available On</label>
-                                                            <input class="form-control" type="date" name="dateTour" required <?php
-                                                                                                                                $td = date('Y-m-d', strtotime($row5['tour_date']));
-                                                                                                                                if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
-                                                                                                                                    $df = date('Y-m-d', strtotime($dateFrom));
+                                                        <div class="col-md-8">
+                                                            <div class="row">
+                                                                <div class="col-md-7 form-group">
+                                                                    <label>Available On</label>
+                                                                    <input class="form-control" type="date" name="dateTour" required <?php
+                                                                                                                                        $td = date('Y-m-d', strtotime($row5['tour_date']));
+                                                                                                                                        if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                                                                                                                                            $df = date('Y-m-d', strtotime($dateFrom));
 
-                                                                                                                                    if ($td > $df || $df == null) { ?> min="<?= $td ?>" <?php } else { ?> min="<?= $df ?>" <?php } ?> max="<?= $dateTo ?>" <?php } else { ?> min="<?= $td ?>" <?php } ?> />
-                                                        </div>
-                                                        <div class="col-md-2 form-group">
-                                                            <label>Pax</label>
-                                                            <input type="number" class="form-control" min="<?= $min_people ?>" max="<?= $max_people ?>" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="<?= $min_people ?>" />
-                                                        </div>
-                                                        <div class="col-md-2 form-group">
-                                                            <?php
-                                                            if ($child_price != 0) { ?>
-                                                                <label>Child Pax</label>
-                                                                <input type="number" class="form-control" min="0" max="" name="totalChild" id="totalChild<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="" />
-                                                            <?php }
-                                                            ?>
+                                                                                                                                            if ($td > $df || $df == null) { ?> min="<?= $td ?>" <?php } else { ?> min="<?= $df ?>" <?php } ?> max="<?= $dateTo ?>" <?php } else { ?> min="<?= $td ?>" <?php } ?> />
+                                                                </div>
+                                                                <div class="col-md-2 form-group">
+                                                                    <label>Pax</label>
+                                                                    <input type="number" class="form-control" min="<?= $min_people ?>" max="<?= $max_people ?>" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="<?= $min_people ?>" />
+                                                                </div>
+                                                                <div class="col-md-3 form-group">
+                                                                    <?php
+                                                                    if ($child_price != 0) { ?>
+                                                                        <label>Child Pax</label>
+                                                                        <input type="number" class="form-control" min="0" max="" name="totalChild" id="totalChild<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="" />
+                                                                    <?php }
+                                                                    ?>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row note">
+                                                                <div class="col-md-12">
+                                                                    <h6><?= $note ?></h6>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-4 form-group">
                                                             <label>Total</label>

@@ -17,11 +17,12 @@ $perPerson = (isset($_POST["perPerson"])) ? "1" : "0";
 $price = $_POST["price"];
 $childPrice = ($_POST["childPrice"] != "") ? $_POST["childPrice"] : "0.00";
 $memberPrice = $_POST["memberPrice"];
+$note = $_POST['note'];
 
 $tourDate = date('Y-m-d', strtotime($rawTourDate));
 $endDate = date('Y-m-d', strtotime($rawEndDate));
 
-$query = "UPDATE wpzu_trav_tour_schedule SET st_id = '$stId' , max_people = '$maxPeople' , min_people = '$minPeople' , duration = '$duration' , is_daily = '$isDaily' , tour_date = '$tourDate' , date_to = '$endDate' , per_person_yn = '$perPerson' , price = '$price' , child_price = '$childPrice' , member_price = '$memberPrice' WHERE id = '$scheduleId'";
+$query = "UPDATE wpzu_trav_tour_schedule SET st_id = '$stId' , max_people = '$maxPeople' , min_people = '$minPeople' , duration = '$duration' , is_daily = '$isDaily' , tour_date = '$tourDate' , date_to = '$endDate' , per_person_yn = '$perPerson' , price = '$price' , child_price = '$childPrice' , member_price = '$memberPrice' , note = '$note' WHERE id = '$scheduleId'";
 
 $query2 = "UPDATE wpzu_posts SET post_title = '$postTitle' WHERE ID = $tour";
 // echo $query2;

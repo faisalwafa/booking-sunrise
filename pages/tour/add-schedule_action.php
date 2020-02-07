@@ -15,6 +15,7 @@ $perPerson = (isset($_POST["perPerson"])) ? "1" : "0";
 $price = $_POST["price"];
 $childPrice = ($_POST["childPrice"] != "") ? $_POST["childPrice"] : "0.00";
 $memberPrice = $_POST["memberPrice"];
+$note = $_POST['note'];
 
 $tourDate = date('Y-m-d', strtotime($rawTourDate));
 $endDate = date('Y-m-d', strtotime($rawEndDate));
@@ -25,8 +26,8 @@ $endDate = date('Y-m-d', strtotime($rawEndDate));
 // echo $endDate;
 // return;
 
-$query = "INSERT INTO wpzu_trav_tour_schedule ( tour_id , st_id , tour_date , duration , max_people , min_people, price , child_price , member_price , is_daily , per_person_yn , date_to ) 
-VALUES ( $tour , $stId , '$tourDate', '$duration' , $maxPeople, $minPeople, $price, $childPrice , $memberPrice , $isDaily , $perPerson , '$endDate')";
+$query = "INSERT INTO wpzu_trav_tour_schedule ( tour_id , st_id , tour_date , duration , max_people , min_people, price , child_price , member_price , is_daily , per_person_yn , date_to, note ) 
+VALUES ( $tour , $stId , '$tourDate', '$duration' , $maxPeople, $minPeople, $price, $childPrice , $memberPrice , $isDaily , $perPerson , '$endDate' , '$note')";
 
 if (mysqli_query($con, $query)) {
     header("Location:../admin/admin_tour_detail.php?tour=$tour");

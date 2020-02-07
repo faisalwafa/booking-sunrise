@@ -457,6 +457,12 @@ $row = mysqli_fetch_assoc($results);
                                         <input type="text" class="form-control" name="memberPrice" value="<?= $row2['member_price'] ?>" />
                                     </div>
                                 </div>
+                                <div class="form-group row ">
+                                    <h6 class="col-sm-3 mt-3">Note</h6>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="note" value="<?= $row2['note'] ?>" />
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-9">

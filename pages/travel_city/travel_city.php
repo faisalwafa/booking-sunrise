@@ -59,7 +59,7 @@ include_once '../../helper/connection.php';
                         $convert_price = $row["price"];
                         $convert_memberPrice = $row["price_member"];
                     ?>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6 col-md-3">
                             <div class="pricing-table box <?= $row["color"] ?>">
                                 <div class="box-title d-flex justify-content-between mb-3">
                                     <div class="title">

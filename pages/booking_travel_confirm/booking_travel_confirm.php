@@ -97,19 +97,12 @@ $booking = $_GET['booking_confirm'];
                                             </dd>
                                         </dl>
                                         <hr>
-                                        <h3 class="text-center" style="font-size: 18px; font-weight: 900;">Payment Methods</h3>
+                                        <h3 class="text-center mb-4" style="font-size: 18px; font-weight: 900;">Payment Methods</h3>
                                         <div style=" margin-right: 40px;">
-                                            <div class="d-flex justify-content-around mt-4">
-                                                <div>
-                                                    <h3 style="font-size: 15px; margin-right: 17px;">Rekening Pembayaran&nbsp; | &nbsp;BCA</h3>
-                                                </div>
-                                                <div>
-                                                    <h3 style="font-size: 15px;">Rekening Pembayaran&nbsp; | &nbsp;Mandiri</h3>
-                                                </div>
-                                            </div>
                                             <div class="row d-flex justify-content-around mt-2">
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-5 col-sm-12 mb-sm-3">
+                                                    <h3 style="font-size: 15px; margin-left: 17px;">Rekening Pembayaran&nbsp; | &nbsp;<img width="75" height="25" src="../../assets/bankBca.png"></h3>
                                                     <dl class="term-description">
                                                         <dt>Account Holder : </dt>
                                                         <dd>Dery Okky Pratama</dd>
@@ -121,6 +114,7 @@ $booking = $_GET['booking_confirm'];
                                                 </div>
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-5 col-sm-12">
+                                                    <h3 style="font-size: 15px; margin-left: 17px;">Rekening Pembayaran&nbsp; | &nbsp;<img style="padding-bottom: 9px" width="87" height="30" src="../../assets/bankMandiri.png"></h3>
                                                     <dl class="term-description">
                                                         <dt>Account Holder : </dt>
                                                         <dd>Dery Okky Pratama</dd>
@@ -132,6 +126,24 @@ $booking = $_GET['booking_confirm'];
                                                 </div>
                                             </div>
                                         </div>
+                                        <div style="margin-right: 40px;">
+                                            <div class="row d-flex justify-content-around">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-5 col-sm-12">
+                                                    <h3 style="font-size: 15px; margin-left: 17px;">Rekening Pembayaran&nbsp; | &nbsp;<img width="85" height="30" src="../../assets/bankBri.png"></h3>
+                                                    <dl class="term-description">
+                                                        <dt>Account Holder : </dt>
+                                                        <dd>CV Sunrise Indonesia</dd>
+                                                        <dt>Account Number : </dt>
+                                                        <dd>3127-01-028318-53-3</dd>
+                                                        <dt>Branch : </dt>
+                                                        <dd>Malang Dinoyo 1</dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="col-md-3"></div>
+                                            </div>
+                                        </div>
+
                                         <hr style="margin: 0;">
                         </div>
                     </div>

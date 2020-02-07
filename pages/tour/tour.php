@@ -128,11 +128,11 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                     <p class="label-detail">DURATION</p>
                                                     <!-- <p class="label-detail">AVAILABLE SEATS</p> -->
                                                     <p class="label-detail">PRICE PER ADULT</p>
-                                                    <!-- <?php
-                                                            if ($row5['child_price'] != 0) {
-                                                                echo "<p>PRICE PER KIDS</p>";
-                                                            }
-                                                            ?> -->
+                                                    <?php
+                                                    if ($row5['child_price'] != 0) {
+                                                        echo "<p>PRICE PER KIDS</p>";
+                                                    }
+                                                    ?>
                                                 </div>
                                                 <div class="col-6">
                                                     <?php
@@ -145,7 +145,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                     }
                                                     $stID = $row5['st_id'];
                                                     $duration = $row5['duration'];
-                                                    $available = $row5['max_people'];
+                                                    $max_people = $row5['max_people'];
                                                     $min_people = $row5['min_people'];
                                                     $price = $row5['price'];
                                                     $member_price = $row5['member_price'];
@@ -216,21 +216,26 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                     ?>
                                                     <hr>
                                                     <div class="form-row">
-                                                        <div class="col-md-5 form-group">
+                                                        <div class="col-md-4 form-group">
                                                             <label>Available On</label>
                                                             <input class="form-control" type="date" name="dateTour" required <?php
                                                                                                                                 $td = date('Y-m-d', strtotime($row5['tour_date']));
                                                                                                                                 if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                                                                                                     $df = date('Y-m-d', strtotime($dateFrom));
 
-                                                                                                                                    if ($td > $df) { ?> min="<?= $td ?>" <?php } else { ?> min="<?= $df ?>" <?php } ?> max="<?= $dateTo ?>" <?php } else { ?> min="<?= $td ?>" <?php } ?> />
+                                                                                                                                    if ($td > $df || $df == null) { ?> min="<?= $td ?>" <?php } else { ?> min="<?= $df ?>" <?php } ?> max="<?= $dateTo ?>" <?php } else { ?> min="<?= $td ?>" <?php } ?> />
                                                         </div>
                                                         <div class="col-md-2 form-group">
                                                             <label>Pax</label>
-                                                            <input type="number" class="form-control" min="<?= $min_people ?>" max="100" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" />
+                                                            <input type="number" class="form-control" min="<?= $min_people ?>" max="<?= $max_people ?>" name="totalAdults" id="totalAdults<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="<?= $min_people ?>" />
                                                         </div>
-                                                        <div class="col-md-1 form-group">
-
+                                                        <div class="col-md-2 form-group">
+                                                            <?php
+                                                            if ($child_price != 0) { ?>
+                                                                <label>Child Pax</label>
+                                                                <input type="number" class="form-control" min="0" max="" name="totalChild" id="totalChild<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="" />
+                                                            <?php }
+                                                            ?>
                                                         </div>
                                                         <div class="col-md-4 form-group">
                                                             <label>Total</label>
@@ -259,8 +264,22 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                             var totalAdults<?= $i ?> = document.getElementById("totalAdults<?= $i ?>");
                                             var totalPrice<?= $i ?> = document.getElementById("totalPrice<?= $i ?>");
                                             var totalPrices<?= $i ?> = document.getElementById("totalPrices<?= $i ?>");
+                                            var totalChilds<?= $i ?> = document.getElementById("totalChild<?= $i ?>");
+                                            var min = <?= $min_people ?>;
+                                            var max = <?= $max_people ?>;
+                                            var total<?= $i ?>;
+                                            if (min == max) {
+                                                total<?= $i ?> = Number(price<?= $i ?>);
+                                                totalAdults<?= $i ?>.disabled = true;
+                                            } else {
+                                                total<?= $i ?> = Number(price<?= $i ?>) * Number(totalAdults<?= $i ?>.value);
+                                            }
 
-                                            var total<?= $i ?> = Number(price<?= $i ?>) * Number(totalAdults<?= $i ?>.value);
+                                            //IKI LO DAF PIYE WKWKWKWKWKWKKW
+
+                                            if (totalChilds<?= $i ?>.value > 0) {
+                                                // total<?= $i ?> = total<?= $i ?> + (Number(totalChilds<?= $i ?>.value) * Number($child_price));
+                                            }
                                             totalPrice<?= $i ?>.innerHTML = total<?= $i ?>.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.');
                                             totalPrices<?= $i ?>.value = total<?= $i ?>;
                                         }

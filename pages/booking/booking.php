@@ -336,7 +336,7 @@ $total_price = $_GET['totalPrice'];
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-6 col-md-5">
                                             <label>Phone Number</label>
-                                            <input type="text" name="phoneNumber" class="form-control" id="booking-phoneNumber" onfocusout="checkBookingPhoneNumber()">
+                                            <input type="tel" name="phoneNumber" class="form-control" id="booking-phoneNumber" onfocusout="checkBookingPhoneNumber()">
                                             <small class="invalid-feedback">No. Telefon tidak boleh kosong</small>
                                         </div>
                                     </div>
@@ -354,13 +354,13 @@ $total_price = $_GET['totalPrice'];
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-6 col-md-5 mb-3">
+                                        <!-- <div class="col-sm-6 col-md-5 mb-3">
                                             <label>Zip Code</label>
                                             <input type="text" name="zipCode" class="form-control" id="booking-zipCode" onfocusout="checkBookingZipCode()">
                                             <small class="invalid-feedback">Postal code tidak boleh kosong</small>
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-6 col-md-5">
+                                        </div> -->
+                                        <!-- <div class="col-md-1"></div> -->
+                                        <div class="col-sm-6 col-md-5 mb-3">
                                             <label>Country</label>
                                             <select class="form-control" name="country" id="booking-country">
                                                 <option value="Indonesia">Indonesia</option>

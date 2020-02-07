@@ -179,7 +179,10 @@ $row = mysqli_fetch_assoc($results);
                                 <div>
                                     <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                         <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
-                                        <span>Syarat dan Ketentuan </span>
+                                        <<<<<<< HEAD <span>Syarat dan Ketentuan</span>
+                                            =======
+                                            <span>Syarat dan Ketentuan </span>
+                                            >>>>>>> 7053d462a8b8f8dd2c7cb4600e82f25bf3beacd0
                                     </button>
                                     <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
                                         <textarea name="forceMajeur" class="editor" placeholder="" autofocus><?= $row['force_majeur'] ?></textarea>
@@ -349,7 +352,7 @@ $row = mysqli_fetch_assoc($results);
                                 <div class="form-group row">
                                     <h6 class="col-sm-3 mt-3">Member Price</h6>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" required name="memberPrice" />
+                                        <input type="text" class="form-control" name="memberPrice" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -379,7 +382,7 @@ $row = mysqli_fetch_assoc($results);
                                 <div class="form-group row">
                                     <h6 class="col-sm-3 mt-3">Tour</h6>
                                     <div class="col-sm-9">
-                                        <input disabled class="form-control" value="<?= $row['post_title'] ?>" />
+                                        <input class="form-control" name="post_title" value="<?= $row['post_title'] ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -457,7 +460,7 @@ $row = mysqli_fetch_assoc($results);
                                 <div class="form-group row">
                                     <h6 class="col-sm-3 mt-3">Member Price</h6>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" required name="memberPrice" value="<?= $row2['member_price'] ?>" />
+                                        <input type="text" class="form-control" name="memberPrice" value="<?= $row2['member_price'] ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group row">

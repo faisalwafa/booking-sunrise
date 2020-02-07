@@ -110,6 +110,7 @@ if (isset($_SESSION['user_id'])) {
                         </div>
                     </div>
                 </div>
+                <img src="../../assets/logo-pwa.png" alt="logo" width="100" class="d-sm-block d-md-none">
             </div>
         </div>
     </div>

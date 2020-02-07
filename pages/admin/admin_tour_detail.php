@@ -58,6 +58,12 @@ $row = mysqli_fetch_assoc($results);
                         Dashboard
                     </a>
                 </li>
+                <li class="mb-2">
+                    <a href="admin_member.php">
+                        <i class="fas fa-users" style="color: #1abc9c"></i>
+                        Member
+                    </a>
+                </li>
                 <li class="my-2">
                     <a href="admin_tour.php">
                         <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>

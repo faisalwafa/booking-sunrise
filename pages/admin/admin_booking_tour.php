@@ -44,6 +44,12 @@ $user = $_SESSION["user_id"];
                         Dashboard
                     </a>
                 </li>
+                <li class="mb-2">
+                    <a href="admin_member.php">
+                        <i class="fas fa-users" style="color: #1abc9c"></i>
+                        Member
+                    </a>
+                </li>
                 <li class="my-2">
                     <a href="admin_tour.php">
                         <i class="fas fa-map-marked-alt" style="color: #AC49BC"></i>
@@ -173,9 +179,15 @@ $user = $_SESSION["user_id"];
                                             <div id="selectStatus<?= $index_history_list ?>" style="display: none">
                                                 <input type="hidden" name="booking_id" value="<?= $row_booking_list['id'] ?>">
                                                 <select name="status" onchange="editStatus()">
-                                                    <option value="0">Canceled</option>
-                                                    <option value="1">Upcoming</option>
-                                                    <option value="2">Completed</option>
+                                                    <option value="0" <?php if ($row_booking_list['status'] == 0) {
+                                                                            echo "selected";
+                                                                        } ?>>Canceled</option>
+                                                    <option value="1" <?php if ($row_booking_list['status'] == 1) {
+                                                                            echo "selected";
+                                                                        } ?>>Upcoming</option>
+                                                    <option value="2" <?php if ($row_booking_list['status'] == 2) {
+                                                                            echo "selected";
+                                                                        } ?>>Completed</option>
                                                 </select>
                                             </div>
                                             <div class="row">

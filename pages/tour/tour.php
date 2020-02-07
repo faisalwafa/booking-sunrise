@@ -233,7 +233,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                             <?php
                                                             if ($child_price != 0) { ?>
                                                                 <label>Child Pax</label>
-                                                                <input type="number" class="form-control" min="" max="" name="totalChild" id="totalChild<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="0" />
+                                                                <input type="number" class="form-control" min="0" max="" name="totalChild" id="totalChild<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="" />
                                                             <?php }
                                                             ?>
                                                         </div>

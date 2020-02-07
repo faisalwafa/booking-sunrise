@@ -90,7 +90,7 @@ $row = mysqli_fetch_assoc($results);
                                     <div class="col-md-1"></div>
                                     <div class="col-sm-6 col-md-5">
                                         <label>Phone Number</label>
-                                        <input type="text" name="phoneNumberTravel" class="form-control" id="travelBooking-phoneNumber" onfocusout="checkBookingTravelPhoneNumber()">
+                                        <input type="tel" name="phoneNumberTravel" class="form-control" id="travelBooking-phoneNumber" onfocusout="checkBookingTravelPhoneNumber()">
                                         <small class="invalid-feedback">No. Telepon tidak boleh kosong</small>
                                     </div>
                                 </div>

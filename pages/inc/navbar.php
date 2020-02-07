@@ -50,13 +50,13 @@ $is_logged_in = isset($_SESSION['user_id']);
                     <?php } else { ?>
                         <li class="nav-item active">
                             <?php if (isset($_GET['tour'])) { ?>
-                                <a class="nav-link text-white mr-3" href="/booking-sunrise/pages/auth/auth.php?tour=<?= $_GET['tour'] ?>">Login</a>
+                                <a class="nav-link text-white mr-3" href="../auth/auth.php?tour=<?= $_GET['tour'] ?>">Login</a>
                             <?php } else { ?>
-                                <a class="nav-link text-white mr-3" href="/booking-sunrise/pages/auth/auth.php">Login</a>
+                                <a class="nav-link text-white mr-3" href="../auth/auth.php">Login</a>
                             <?php } ?>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/booking-sunrise/pages/auth/auth.php">Register</a>
+                            <a class="nav-link text-white" href="../auth/auth.php">Register</a>
                         </li>
                     <?php } ?>
             </div>

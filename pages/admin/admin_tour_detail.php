@@ -25,7 +25,8 @@ $row = mysqli_fetch_assoc($results);
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -172,7 +173,7 @@ $row = mysqli_fetch_assoc($results);
                                 <div>
                                     <button class="btn btn-block btn-outline-secondary rounded mb-2 d-flex align-items-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                         <span class="mr-2"><i class="soap-icon-plus mr-1"></i></span>
-                                        <span>Force Majeur</span>
+                                        <span>Syarat dan Ketentuan </span>
                                     </button>
                                     <div id="collapseFive" class="collapse ml-2" aria-labelledby="headingFive" data-parent="#accordionContent">
                                         <textarea name="forceMajeur" class="editor" placeholder="" autofocus><?= $row['force_majeur'] ?></textarea>
@@ -270,7 +271,7 @@ $row = mysqli_fetch_assoc($results);
                                 <div class="form-group row">
                                     <h6 class="col-sm-3 mt-3">Schedule Type</h6>
                                     <div class="col-sm-9">
-                                        <select class="form-control" required name="scheduleType">
+                                        <select class="form-control" name="scheduleType">
                                             <option value="0"></option>
                                             <option value="0">Weekday</option>
                                             <option value="1">Weekend</option>
@@ -299,7 +300,7 @@ $row = mysqli_fetch_assoc($results);
                                     <h6 class="col-sm-3 mt-3">Is Daily?</h6>
                                     <div class="col-sm-9">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" required name="isDaily" onchange="myFunction()" id="check">
+                                            <input class="form-check-input" type="checkbox" name="isDaily" onchange="myFunction()" id="check">
                                         </div>
                                     </div>
                                 </div>
@@ -313,7 +314,7 @@ $row = mysqli_fetch_assoc($results);
                                     <div class="form-group row">
                                         <h6 class="col-sm-3 mt-3">End Date</h6>
                                         <div class="col-sm-9">
-                                            <input id="inputEndDate" type="date" class="form-control" required name="endDate" />
+                                            <input id="inputEndDate" type="date" class="form-control" name="endDate" />
                                         </div>
                                     </div>
                                 </div>
@@ -321,7 +322,7 @@ $row = mysqli_fetch_assoc($results);
                                     <h6 class="col-sm-3 mt-3">Charge Per Person?</h6>
                                     <div class="col-sm-9">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" required name="perPerson" onchange="myFunction2()" id="check2">
+                                            <input class="form-check-input" type="checkbox" name="perPerson" onchange="myFunction2()" id="check2">
                                         </div>
                                     </div>
                                 </div>
@@ -335,7 +336,7 @@ $row = mysqli_fetch_assoc($results);
                                     <div class="form-group row">
                                         <h6 class="col-sm-3 mt-3">Price Per Child</h6>
                                         <div class="col-sm-9">
-                                            <input id="inputChildPrice" type="text" class="form-control" required name="childPrice" />
+                                            <input id="inputChildPrice" type="text" class="form-control" name="childPrice" />
                                         </div>
                                     </div>
                                 </div>
@@ -378,7 +379,7 @@ $row = mysqli_fetch_assoc($results);
                                 <div class="form-group row">
                                     <h6 class="col-sm-3 mt-3">Schedule Type</h6>
                                     <div class="col-sm-9">
-                                        <select class="form-control" required name="scheduleType">
+                                        <select class="form-control" name="scheduleType">
                                             <option value="0"></option>
                                             <option value="0">Weekday</option>
                                             <option value="1">Weekend</option>
@@ -407,7 +408,7 @@ $row = mysqli_fetch_assoc($results);
                                     <h6 class="col-sm-3 mt-3">Is Daily?</h6>
                                     <div class="col-sm-9">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" required name="isDaily" onchange="myFunction()" id="check" value="<?= $row2['is_daily'] ?>">
+                                            <input class="form-check-input" type="checkbox" name="isDaily" onchange="myFunction()" id="check" value="<?= $row2['is_daily'] ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -421,7 +422,7 @@ $row = mysqli_fetch_assoc($results);
                                     <div class="form-group row">
                                         <h6 class="col-sm-3 mt-3">End Date</h6>
                                         <div class="col-sm-9">
-                                            <input id="inputEndDate" type="date" class="form-control" required name="endDate" value="<?= $row2['date_to'] ?>" />
+                                            <input id="inputEndDate" type="date" class="form-control" name="endDate" value="<?= $row2['date_to'] ?>" />
                                         </div>
                                     </div>
                                 </div>
@@ -429,7 +430,7 @@ $row = mysqli_fetch_assoc($results);
                                     <h6 class="col-sm-3 mt-3">Charge Per Person?</h6>
                                     <div class="col-sm-9">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" required name="perPerson" onchange="myFunction2()" id="check2" value="<?= $row2['per_person_yn'] ?>">
+                                            <input class="form-check-input" type="checkbox" name="perPerson" onchange="myFunction2()" id="check2" value="<?= $row2['per_person_yn'] ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -443,7 +444,7 @@ $row = mysqli_fetch_assoc($results);
                                     <div class="form-group row">
                                         <h6 class="col-sm-3 mt-3">Price Per Child</h6>
                                         <div class="col-sm-9">
-                                            <input id="inputChildPrice" type="text" class="form-control" required name="childPrice" value="<?= $row2['child_price'] ?>" />
+                                            <input id="inputChildPrice" type="text" class="form-control" name="childPrice" value="<?= $row2['child_price'] ?>" />
                                         </div>
                                     </div>
                                 </div>

@@ -13,6 +13,7 @@ $booking = $_GET['booking_confirm'];
 <html lang="en">
 
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <?php include_once '../inc/header.php'; ?>
     <title>Travel Antar Kota Booking Confirmation | Sunrise Indonesia</title>
 </head>

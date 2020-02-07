@@ -274,9 +274,12 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                             } else {
                                                 total<?= $i ?> = Number(price<?= $i ?>) * Number(totalAdults<?= $i ?>.value);
                                             }
-                                            // if (totalChilds<?= $i ?>.value != 0) {
-                                            //     total<?= $i ?> = total<?= $i ?> + (Number(totalChilds<?= $i ?>.value) * Number($child_price));
-                                            // }
+
+                                            //IKI LO DAF PIYE WKWKWKWKWKWKKW
+
+                                            if (totalChilds<?= $i ?>.value > 0) {
+                                                // total<?= $i ?> = total<?= $i ?> + (Number(totalChilds<?= $i ?>.value) * Number($child_price));
+                                            }
                                             totalPrice<?= $i ?>.innerHTML = total<?= $i ?>.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.');
                                             totalPrices<?= $i ?>.value = total<?= $i ?>;
                                         }

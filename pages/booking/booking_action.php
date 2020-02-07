@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $st_id = $_POST['stId'];
     $tour_date = $_POST['tourDate'];
     $total_adults = $_POST['totalAdults'];
+    $total_childs = isset($_POST['totalChilds']) ? $_POST['totalChilds'] : 0;
     $total_price = $_POST['totalPrice'];
     $post_title = $_POST['postTitle'];
     $location = $_POST['location'];
@@ -113,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             '$first_name', '$last_name', '$email',
             '$country_code', '$phone_number', '$address',
             '$city', '$zip_code', '$country',
-            '$special_req', $total_adults, 0,
+            '$special_req', $total_adults, $total_childs,
             0, $total_price, 'idr',
             0, 0, 0, $user_id, 0,
             $bookingCode, 1, now(), 0, 0           
@@ -127,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             '$first_name', '$last_name', '$email',
             '$country_code', '$phone_number', '$address',
             '$city', '$zip_code', '$country',
-            '$special_req', $total_adults, 0,
+            '$special_req', $total_adults, $total_childs,
             0, $total_price, 'idr',
             0, 0, 0, 0,
             $bookingCode, 1, now(), 0, 0           
@@ -258,6 +259,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $response = send_response(SUCCESS, json_encode($redirect));
         } else {
             $redirect = array('tour' => $tour_id, 'st_id' => $st_id, 'post_title' => $post_title, 'location' => $location, 'duration' => $duration, 'price' => $price, 'dateTour' => $tour_date, 'totalAdults' => $total_adults, 'totalPrice' => $total_price, 'message' => 'Gagal membuat booking tour baru');
+            if (isset($_POST['totalChilds'])) {
+                $redirect += ['totalChilds' => $total_childs];
+            }
             $response = send_response(FAIL, json_encode($redirect));
         }
     }

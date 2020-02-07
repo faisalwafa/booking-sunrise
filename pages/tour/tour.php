@@ -233,7 +233,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                             <?php
                                                             if ($child_price != 0) { ?>
                                                                 <label>Child Pax</label>
-                                                                <input type="number" class="form-control" min="0" max="" name="totalChild" id="totalChild<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="" />
+                                                                <input type="number" class="form-control" min="0" max="" name="totalChild" id="totalChild<?= $i ?>" onkeyup="totalPrice<?= $i ?>()" onchange="totalPrice<?= $i ?>()" value="0" />
                                                             <?php }
                                                             ?>
                                                         </div>
@@ -264,7 +264,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                             var totalAdults<?= $i ?> = document.getElementById("totalAdults<?= $i ?>");
                                             var totalPrice<?= $i ?> = document.getElementById("totalPrice<?= $i ?>");
                                             var totalPrices<?= $i ?> = document.getElementById("totalPrices<?= $i ?>");
-                                            var totalChilds<?= $i ?> = document.getElementById("totalChild<?= $i ?>");
+                                            var totalChild<?= $i ?> = document.getElementById("totalChild<?= $i ?>");
                                             var min = <?= $min_people ?>;
                                             var max = <?= $max_people ?>;
                                             var total<?= $i ?>;
@@ -276,10 +276,16 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                             }
 
                                             //IKI LO DAF PIYE WKWKWKWKWKWKKW
-
-                                            if (totalChilds<?= $i ?>.value > 0) {
-                                                // total<?= $i ?> = total<?= $i ?> + (Number(totalChilds<?= $i ?>.value) * Number($child_price));
+                                            <?php
+                                            if ($row5['child_price'] != 0) {
+                                            ?>
+                                                if (Number(totalChild<?= $i ?>.value) > 0) {
+                                                    total<?= $i ?> = total<?= $i ?> + (Number(totalChild<?= $i ?>.value) * Number(<?= $child_price ?>));
+                                                }
+                                            <?php
                                             }
+                                            ?>
+
                                             totalPrice<?= $i ?>.innerHTML = total<?= $i ?>.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.');
                                             totalPrices<?= $i ?>.value = total<?= $i ?>;
                                         }

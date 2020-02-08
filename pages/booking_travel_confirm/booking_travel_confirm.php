@@ -96,6 +96,8 @@ $booking = $_GET['booking_confirm'];
                                                 </a>
                                             </dd>
                                         </dl>
+                                        <small class="text-orange" style="font-size: 10.5px;">* Berikut ini <strong>bukan</strong> bukti pembayaran yang sah.</small><br>
+                                        <small class="text-orange" style="font-size: 10.5px;">* Segera lanjutkan pembayaran dengan menghubungi CS kami.</small>
                                         <hr>
                                         <h3 class="text-center mb-4" style="font-size: 18px; font-weight: 900;">Payment Methods</h3>
                                         <div style=" margin-right: 40px;">

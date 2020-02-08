@@ -35,6 +35,14 @@
             color: #FFA500;
         }
 
+        .text-center {
+            text-align: center;
+        }
+
+        .text-blue {
+            color: #5EA0C7;
+        }
+
         @media only screen and (max-width: 600px) {
             .wrapper {
                 width: 90%;
@@ -107,7 +115,64 @@
                 </table>
             </div>
             <hr>
-            <small><strong>*Terima Kasih, Order telah berhasil diproses, Tim CS akan segera menghubungi anda</strong></small>
+            <small><strong>*Terima Kasih Atas Pemesanannya, Lakukan pembayaran, dan segera konfirmasi melalui CS +6287 777 890 888</strong></small>
+            <hr>
+            <h3 class="text-center">Rekening Pembayaran</h3>
+            <div class="overflow">
+                <h3 style="font-size: 0.8rem">Rekening Pembayaran&nbsp; | &nbsp;<img width="75" height="25" src="http://booking.sunrise-indonesia.com/assets/bankBca.png" alt="logo bank"></h3>
+                <table style="font-size: 0.8rem;">
+                    <tr style="height: 30px">
+                        <td class="text-blue">ACCOUNT HOLDER :</td>
+                        <td>Dery Okky Pratama</td>
+                    </tr>
+                    <tr style="height: 30px">
+                        <td class="text-blue">ACCOUNT NUMBER :</td>
+                        <td>8160987651</td>
+                    </tr>
+                    <tr style="height: 30px">
+                        <td class="text-blue">BRANCH :</td>
+                        <td>BCA Borobudur Malang</td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div class="overflow">
+                <h3 style="font-size: 0.8rem">Rekening Pembayaran&nbsp; | &nbsp;<img width="87" height="30" src="http://booking.sunrise-indonesia.com/assets/bankMandiri.png" alt="logo bank">
+                </h3>
+                <table style="font-size: 0.8rem;">
+                    <tr style="height: 30px">
+                        <td class="text-blue">ACCOUNT HOLDER :</td>
+                        <td>Dery Okky Pratama</td>
+                    </tr>
+                    <tr style="height: 30px">
+                        <td class="text-blue">ACCOUNT NUMBER :</td>
+                        <td>144-00-1673900-2</td>
+                    </tr>
+                    <tr style="height: 30px">
+                        <td class="text-blue">BRANCH :</td>
+                        <td>BCA Borobudur Malang</td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div class="overflow">
+                <h3 style="font-size: 0.8rem">Rekening Pembayaran&nbsp; | &nbsp;<img width="85" height="30" src="http://booking.sunrise-indonesia.com/assets/bankBri.png" alt="logo bank"></h3>
+                <table style="font-size: 0.8rem;">
+                    <tr style="height: 30px">
+                        <td class="text-blue">ACCOUNT HOLDER :</td>
+                        <td>CV Sunrise Indonesia</td>
+                    </tr>
+                    <tr style="height: 30px">
+                        <td class="text-blue">ACCOUNT NUMBER :</td>
+                        <td>3127-01-028318-53-3</td>
+                    </tr>
+                    <tr style="height: 30px">
+                        <td class="text-blue">BRANCH :</td>
+                        <td>Malang Dinoyo 1</td>
+                    </tr>
+                </table>
+            </div>
+            <br>
         </div>
         <p style="margin-top: 20px; text-align:center;">
             <small>

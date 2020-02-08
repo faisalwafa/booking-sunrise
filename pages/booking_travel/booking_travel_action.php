@@ -168,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                     margin-right: auto;" src="http://booking.sunrise-indonesia.com/assets/logo-pwa.png" alt="logo" width="120">
                                 <div style="background: white; padding: 15px 30px 20px 30px;">
                                     <h3>Informasi Pemesanan</h3>
-                                    <a href="http://booking.sunrise-indonesia.com/pages/booking_confirm/booking_confirm.php?booking_confirm=' . $bookingCode . '" style="font-size:0.8rem; text-decoration:none; color:white; padding:10px 15px; background-color:#FFA500; border-radius:10%; margin-bottom: 10px">Travel Order Detail</a>
+                                    <a href="http://booking.sunrise-indonesia.com/pages/booking_travel_confirm/booking_travel_confirm.php?booking_confirm=' . $bookingCode . '" style="font-size:0.8rem; text-decoration:none; color:white; padding:10px 15px; background-color:#FFA500; border-radius:10%; margin-bottom: 10px">Travel Order Detail</a>
                                     <br>
                                     <br>
                                     <hr>

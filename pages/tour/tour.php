@@ -119,7 +119,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                 $i = 1;
                                 while ($row5 = mysqli_fetch_assoc($results5)) { ?>
                                     <div class="row-content row  grey-background d-flex justify-content-around">
-                                        <div class="bg-white mx-3 col-sm-4 my-3">
+                                        <div class="bg-white ml-3 mr-1 col-sm-4 my-3">
                                             <h6 class="font-weight-bold mt-3 text-center">Detail Schedule</h6>
                                             <hr>
                                             <div class="row d-flex align-items-center">
@@ -162,7 +162,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-7 bg-white mx-3 my-3">
+                                        <div class="col-sm-7 bg-white ml-1 mr-3 my-3">
                                             <div class="row">
                                                 <?php
                                                 if (!$is_logged_in) {
@@ -217,7 +217,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                     ?>
                                                     <hr>
                                                     <div class="form-row">
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-9">
                                                             <div class="form-row">
                                                                 <div class="col-md-6 form-group">
                                                                     <label>Available On</label>
@@ -247,7 +247,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4 form-group">
+                                                        <div class="col-md-3 form-group">
                                                             <label>Total</label>
                                                             <div>
                                                                 <span class="d-flex">

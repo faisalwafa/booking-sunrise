@@ -411,8 +411,12 @@ dl.term-description::after {
   font-family: FontAwesome;
 }
 
+.priceOverflow {
+  overflow: auto;
+}
 .note {
   word-wrap: break-word;
+  overflow: auto;
 }
 
 /* Style for travel */

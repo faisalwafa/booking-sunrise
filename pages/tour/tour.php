@@ -249,7 +249,7 @@ if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
                                                         </div>
                                                         <div class="col-md-3 form-group">
                                                             <label>Total</label>
-                                                            <div>
+                                                            <div class="priceOverflow">
                                                                 <span class="d-flex">
                                                                     <h6 class="mr-2">Rp.</h6>
                                                                     <h6 id="totalPrice<?= $i ?>"></h6>
